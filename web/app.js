@@ -163,11 +163,106 @@ function initTilt() {
   });
 }
 
-function initTopbar() {
-  const bar = $(".topbar");
-  const onScroll = () => bar.classList.toggle("scrolled", window.scrollY > 12);
-  onScroll();
-  window.addEventListener("scroll", onScroll, { passive: true });
+function placeOrbitChips() {
+  const chips = $$(".orbit-chip");
+  const n = chips.length;
+  // Fan upward-left from the core (not a list, not a bar)
+  const start = (-210 * Math.PI) / 180;
+  const end = (-20 * Math.PI) / 180;
+  const radius = window.matchMedia("(max-width: 640px)").matches ? 118 : 148;
+
+  chips.forEach((chip, i) => {
+    const t = n === 1 ? 0.5 : i / (n - 1);
+    const angle = start + (end - start) * t;
+    // slight radius stagger so it feels organic, not a perfect arc
+    const r = radius + (i % 2 === 0 ? 8 : -10);
+    const x = Math.cos(angle) * r;
+    const y = Math.sin(angle) * r;
+    chip.style.setProperty("--x", `${x.toFixed(1)}px`);
+    chip.style.setProperty("--y", `${y.toFixed(1)}px`);
+  });
+}
+
+function initOrbitNav() {
+  const orbit = $("#orbit");
+  const core = $("#orbit-core");
+  const links = $("#orbit-links");
+  const label = core.querySelector(".orbit-core-label");
+  const chips = $$(".orbit-chip");
+
+  placeOrbitChips();
+  window.addEventListener("resize", placeOrbitChips);
+
+  const setOpen = (open) => {
+    orbit.classList.toggle("is-open", open);
+    core.setAttribute("aria-expanded", String(open));
+    links.setAttribute("aria-hidden", String(!open));
+    label.textContent = open ? label.dataset.open : label.dataset.closed;
+    core.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+  };
+
+  core.addEventListener("click", (e) => {
+    e.stopPropagation();
+    setOpen(!orbit.classList.contains("is-open"));
+  });
+
+  chips.forEach((chip) => {
+    chip.addEventListener("click", () => {
+      // close after in-page jump; keep open briefly for external GitHub
+      if (!chip.classList.contains("orbit-chip-ext")) {
+        setTimeout(() => setOpen(false), 180);
+      }
+    });
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!orbit.contains(e.target)) setOpen(false);
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") setOpen(false);
+  });
+
+  // Magnetic pull toward pointer while open
+  orbit.addEventListener("pointermove", (e) => {
+    if (!orbit.classList.contains("is-open")) return;
+    chips.forEach((chip) => {
+      const r = chip.getBoundingClientRect();
+      const cx = r.left + r.width / 2;
+      const cy = r.top + r.height / 2;
+      const dx = (e.clientX - cx) * 0.06;
+      const dy = (e.clientY - cy) * 0.06;
+      const baseX = chip.style.getPropertyValue("--x");
+      const baseY = chip.style.getPropertyValue("--y");
+      chip.style.transform = `translate(calc(${baseX} + ${dx}px), calc(${baseY} + ${dy}px)) scale(1)`;
+    });
+  });
+
+  orbit.addEventListener("pointerleave", () => {
+    chips.forEach((chip) => {
+      chip.style.transform = "";
+    });
+  });
+
+  // Highlight chip for section in view
+  const sectionIds = ["lab", "example", "judge", "metrics", "pipeline"];
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((en) => {
+        if (!en.isIntersecting) return;
+        const id = en.target.id;
+        chips.forEach((chip) => {
+          const href = chip.getAttribute("href") || "";
+          chip.classList.toggle("is-active", href === `#${id}`);
+        });
+      });
+    },
+    { threshold: 0.35 }
+  );
+  sectionIds.forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) io.observe(el);
+  });
 }
 
 function setLabPrompt() {
@@ -354,7 +449,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initCursor();
   initReveal();
   initTilt();
-  initTopbar();
+  initOrbitNav();
   initLab();
   initCompare();
   initJudge();
