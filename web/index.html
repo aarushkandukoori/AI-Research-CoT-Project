@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles.css?v=7" />
+  <link rel="stylesheet" href="./styles.css?v=8" />
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
@@ -47,22 +47,93 @@
   <main id="top">
     <!-- HERO -->
     <section class="hero">
-      <p class="eyebrow reveal">Chain-of-thought evaluation</p>
-      <h1 class="hero-title">
-        <span class="line"><span class="word">Do</span> <span class="word">models</span></span>
-        <span class="line"><span class="word italic">say</span> <span class="word">what</span></span>
-        <span class="line"><span class="word">they</span> <span class="word accent">think?</span></span>
-      </h1>
-      <p class="hero-sub reveal">
-        An interactive replication of CoT faithfulness research — testing whether
-        written reasoning admits the real reason for an answer, or invents a clean-looking story after the fact.
-      </p>
-      <div class="hero-cta reveal">
-        <a class="btn primary" href="#lab">Enter the lab</a>
-        <a class="btn ghost" href="https://github.com/aarushkandukoori/AI-Research-CoT-Project" target="_blank" rel="noopener">View source</a>
-      </div>
-      <div class="scroll-hint reveal" aria-hidden="true">
-        <span></span> Scroll to experiment
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow reveal">Chain-of-thought evaluation</p>
+          <h1 class="hero-title">
+            <span class="line"><span class="word">Do</span> <span class="word">models</span></span>
+            <span class="line"><span class="word italic">say</span> <span class="word">what</span></span>
+            <span class="line"><span class="word">they</span> <span class="word accent">think?</span></span>
+          </h1>
+          <p class="hero-sub reveal">
+            An interactive replication of CoT faithfulness research — testing whether
+            written reasoning admits the real reason for an answer, or invents a clean-looking story after the fact.
+          </p>
+          <div class="hero-cta reveal">
+            <a class="btn primary" href="#lab">Enter the lab</a>
+            <a class="btn ghost" href="https://github.com/aarushkandukoori/AI-Research-CoT-Project" target="_blank" rel="noopener">View source</a>
+          </div>
+          <div class="scroll-hint reveal" aria-hidden="true">
+            <span></span> Scroll to experiment
+          </div>
+        </div>
+
+        <div class="hero-art reveal" aria-hidden="true">
+          <svg class="mask-bot" viewBox="0 0 420 480" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
+            <title>Line drawing of a robot wearing a deceptive mask</title>
+            <!-- soft ground shadow -->
+            <ellipse class="bot-shadow" cx="210" cy="448" rx="92" ry="10" />
+
+            <!-- neck / body -->
+            <path class="bot-stroke" d="M186 268 V302" />
+            <path class="bot-stroke" d="M234 268 V302" />
+            <rect class="bot-stroke" x="148" y="300" width="124" height="98" rx="18" />
+            <path class="bot-stroke bot-accent" d="M168 330 H252" />
+            <path class="bot-stroke" d="M178 352 H222" />
+            <circle class="bot-stroke bot-accent" cx="238" cy="352" r="6" />
+            <path class="bot-stroke" d="M178 372 H206" />
+
+            <!-- arms -->
+            <path class="bot-stroke" d="M148 318 C118 328 108 358 118 388" />
+            <path class="bot-stroke" d="M272 318 C302 328 312 358 302 388" />
+            <path class="bot-stroke bot-accent" d="M112 392 C120 404 132 404 140 394" />
+            <path class="bot-stroke" d="M308 392 C300 404 288 404 280 394" />
+
+            <!-- antennae -->
+            <path class="bot-stroke" d="M168 118 C160 88 148 72 132 58" />
+            <circle class="bot-fill-accent" cx="128" cy="52" r="7" />
+            <path class="bot-stroke" d="M252 118 C260 86 274 70 292 56" />
+            <circle class="bot-fill-accent" cx="296" cy="50" r="7" />
+
+            <!-- robot head shell -->
+            <rect class="bot-stroke" x="142" y="112" width="136" height="148" rx="36" />
+            <path class="bot-stroke" d="M162 132 H258" opacity="0.45" />
+
+            <!-- true eyes peeking (narrow / calculating) -->
+            <path class="bot-stroke bot-eye" d="M172 168 H196" />
+            <path class="bot-stroke bot-eye" d="M224 168 H248" />
+            <circle class="bot-fill-ink" cx="184" cy="168" r="3.2" />
+            <circle class="bot-fill-ink" cx="236" cy="168" r="3.2" />
+
+            <!-- mask held / worn over face — theatrical, sly -->
+            <g class="bot-mask">
+              <path
+                class="bot-stroke bot-accent"
+                d="M156 178
+                   C156 178 168 158 210 156
+                   C252 158 264 178 264 178
+                   V236
+                   C264 258 240 272 210 274
+                   C180 272 156 258 156 236 Z"
+              />
+              <!-- mask eye holes -->
+              <ellipse class="bot-stroke" cx="186" cy="204" rx="16" ry="12" />
+              <ellipse class="bot-stroke" cx="234" cy="204" rx="16" ry="12" />
+              <!-- sly curved smile on the mask -->
+              <path class="bot-stroke bot-accent" d="M178 238 C192 252 228 252 242 238" />
+              <!-- mask seam / crack of deceit -->
+              <path class="bot-stroke" d="M210 170 V262" opacity="0.35" />
+              <!-- string / strap -->
+              <path class="bot-stroke" d="M156 198 C138 198 130 188 128 176" />
+              <path class="bot-stroke" d="M264 198 C282 198 290 188 292 176" />
+            </g>
+
+            <!-- tiny “false CoT” speech tick -->
+            <path class="bot-stroke bot-accent bot-whisper" d="M298 210 C318 200 338 206 348 222" />
+            <circle class="bot-fill-accent bot-whisper" cx="354" cy="228" r="3" />
+          </svg>
+          <p class="hero-art-caption">A clean face. A different reason underneath.</p>
+        </div>
       </div>
     </section>
 
@@ -271,6 +342,6 @@
     </p>
   </footer>
 
-  <script src="./app.js?v=7" type="module"></script>
+  <script src="./app.js?v=8" type="module"></script>
 </body>
 </html>

@@ -326,8 +326,100 @@ body.is-ready .cursor-glow {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 7rem 4vw 5rem;
-  max-width: 1100px;
+  padding: 6.5rem 4vw 4.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: center;
+}
+
+.hero-copy {
+  max-width: 36rem;
+}
+
+.hero-art {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 320px;
+}
+
+.mask-bot {
+  width: min(100%, 400px);
+  height: auto;
+  overflow: visible;
+}
+
+.bot-stroke {
+  stroke: var(--ink);
+  stroke-width: 2.25;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.bot-accent {
+  stroke: var(--coral);
+}
+
+.bot-fill-accent {
+  fill: var(--coral);
+  stroke: none;
+}
+
+.bot-fill-ink {
+  fill: var(--ink);
+  stroke: none;
+}
+
+.bot-shadow {
+  fill: rgba(20, 20, 19, 0.08);
+}
+
+.bot-mask {
+  transform-origin: 210px 210px;
+  animation: mask-tilt 5.5s ease-in-out infinite;
+}
+
+.bot-eye {
+  opacity: 0.85;
+}
+
+.bot-whisper {
+  animation: whisper 3.2s ease-in-out infinite;
+}
+
+@keyframes mask-tilt {
+  0%, 100% { transform: rotate(-2deg) translateY(0); }
+  50% { transform: rotate(2.5deg) translateY(2px); }
+}
+
+@keyframes whisper {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+
+.hero-art-caption {
+  margin: 0.75rem 0 0;
+  font-size: 0.88rem;
+  color: var(--ink-faint);
+  font-style: italic;
+  font-family: var(--font-serif);
+  letter-spacing: 0.01em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bot-mask,
+  .bot-whisper {
+    animation: none;
+  }
 }
 
 .eyebrow {
@@ -1023,6 +1115,16 @@ html.js .reveal.visible {
   .float-brand-text { display: none; }
   .float-brand { padding-right: 0.55rem; }
   .fab { right: 1rem; bottom: 1rem; width: 4rem; height: 4rem; }
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-art {
+    order: -1;
+    min-height: 240px;
+  }
+  .mask-bot {
+    width: min(70%, 280px);
+  }
   .concept-grid,
   .lab-shell,
   .compare-frames,
