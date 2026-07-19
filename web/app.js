@@ -187,23 +187,24 @@ function placePlanets() {
   const cx = rect.left + rect.width / 2;
   const cy = rect.top + rect.height / 2;
   const n = planets.length;
-  // Keep everything in the upper-left quadrant of the FAB (never off the right edge)
-  const radius = Math.min(150, Math.max(110, Math.min(cx - 70, cy - 70) * 0.85));
-  const start = (-165 * Math.PI) / 180; // up-left
-  const end = (-100 * Math.PI) / 180; // nearly straight up
 
-  const pad = 56;
+  // Rising diagonal trail to the upper-left — fixed gaps, no overlap
+  const gapY = 64;
+  const gapX = 28;
+  const originX = cx - 118;
+  const originY = cy - 52;
+
+  // If trail would go above the viewport, compress toward FAB slightly
+  const topNeeded = originY - (n - 1) * gapY;
+  const scale = topNeeded < 36 ? Math.max(0.72, (originY - 36) / ((n - 1) * gapY || 1)) : 1;
+
   planets.forEach((planet, i) => {
-    const t = n === 1 ? 0.5 : i / (n - 1);
-    const angle = start + (end - start) * t;
-    const r = radius + (i % 2 === 0 ? 10 : -12);
-    let x = cx + Math.cos(angle) * r;
-    let y = cy + Math.sin(angle) * r;
-    x = Math.min(Math.max(x, pad), window.innerWidth - pad);
-    y = Math.min(Math.max(y, pad), window.innerHeight - pad);
-    planet.style.left = `${x}px`;
-    planet.style.top = `${y}px`;
-    planet.style.transitionDelay = `${i * 45}ms`;
+    const step = n - 1 - i; // Lab closest to FAB, GitHub farthest
+    const x = originX - step * gapX * scale;
+    const y = originY - step * gapY * scale;
+    planet.style.left = `${Math.max(64, x)}px`;
+    planet.style.top = `${Math.max(36, y)}px`;
+    planet.style.transitionDelay = `${i * 55}ms`;
   });
 }
 
