@@ -333,91 +333,80 @@ body.is-ready .cursor-glow {
 
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  gap: clamp(1.5rem, 4vw, 3.5rem);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1.25rem, 3vw, 2.5rem);
   align-items: center;
+  width: 100%;
 }
 
 .hero-copy {
-  max-width: 36rem;
+  max-width: 34rem;
+  justify-self: start;
 }
 
 .hero-art {
   position: relative;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 360px;
+  padding-right: 0.5rem;
+}
+
+.hero-art-frame {
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 320px;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
 }
 
 .mask-bot {
-  width: min(100%, 400px);
+  display: block;
+  width: 100%;
+  max-width: 400px;
   height: auto;
+  margin: 0 auto;
   overflow: visible;
 }
 
-.bot-stroke {
-  stroke: var(--ink);
-  stroke-width: 2.25;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  fill: none;
-}
-
-.bot-accent {
-  stroke: var(--coral);
-}
-
-.bot-fill-accent {
-  fill: var(--coral);
-  stroke: none;
-}
-
-.bot-fill-ink {
-  fill: var(--ink);
-  stroke: none;
-}
-
-.bot-shadow {
-  fill: rgba(20, 20, 19, 0.08);
-}
-
 .bot-mask {
-  transform-origin: 210px 210px;
+  transform-origin: 240px 190px;
   animation: mask-tilt 5.5s ease-in-out infinite;
 }
 
-.bot-eye {
-  opacity: 0.85;
-}
-
-.bot-whisper {
-  animation: whisper 3.2s ease-in-out infinite;
+.bot-pupil {
+  animation: pupil-shift 4.5s ease-in-out infinite;
 }
 
 @keyframes mask-tilt {
-  0%, 100% { transform: rotate(-2deg) translateY(0); }
-  50% { transform: rotate(2.5deg) translateY(2px); }
+  0%, 100% { transform: rotate(-1.5deg) translateY(0); }
+  50% { transform: rotate(2deg) translateY(3px); }
 }
 
-@keyframes whisper {
-  0%, 100% { opacity: 0.35; }
-  50% { opacity: 1; }
+@keyframes pupil-shift {
+  0%, 100% { transform: translate(0, 0); }
+  40% { transform: translate(2px, 1px); }
+  70% { transform: translate(-1px, 0); }
 }
 
 .hero-art-caption {
-  margin: 0.75rem 0 0;
-  font-size: 0.88rem;
+  margin: 0.35rem 0 0;
+  font-size: 0.9rem;
   color: var(--ink-faint);
   font-style: italic;
   font-family: var(--font-serif);
   letter-spacing: 0.01em;
+  text-align: center;
+  max-width: 16rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .bot-mask,
-  .bot-whisper {
+  .bot-pupil {
     animation: none;
   }
 }
@@ -1120,10 +1109,13 @@ html.js .reveal.visible {
   }
   .hero-art {
     order: -1;
-    min-height: 240px;
+    min-height: 260px;
+  }
+  .hero-art-frame {
+    max-width: 300px;
   }
   .mask-bot {
-    width: min(70%, 280px);
+    max-width: 280px;
   }
   .concept-grid,
   .lab-shell,

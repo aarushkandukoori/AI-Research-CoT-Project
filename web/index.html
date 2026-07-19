@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles.css?v=8" />
+  <link rel="stylesheet" href="./styles.css?v=9" />
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
@@ -69,70 +69,142 @@
         </div>
 
         <div class="hero-art reveal" aria-hidden="true">
-          <svg class="mask-bot" viewBox="0 0 420 480" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
-            <title>Line drawing of a robot wearing a deceptive mask</title>
-            <!-- soft ground shadow -->
-            <ellipse class="bot-shadow" cx="210" cy="448" rx="92" ry="10" />
+          <div class="hero-art-frame">
+            <svg class="mask-bot" viewBox="0 0 480 520" xmlns="http://www.w3.org/2000/svg" role="img">
+              <title>Robot wearing a deceptive masquerade mask</title>
+              <defs>
+                <linearGradient id="metal" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#f7f4ec" />
+                  <stop offset="45%" stop-color="#ebe6da" />
+                  <stop offset="100%" stop-color="#d9d2c3" />
+                </linearGradient>
+                <linearGradient id="metal-dark" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#e8e2d6" />
+                  <stop offset="100%" stop-color="#cfc6b6" />
+                </linearGradient>
+                <linearGradient id="mask-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#e89a7d" />
+                  <stop offset="55%" stop-color="#d97757" />
+                  <stop offset="100%" stop-color="#b85a3c" />
+                </linearGradient>
+                <linearGradient id="mask-shine" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#ffffff" stop-opacity="0.35" />
+                  <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+                </linearGradient>
+                <radialGradient id="ground" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#141413" stop-opacity="0.14" />
+                  <stop offset="100%" stop-color="#141413" stop-opacity="0" />
+                </radialGradient>
+                <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+                  <feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#141413" flood-opacity="0.12" />
+                </filter>
+              </defs>
 
-            <!-- neck / body -->
-            <path class="bot-stroke" d="M186 268 V302" />
-            <path class="bot-stroke" d="M234 268 V302" />
-            <rect class="bot-stroke" x="148" y="300" width="124" height="98" rx="18" />
-            <path class="bot-stroke bot-accent" d="M168 330 H252" />
-            <path class="bot-stroke" d="M178 352 H222" />
-            <circle class="bot-stroke bot-accent" cx="238" cy="352" r="6" />
-            <path class="bot-stroke" d="M178 372 H206" />
+              <ellipse cx="240" cy="492" rx="110" ry="14" fill="url(#ground)" />
 
-            <!-- arms -->
-            <path class="bot-stroke" d="M148 318 C118 328 108 358 118 388" />
-            <path class="bot-stroke" d="M272 318 C302 328 312 358 302 388" />
-            <path class="bot-stroke bot-accent" d="M112 392 C120 404 132 404 140 394" />
-            <path class="bot-stroke" d="M308 392 C300 404 288 404 280 394" />
+              <g filter="url(#soft)">
+                <!-- torso -->
+                <path fill="url(#metal-dark)" stroke="#141413" stroke-width="2.2" stroke-linejoin="round"
+                  d="M168 312 C168 300 180 292 240 292 C300 292 312 300 312 312
+                     V408 C312 428 292 444 240 444 C188 444 168 428 168 408 Z" />
+                <path fill="none" stroke="#141413" stroke-width="1.4" opacity="0.35"
+                  d="M188 338 H292 M188 368 H260 M188 396 H230" />
+                <circle cx="276" cy="368" r="7" fill="none" stroke="#d97757" stroke-width="2" />
+                <circle cx="276" cy="368" r="2.5" fill="#d97757" />
+                <rect x="222" y="318" width="36" height="10" rx="3" fill="#d97757" opacity="0.85" />
 
-            <!-- antennae -->
-            <path class="bot-stroke" d="M168 118 C160 88 148 72 132 58" />
-            <circle class="bot-fill-accent" cx="128" cy="52" r="7" />
-            <path class="bot-stroke" d="M252 118 C260 86 274 70 292 56" />
-            <circle class="bot-fill-accent" cx="296" cy="50" r="7" />
+                <!-- hips / legs stubs -->
+                <path fill="url(#metal)" stroke="#141413" stroke-width="2"
+                  d="M198 442 V468 C198 476 206 482 216 482 H224 V442 Z" />
+                <path fill="url(#metal)" stroke="#141413" stroke-width="2"
+                  d="M256 442 V468 C256 476 264 482 274 482 H282 V442 Z" />
 
-            <!-- robot head shell -->
-            <rect class="bot-stroke" x="142" y="112" width="136" height="148" rx="36" />
-            <path class="bot-stroke" d="M162 132 H258" opacity="0.45" />
+                <!-- arms -->
+                <path fill="url(#metal)" stroke="#141413" stroke-width="2" stroke-linejoin="round"
+                  d="M168 324 C138 332 118 358 122 392 C124 404 136 412 148 408
+                     L158 404 C148 390 150 362 168 348 Z" />
+                <path fill="url(#metal)" stroke="#141413" stroke-width="2" stroke-linejoin="round"
+                  d="M312 324 C342 332 362 358 358 392 C356 404 344 412 332 408
+                     L322 404 C332 390 330 362 312 348 Z" />
+                <!-- fingers -->
+                <path fill="none" stroke="#141413" stroke-width="1.8" stroke-linecap="round"
+                  d="M130 410 C126 418 128 426 134 428 M140 412 C138 420 142 428 148 428 M150 408 C152 418 158 424 164 424" />
+                <path fill="none" stroke="#141413" stroke-width="1.8" stroke-linecap="round"
+                  d="M350 410 C354 418 352 426 346 428 M340 412 C342 420 338 428 332 428 M330 408 C328 418 322 424 316 424" />
 
-            <!-- true eyes peeking (narrow / calculating) -->
-            <path class="bot-stroke bot-eye" d="M172 168 H196" />
-            <path class="bot-stroke bot-eye" d="M224 168 H248" />
-            <circle class="bot-fill-ink" cx="184" cy="168" r="3.2" />
-            <circle class="bot-fill-ink" cx="236" cy="168" r="3.2" />
+                <!-- neck -->
+                <rect x="220" y="268" width="40" height="28" rx="8" fill="url(#metal)" stroke="#141413" stroke-width="2" />
+                <circle cx="240" cy="282" r="4" fill="#d97757" />
 
-            <!-- mask held / worn over face — theatrical, sly -->
-            <g class="bot-mask">
-              <path
-                class="bot-stroke bot-accent"
-                d="M156 178
-                   C156 178 168 158 210 156
-                   C252 158 264 178 264 178
-                   V236
-                   C264 258 240 272 210 274
-                   C180 272 156 258 156 236 Z"
-              />
-              <!-- mask eye holes -->
-              <ellipse class="bot-stroke" cx="186" cy="204" rx="16" ry="12" />
-              <ellipse class="bot-stroke" cx="234" cy="204" rx="16" ry="12" />
-              <!-- sly curved smile on the mask -->
-              <path class="bot-stroke bot-accent" d="M178 238 C192 252 228 252 242 238" />
-              <!-- mask seam / crack of deceit -->
-              <path class="bot-stroke" d="M210 170 V262" opacity="0.35" />
-              <!-- string / strap -->
-              <path class="bot-stroke" d="M156 198 C138 198 130 188 128 176" />
-              <path class="bot-stroke" d="M264 198 C282 198 290 188 292 176" />
-            </g>
+                <!-- head -->
+                <path fill="url(#metal)" stroke="#141413" stroke-width="2.3" stroke-linejoin="round"
+                  d="M170 126 C170 108 190 94 240 94 C290 94 310 108 310 126
+                     V250 C310 268 290 282 240 282 C190 282 170 268 170 250 Z" />
+                <!-- cranial panel -->
+                <path fill="#faf9f5" stroke="#141413" stroke-width="1.5" opacity="0.9"
+                  d="M188 118 C198 108 218 102 240 102 C262 102 282 108 292 118
+                     V138 H188 Z" />
+                <!-- ear vents -->
+                <rect x="158" y="168" width="14" height="36" rx="5" fill="url(#metal-dark)" stroke="#141413" stroke-width="1.6" />
+                <rect x="308" y="168" width="14" height="36" rx="5" fill="url(#metal-dark)" stroke="#141413" stroke-width="1.6" />
+                <path fill="none" stroke="#141413" stroke-width="1.2" opacity="0.45" d="M163 176 H167 M163 186 H167 M163 196 H167" />
+                <path fill="none" stroke="#141413" stroke-width="1.2" opacity="0.45" d="M313 176 H317 M313 186 H317 M313 196 H317" />
 
-            <!-- tiny “false CoT” speech tick -->
-            <path class="bot-stroke bot-accent bot-whisper" d="M298 210 C318 200 338 206 348 222" />
-            <circle class="bot-fill-accent bot-whisper" cx="354" cy="228" r="3" />
-          </svg>
-          <p class="hero-art-caption">A clean face. A different reason underneath.</p>
+                <!-- antennae -->
+                <path fill="none" stroke="#141413" stroke-width="2.2" stroke-linecap="round"
+                  d="M198 104 C186 78 168 62 148 52" />
+                <circle cx="144" cy="48" r="9" fill="#d97757" stroke="#141413" stroke-width="1.5" />
+                <circle cx="144" cy="48" r="3.5" fill="#faf9f5" />
+                <path fill="none" stroke="#141413" stroke-width="2.2" stroke-linecap="round"
+                  d="M282 104 C294 76 314 60 336 50" />
+                <circle cx="340" cy="46" r="9" fill="#d97757" stroke="#141413" stroke-width="1.5" />
+                <circle cx="340" cy="46" r="3.5" fill="#faf9f5" />
+
+                <!-- true face under mask (calculating) -->
+                <ellipse cx="212" cy="168" rx="18" ry="12" fill="#1a1918" />
+                <ellipse cx="268" cy="168" rx="18" ry="12" fill="#1a1918" />
+                <circle cx="214" cy="168" r="5" fill="#d97757" class="bot-pupil" />
+                <circle cx="270" cy="168" r="5" fill="#d97757" class="bot-pupil" />
+                <circle cx="212" cy="166" r="1.6" fill="#faf9f5" />
+                <circle cx="268" cy="166" r="1.6" fill="#faf9f5" />
+                <path fill="none" stroke="#141413" stroke-width="2" stroke-linecap="round"
+                  d="M222 206 H258" opacity="0.5" />
+
+                <!-- masquerade mask (deceptive smile) -->
+                <g class="bot-mask">
+                  <path fill="url(#mask-grad)" stroke="#8f422c" stroke-width="1.8" stroke-linejoin="round"
+                    d="M178 154
+                       C190 138 214 128 240 128
+                       C266 128 290 138 302 154
+                       C310 168 312 188 308 208
+                       C302 236 274 254 240 256
+                       C206 254 178 236 172 208
+                       C168 188 170 168 178 154 Z" />
+                  <path fill="url(#mask-shine)" d="M190 140 C210 132 270 132 290 142 L286 168 C270 156 210 156 194 168 Z" />
+                  <!-- eye cutouts showing robot eyes -->
+                  <ellipse cx="212" cy="178" rx="20" ry="14" fill="#1a1918" stroke="#8f422c" stroke-width="1.4" />
+                  <ellipse cx="268" cy="178" rx="20" ry="14" fill="#1a1918" stroke="#8f422c" stroke-width="1.4" />
+                  <circle cx="214" cy="178" r="4.5" fill="#d97757" />
+                  <circle cx="270" cy="178" r="4.5" fill="#d97757" />
+                  <!-- painted-on friendly smile -->
+                  <path fill="none" stroke="#faf9f5" stroke-width="3.2" stroke-linecap="round"
+                    d="M206 220 C222 236 258 236 274 220" />
+                  <path fill="none" stroke="#8f422c" stroke-width="1.4" stroke-linecap="round" opacity="0.55"
+                    d="M206 220 C222 236 258 236 274 220" />
+                  <!-- nose bridge -->
+                  <path fill="none" stroke="#8f422c" stroke-width="1.5" opacity="0.5" d="M240 168 V206" />
+                  <!-- straps -->
+                  <path fill="none" stroke="#141413" stroke-width="2" stroke-linecap="round"
+                    d="M178 186 C152 186 140 174 136 158" />
+                  <path fill="none" stroke="#141413" stroke-width="2" stroke-linecap="round"
+                    d="M302 186 C328 186 340 174 344 158" />
+                  <circle cx="136" cy="154" r="4" fill="#141413" />
+                  <circle cx="344" cy="154" r="4" fill="#141413" />
+                </g>
+              </g>
+            </svg>
+            <p class="hero-art-caption">A clean face. A different reason underneath.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -342,6 +414,6 @@
     </p>
   </footer>
 
-  <script src="./app.js?v=8" type="module"></script>
+  <script src="./app.js?v=9" type="module"></script>
 </body>
 </html>
