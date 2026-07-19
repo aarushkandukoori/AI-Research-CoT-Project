@@ -1,6 +1,6 @@
-# 60-second walkthrough (what recruiters should click)
+# Results walkthrough
 
-This page is the “show, don’t tell” layer of the repo.
+Concrete examples, charts, and how to read the main metric.
 
 ---
 

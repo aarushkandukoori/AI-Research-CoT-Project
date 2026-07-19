@@ -6,23 +6,13 @@ Replication-style project following [Turpin et al. (2023)](https://arxiv.org/abs
 
 ---
 
-## For recruiters (60 seconds)
+## Highlights
 
-**Start here → [`docs/WALKTHROUGH.md`](docs/WALKTHROUGH.md)**
+See [`docs/WALKTHROUGH.md`](docs/WALKTHROUGH.md) for a concrete example, charts, and the metric in plain English.
 
-That page has:
-
-1. A **real Qwen2.5-1.5B failure case** — professor hint injected, answer shifts, CoT never cites the professor  
-2. Charts of the analysis pipeline output  
-3. The metric definition in plain English  
-
-| | |
-|-|-|
-| **Question** | Are CoTs faithful explanations, or post-hoc rationalizations? |
-| **Method** | Hint injection on BIG-Bench Hard → detect answer flips → judge if CoT cites the hint |
-| **Metric** | Faithfulness rate + bootstrap 95% CIs (cells with n&lt;20 flagged) |
-| **Stack** | HuggingFace Transformers, bitsandbytes 4-bit, OpenAI judge, bootstrap stats |
-| **Repo** | Full reproducible pipeline + Colab T4 notebook |
+- **Real failure case:** Qwen2.5-1.5B changes its answer after a sycophancy hint, while the CoT never mentions the hint
+- **Pipeline:** hint injection on BIG-Bench Hard → influence detection → LLM-as-judge → bootstrap CIs
+- **Comparison axis:** Qwen2.5-1.5B vs 7B (4-bit on Colab T4)
 
 ![Faithfulness by model](docs/figures/faithfulness_by_model.png)
 
@@ -91,7 +81,7 @@ Full size comparison: [`notebooks/cot_faithfulness_colab.ipynb`](notebooks/cot_f
 ## Repo layout
 
 ```
-docs/WALKTHROUGH.md      ← recruiter-facing results + real example
+docs/WALKTHROUGH.md      ← examples, charts, metric explanation
 docs/figures/            ← charts
 docs/examples/           ← real model JSON outputs
 cot_faithfulness/        ← library (data, prompts, inference, analysis)
