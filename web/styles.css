@@ -350,29 +350,10 @@ body.is-ready .cursor-glow {
 
 .hero-title .line {
   display: block;
-  overflow: hidden;
 }
 
-/* Hero words: don't stay invisible if animation is blocked */
 .hero-title .word {
   display: inline-block;
-  opacity: 1;
-  transform: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .hero-title .word {
-    transform: translateY(110%);
-    opacity: 0;
-    animation: rise 1s var(--ease) forwards;
-  }
-
-  .hero-title .line:nth-child(1) .word:nth-child(1) { animation-delay: 0.05s; }
-  .hero-title .line:nth-child(1) .word:nth-child(2) { animation-delay: 0.12s; }
-  .hero-title .line:nth-child(2) .word:nth-child(1) { animation-delay: 0.2s; }
-  .hero-title .line:nth-child(2) .word:nth-child(2) { animation-delay: 0.28s; }
-  .hero-title .line:nth-child(3) .word:nth-child(1) { animation-delay: 0.36s; }
-  .hero-title .line:nth-child(3) .word:nth-child(2) { animation-delay: 0.44s; }
 }
 
 .hero-title .italic {
@@ -384,10 +365,27 @@ body.is-ready .cursor-glow {
 }
 
 @keyframes rise {
+  from {
+    transform: translateY(0.35em);
+    opacity: 0.15;
+  }
   to {
     transform: translateY(0);
     opacity: 1;
   }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-title .word {
+    animation: rise 0.85s var(--ease) both;
+  }
+
+  .hero-title .line:nth-child(1) .word:nth-child(1) { animation-delay: 0.05s; }
+  .hero-title .line:nth-child(1) .word:nth-child(2) { animation-delay: 0.12s; }
+  .hero-title .line:nth-child(2) .word:nth-child(1) { animation-delay: 0.2s; }
+  .hero-title .line:nth-child(2) .word:nth-child(2) { animation-delay: 0.28s; }
+  .hero-title .line:nth-child(3) .word:nth-child(1) { animation-delay: 0.36s; }
+  .hero-title .line:nth-child(3) .word:nth-child(2) { animation-delay: 0.44s; }
 }
 
 .hero-sub {
