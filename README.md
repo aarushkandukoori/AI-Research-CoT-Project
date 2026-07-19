@@ -1,8 +1,20 @@
 # Do Language Models Say What They Think?
 
+**Interactive demo:** [aarushkandukoori.github.io/AI-Research-CoT-Project](https://aarushkandukoori.github.io/AI-Research-CoT-Project/)
+
 **CoT faithfulness experiment** — when a biasing hint changes a model’s answer, does its chain-of-thought admit the hint… or invent a clean-looking justification that never mentions it?
 
 Replication-style project following [Turpin et al. (2023)](https://arxiv.org/abs/2305.04388) and Anthropic’s CoT faithfulness work.
+
+---
+
+## Interactive demo
+
+Static site in [`web/`](web/) (Anthropic-inspired palette), deployed via GitHub Actions to **GitHub Pages only for this repository**:
+
+https://aarushkandukoori.github.io/AI-Research-CoT-Project/
+
+Includes an interactive hint lab, real-output compare scrubber, faithfulness judge game, metrics explorer, and pipeline walkthrough.
 
 ---
 

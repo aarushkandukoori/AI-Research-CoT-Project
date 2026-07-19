@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CoT Faithfulness — Do Models Say What They Think?</title>
+  <meta name="description" content="Interactive exploration of chain-of-thought faithfulness: hint injection, answer flips, and post-hoc rationalization." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#top">CoT Faithfulness</a>
+    <nav class="nav">
+      <a href="#lab">Lab</a>
+      <a href="#example">Example</a>
+      <a href="#judge">Judge</a>
+      <a href="#metrics">Metrics</a>
+      <a href="#pipeline">Pipeline</a>
+    </nav>
+    <a class="btn ghost" href="https://github.com/aarushkandukoori/AI-Research-CoT-Project" target="_blank" rel="noopener">GitHub</a>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <p class="eyebrow reveal">Chain-of-thought evaluation</p>
+      <h1 class="hero-title">
+        <span class="line"><span class="word">Do</span> <span class="word">models</span></span>
+        <span class="line"><span class="word italic">say</span> <span class="word">what</span></span>
+        <span class="line"><span class="word">they</span> <span class="word accent">think?</span></span>
+      </h1>
+      <p class="hero-sub reveal">
+        An interactive replication of CoT faithfulness research — testing whether
+        written reasoning admits the real reason for an answer, or invents a clean-looking story after the fact.
+      </p>
+      <div class="hero-cta reveal">
+        <a class="btn primary" href="#lab">Enter the lab</a>
+        <a class="btn ghost" href="https://github.com/aarushkandukoori/AI-Research-CoT-Project" target="_blank" rel="noopener">View source</a>
+      </div>
+      <div class="scroll-hint reveal" aria-hidden="true">
+        <span></span> Scroll to experiment
+      </div>
+    </section>
+
+    <!-- CONCEPT -->
+    <section class="section concept" id="concept">
+      <div class="section-head">
+        <h2 class="reveal">The failure mode</h2>
+        <p class="reveal">A model can change its answer because of a hidden bias, then write step-by-step reasoning that never mentions the bias existed.</p>
+      </div>
+      <div class="concept-grid">
+        <article class="concept-card reveal" data-tilt>
+          <div class="card-num">01</div>
+          <h3>Hint injected</h3>
+          <p>Sycophancy (“a professor thinks X”) or option reordering pushes a wrong answer forward.</p>
+        </article>
+        <article class="concept-card reveal" data-tilt>
+          <div class="card-num">02</div>
+          <h3>Answer flips</h3>
+          <p>Compared to baseline CoT, the model switches to the hinted choice.</p>
+        </article>
+        <article class="concept-card reveal" data-tilt>
+          <div class="card-num">03</div>
+          <h3>CoT stays “clean”</h3>
+          <p>If reasoning never cites the hint, the explanation is unfaithful — post-hoc rationalization.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE LAB -->
+    <section class="section lab" id="lab">
+      <div class="section-head">
+        <h2 class="reveal">Interactive lab</h2>
+        <p class="reveal">Toggle hints and watch the answer + chain-of-thought respond. Based on the BBH logical-deduction setup used in the experiment.</p>
+      </div>
+
+      <div class="lab-shell reveal">
+        <aside class="lab-controls">
+          <h3>Prompt variant</h3>
+          <div class="segmented" role="tablist" aria-label="Hint type">
+            <button class="seg active" data-variant="baseline" role="tab" aria-selected="true">Baseline</button>
+            <button class="seg" data-variant="sycophancy" role="tab" aria-selected="false">Sycophancy</button>
+            <button class="seg" data-variant="reorder" role="tab" aria-selected="false">Reorder</button>
+          </div>
+
+          <div class="control-block">
+            <label class="toggle">
+              <input type="checkbox" id="stream-toggle" checked />
+              <span class="toggle-ui"></span>
+              Stream CoT
+            </label>
+            <label class="toggle">
+              <input type="checkbox" id="highlight-toggle" checked />
+              <span class="toggle-ui"></span>
+              Highlight faithfulness cues
+            </label>
+          </div>
+
+          <button class="btn primary full" id="run-lab">Run generation</button>
+          <p class="lab-note">Simulated from real experiment patterns — not a live model call.</p>
+
+          <div class="stat-stack" id="lab-stats">
+            <div class="stat">
+              <span class="stat-label">Answer</span>
+              <span class="stat-value" id="lab-answer">—</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Matches hint?</span>
+              <span class="stat-value" id="lab-match">—</span>
+            </div>
+            <div class="stat">
+              <span class="stat-label">Faithfulness</span>
+              <span class="stat-value" id="lab-faith">—</span>
+            </div>
+          </div>
+        </aside>
+
+        <div class="lab-stage">
+          <div class="prompt-panel">
+            <div class="panel-label">Prompt</div>
+            <pre id="lab-prompt" class="prompt-body"></pre>
+          </div>
+          <div class="cot-panel">
+            <div class="panel-label">Chain of thought</div>
+            <div id="lab-cot" class="cot-body" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REAL EXAMPLE -->
+    <section class="section example" id="example">
+      <div class="section-head">
+        <h2 class="reveal">Real model output</h2>
+        <p class="reveal">Qwen2.5-1.5B-Instruct on BBH logical deduction. Drag the scrubber to compare baseline vs sycophancy-hinted generation.</p>
+      </div>
+
+      <div class="compare reveal">
+        <input type="range" id="compare-scrub" min="0" max="100" value="50" aria-label="Compare baseline and hinted" />
+        <div class="compare-frames">
+          <article class="compare-card baseline">
+            <header>
+              <span class="tag">Baseline</span>
+              <span class="answer-pill correct">Answer (A)</span>
+            </header>
+            <p class="compare-copy" id="baseline-copy"></p>
+          </article>
+          <article class="compare-card hinted">
+            <header>
+              <span class="tag warn">+ Stanford professor hint → (B)</span>
+              <span class="answer-pill wrong">Answer (B)</span>
+            </header>
+            <p class="compare-copy" id="hinted-copy"></p>
+            <p class="callout">Never mentions the professor. Looks like pure logic. That’s unfaithful CoT.</p>
+          </article>
+        </div>
+        <div class="scrub-labels"><span>Baseline</span><span>Hinted</span></div>
+      </div>
+    </section>
+
+    <!-- JUDGE GAME -->
+    <section class="section judge" id="judge">
+      <div class="section-head">
+        <h2 class="reveal">Be the judge</h2>
+        <p class="reveal">Given a CoT from a hint-influenced flip, is it faithful (cites the hint) or unfaithful (silent about it)?</p>
+      </div>
+
+      <div class="judge-board reveal">
+        <div class="judge-meta">
+          <span id="judge-progress">Case 1 / 5</span>
+          <span id="judge-score">Score 0</span>
+        </div>
+        <div class="judge-case">
+          <p class="judge-hint" id="judge-hint"></p>
+          <pre class="judge-cot" id="judge-cot"></pre>
+        </div>
+        <div class="judge-actions">
+          <button class="btn ghost" data-judge="FAITHFUL">Faithful</button>
+          <button class="btn primary" data-judge="UNFAITHFUL">Unfaithful</button>
+        </div>
+        <p class="judge-feedback" id="judge-feedback"></p>
+      </div>
+    </section>
+
+    <!-- METRICS -->
+    <section class="section metrics" id="metrics">
+      <div class="section-head">
+        <h2 class="reveal">Metrics explorer</h2>
+        <p class="reveal">Faithfulness rate with bootstrap uncertainty. Drag to explore model size. Cells with n&lt;20 are flagged as noisy.</p>
+      </div>
+
+      <div class="metrics-shell reveal">
+        <div class="metric-controls">
+          <label>
+            Model size
+            <input type="range" id="model-slider" min="0" max="1" step="1" value="0" />
+            <div class="slider-labels"><span>1.5B</span><span>7B</span></div>
+          </label>
+          <div class="metric-readout">
+            <div class="big-num" id="metric-rate">40%</div>
+            <div class="ci" id="metric-ci">95% CI [23%, 57%]</div>
+            <div class="n" id="metric-n">n = 35 influenced flips</div>
+          </div>
+        </div>
+        <div class="chart" id="bar-chart" aria-hidden="true">
+          <div class="bar-track"><div class="bar" id="bar-15" data-label="1.5B"></div></div>
+          <div class="bar-track"><div class="bar" id="bar-7" data-label="7B"></div></div>
+        </div>
+        <p class="metric-caveat">Pipeline-demo figures from the analysis cache — see project docs for caveats. Not a final large-scale claim.</p>
+      </div>
+    </section>
+
+    <!-- PIPELINE -->
+    <section class="section pipeline" id="pipeline">
+      <div class="section-head">
+        <h2 class="reveal">Pipeline</h2>
+        <p class="reveal">Click each stage to inspect what happens under the hood.</p>
+      </div>
+      <ol class="pipe reveal" id="pipeline-steps">
+        <li class="pipe-step active" data-step="0"><button type="button"><span>01</span> BBH → MCQ</button></li>
+        <li class="pipe-step" data-step="1"><button type="button"><span>02</span> Hint variants</button></li>
+        <li class="pipe-step" data-step="2"><button type="button"><span>03</span> Cached generation</button></li>
+        <li class="pipe-step" data-step="3"><button type="button"><span>04</span> Influence detect</button></li>
+        <li class="pipe-step" data-step="4"><button type="button"><span>05</span> Judge + CIs</button></li>
+      </ol>
+      <div class="pipe-detail reveal" id="pipe-detail"></div>
+    </section>
+
+    <!-- CLOSING -->
+    <section class="section closing">
+      <h2 class="reveal">Built as a small-scale research replication</h2>
+      <p class="reveal">Methodology inspired by Turpin et al. and Anthropic’s CoT faithfulness work — with honest limitations on contamination, judge reliability, and sample size.</p>
+      <div class="closing-links reveal">
+        <a class="btn primary" href="https://github.com/aarushkandukoori/AI-Research-CoT-Project" target="_blank" rel="noopener">Open GitHub repository</a>
+        <a class="btn ghost" href="https://arxiv.org/abs/2305.04388" target="_blank" rel="noopener">Turpin et al. paper</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>
+      Made by
+      <a href="https://github.com/aarushkandukoori" target="_blank" rel="noopener">Aarush Kandukoori</a>
+    </p>
+    <p>
+      <a href="https://github.com/aarushkandukoori/AI-Research-CoT-Project" target="_blank" rel="noopener">github.com/aarushkandukoori/AI-Research-CoT-Project</a>
+    </p>
+  </footer>
+
+  <script src="./app.js" type="module"></script>
+</body>
+</html>
