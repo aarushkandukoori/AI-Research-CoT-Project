@@ -146,28 +146,30 @@ body.is-ready .cursor-glow {
 
 .fab {
   position: fixed;
-  right: 1.5rem;
-  bottom: 1.5rem;
+  right: max(1.25rem, env(safe-area-inset-right));
+  bottom: max(1.25rem, env(safe-area-inset-bottom));
   z-index: 95;
-  width: 4.5rem;
-  height: 4.5rem;
+  width: 5rem;
+  height: 5rem;
 }
 
 .fab-core {
   position: relative;
   width: 100%;
   height: 100%;
-  border: none;
+  border: 3px solid #fff;
   border-radius: 50%;
   cursor: pointer;
   background: var(--coral);
   color: #fff;
   font: inherit;
   font-weight: 700;
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  box-shadow: 0 16px 40px rgba(196, 93, 62, 0.4);
+  box-shadow:
+    0 0 0 1px rgba(217, 119, 87, 0.35),
+    0 18px 44px rgba(196, 93, 62, 0.45);
   transition: background 0.25s, transform 0.3s var(--ease), box-shadow 0.3s;
 }
 
@@ -351,19 +353,27 @@ body.is-ready .cursor-glow {
   overflow: hidden;
 }
 
+/* Hero words: don't stay invisible if animation is blocked */
 .hero-title .word {
   display: inline-block;
-  transform: translateY(110%);
-  opacity: 0;
-  animation: rise 1s var(--ease) forwards;
+  opacity: 1;
+  transform: none;
 }
 
-.hero-title .line:nth-child(1) .word:nth-child(1) { animation-delay: 0.05s; }
-.hero-title .line:nth-child(1) .word:nth-child(2) { animation-delay: 0.12s; }
-.hero-title .line:nth-child(2) .word:nth-child(1) { animation-delay: 0.2s; }
-.hero-title .line:nth-child(2) .word:nth-child(2) { animation-delay: 0.28s; }
-.hero-title .line:nth-child(3) .word:nth-child(1) { animation-delay: 0.36s; }
-.hero-title .line:nth-child(3) .word:nth-child(2) { animation-delay: 0.44s; }
+@media (prefers-reduced-motion: no-preference) {
+  .hero-title .word {
+    transform: translateY(110%);
+    opacity: 0;
+    animation: rise 1s var(--ease) forwards;
+  }
+
+  .hero-title .line:nth-child(1) .word:nth-child(1) { animation-delay: 0.05s; }
+  .hero-title .line:nth-child(1) .word:nth-child(2) { animation-delay: 0.12s; }
+  .hero-title .line:nth-child(2) .word:nth-child(1) { animation-delay: 0.2s; }
+  .hero-title .line:nth-child(2) .word:nth-child(2) { animation-delay: 0.28s; }
+  .hero-title .line:nth-child(3) .word:nth-child(1) { animation-delay: 0.36s; }
+  .hero-title .line:nth-child(3) .word:nth-child(2) { animation-delay: 0.44s; }
+}
 
 .hero-title .italic {
   font-style: italic;

@@ -172,20 +172,23 @@ function placePlanets() {
   const cx = rect.left + rect.width / 2;
   const cy = rect.top + rect.height / 2;
   const n = planets.length;
-  const radius = Math.min(168, Math.max(120, window.innerWidth * 0.18));
-  // Arc opens up and to the left from the FAB
-  const start = (-200 * Math.PI) / 180;
-  const end = (-15 * Math.PI) / 180;
+  // Keep everything in the upper-left quadrant of the FAB (never off the right edge)
+  const radius = Math.min(150, Math.max(110, Math.min(cx - 70, cy - 70) * 0.85));
+  const start = (-165 * Math.PI) / 180; // up-left
+  const end = (-100 * Math.PI) / 180; // nearly straight up
 
+  const pad = 56;
   planets.forEach((planet, i) => {
     const t = n === 1 ? 0.5 : i / (n - 1);
     const angle = start + (end - start) * t;
-    const r = radius + (i % 2 === 0 ? 12 : -14);
-    const x = cx + Math.cos(angle) * r;
-    const y = cy + Math.sin(angle) * r;
+    const r = radius + (i % 2 === 0 ? 10 : -12);
+    let x = cx + Math.cos(angle) * r;
+    let y = cy + Math.sin(angle) * r;
+    x = Math.min(Math.max(x, pad), window.innerWidth - pad);
+    y = Math.min(Math.max(y, pad), window.innerHeight - pad);
     planet.style.left = `${x}px`;
     planet.style.top = `${y}px`;
-    planet.style.transitionDelay = `${i * 40}ms`;
+    planet.style.transitionDelay = `${i * 45}ms`;
   });
 }
 
