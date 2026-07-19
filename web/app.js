@@ -138,15 +138,30 @@ function initCursor() {
 }
 
 function initReveal() {
+  document.documentElement.classList.add("js");
+
+  const markVisible = (el) => el.classList.add("visible");
+
   const io = new IntersectionObserver(
     (entries) => {
       entries.forEach((en) => {
-        if (en.isIntersecting) en.target.classList.add("visible");
+        if (en.isIntersecting) markVisible(en.target);
       });
     },
-    { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+    { threshold: 0.08, rootMargin: "0px 0px -4% 0px" }
   );
   $$(".reveal").forEach((el) => io.observe(el));
+
+  // Immediately reveal anything already in / near the viewport
+  const paint = () => {
+    $$(".reveal").forEach((el) => {
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight * 0.98 && r.bottom > 0) markVisible(el);
+    });
+  };
+  paint();
+  requestAnimationFrame(paint);
+  setTimeout(paint, 300);
 }
 
 function initTilt() {

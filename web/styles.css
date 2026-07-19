@@ -1006,12 +1006,17 @@ body.is-ready .cursor-glow {
 }
 
 .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+html.js .reveal:not(.visible) {
   opacity: 0;
   transform: translateY(28px);
   transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
 }
 
-.reveal.visible {
+html.js .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
