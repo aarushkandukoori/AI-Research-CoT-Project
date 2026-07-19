@@ -163,97 +163,101 @@ function initTilt() {
   });
 }
 
-function placeOrbitChips() {
-  const chips = $$(".orbit-chip");
-  const n = chips.length;
-  // Fan upward-left from the core (not a list, not a bar)
-  const start = (-210 * Math.PI) / 180;
-  const end = (-20 * Math.PI) / 180;
-  const radius = window.matchMedia("(max-width: 640px)").matches ? 118 : 148;
+function placePlanets() {
+  const fab = $("#fab");
+  const planets = $$(".fab-planet");
+  if (!fab || !planets.length) return;
 
-  chips.forEach((chip, i) => {
+  const rect = fab.getBoundingClientRect();
+  const cx = rect.left + rect.width / 2;
+  const cy = rect.top + rect.height / 2;
+  const n = planets.length;
+  const radius = Math.min(168, Math.max(120, window.innerWidth * 0.18));
+  // Arc opens up and to the left from the FAB
+  const start = (-200 * Math.PI) / 180;
+  const end = (-15 * Math.PI) / 180;
+
+  planets.forEach((planet, i) => {
     const t = n === 1 ? 0.5 : i / (n - 1);
     const angle = start + (end - start) * t;
-    // slight radius stagger so it feels organic, not a perfect arc
-    const r = radius + (i % 2 === 0 ? 8 : -10);
-    const x = Math.cos(angle) * r;
-    const y = Math.sin(angle) * r;
-    chip.style.setProperty("--x", `${x.toFixed(1)}px`);
-    chip.style.setProperty("--y", `${y.toFixed(1)}px`);
+    const r = radius + (i % 2 === 0 ? 12 : -14);
+    const x = cx + Math.cos(angle) * r;
+    const y = cy + Math.sin(angle) * r;
+    planet.style.left = `${x}px`;
+    planet.style.top = `${y}px`;
+    planet.style.transitionDelay = `${i * 40}ms`;
   });
 }
 
 function initOrbitNav() {
-  const orbit = $("#orbit");
-  const core = $("#orbit-core");
-  const links = $("#orbit-links");
-  const label = core.querySelector(".orbit-core-label");
-  const chips = $$(".orbit-chip");
-
-  placeOrbitChips();
-  window.addEventListener("resize", placeOrbitChips);
+  const fab = $("#fab");
+  const core = $("#fab-core");
+  const label = $("#fab-label");
+  const planetsWrap = $("#fab-planets");
+  const planets = $$(".fab-planet");
+  const backdrop = $("#nav-backdrop");
 
   const setOpen = (open) => {
-    orbit.classList.toggle("is-open", open);
+    fab.classList.toggle("is-open", open);
+    planetsWrap.classList.toggle("is-open", open);
     core.setAttribute("aria-expanded", String(open));
-    links.setAttribute("aria-hidden", String(!open));
-    label.textContent = open ? label.dataset.open : label.dataset.closed;
+    planetsWrap.setAttribute("aria-hidden", String(!open));
+    label.textContent = open ? "Close" : "Menu";
     core.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+    if (open) {
+      backdrop.hidden = false;
+      placePlanets();
+    } else {
+      backdrop.hidden = true;
+    }
   };
 
   core.addEventListener("click", (e) => {
     e.stopPropagation();
-    setOpen(!orbit.classList.contains("is-open"));
+    setOpen(!fab.classList.contains("is-open"));
   });
 
-  chips.forEach((chip) => {
-    chip.addEventListener("click", () => {
-      // close after in-page jump; keep open briefly for external GitHub
-      if (!chip.classList.contains("orbit-chip-ext")) {
-        setTimeout(() => setOpen(false), 180);
+  backdrop.addEventListener("click", () => setOpen(false));
+
+  planets.forEach((planet) => {
+    planet.addEventListener("click", () => {
+      if (!planet.classList.contains("fab-planet-ext")) {
+        setTimeout(() => setOpen(false), 120);
+      } else {
+        setOpen(false);
       }
     });
-  });
-
-  document.addEventListener("click", (e) => {
-    if (!orbit.contains(e.target)) setOpen(false);
   });
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") setOpen(false);
   });
 
-  // Magnetic pull toward pointer while open
-  orbit.addEventListener("pointermove", (e) => {
-    if (!orbit.classList.contains("is-open")) return;
-    chips.forEach((chip) => {
-      const r = chip.getBoundingClientRect();
-      const cx = r.left + r.width / 2;
-      const cy = r.top + r.height / 2;
-      const dx = (e.clientX - cx) * 0.06;
-      const dy = (e.clientY - cy) * 0.06;
-      const baseX = chip.style.getPropertyValue("--x");
-      const baseY = chip.style.getPropertyValue("--y");
-      chip.style.transform = `translate(calc(${baseX} + ${dx}px), calc(${baseY} + ${dy}px)) scale(1)`;
-    });
-  });
+  window.addEventListener(
+    "resize",
+    () => {
+      if (fab.classList.contains("is-open")) placePlanets();
+    },
+    { passive: true }
+  );
 
-  orbit.addEventListener("pointerleave", () => {
-    chips.forEach((chip) => {
-      chip.style.transform = "";
-    });
-  });
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (fab.classList.contains("is-open")) placePlanets();
+    },
+    { passive: true }
+  );
 
-  // Highlight chip for section in view
   const sectionIds = ["lab", "example", "judge", "metrics", "pipeline"];
   const io = new IntersectionObserver(
     (entries) => {
       entries.forEach((en) => {
         if (!en.isIntersecting) return;
         const id = en.target.id;
-        chips.forEach((chip) => {
-          const href = chip.getAttribute("href") || "";
-          chip.classList.toggle("is-active", href === `#${id}`);
+        planets.forEach((planet) => {
+          const href = planet.getAttribute("href") || "";
+          planet.classList.toggle("is-active", href === `#${id}`);
         });
       });
     },

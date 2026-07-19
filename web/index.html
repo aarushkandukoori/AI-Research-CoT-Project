@@ -8,48 +8,41 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./styles.css?v=3" />
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
   <div class="cursor-glow" aria-hidden="true"></div>
 
-  <div class="float-nav" id="float-nav">
-    <a class="float-brand" href="#top" title="Back to top">
-      <span class="float-brand-mark">CoT</span>
-      <span class="float-brand-text">Faithfulness</span>
-    </a>
+  <!-- Floating nav: brand pill + orbital menu (not a bar) -->
+  <a class="float-brand" href="#top" title="Back to top">
+    <span class="float-brand-mark">CoT</span>
+    <span class="float-brand-text">Faithfulness</span>
+  </a>
 
-    <div class="orbit" id="orbit">
-      <button
-        class="orbit-core"
-        id="orbit-core"
-        type="button"
-        aria-expanded="false"
-        aria-controls="orbit-links"
-        aria-label="Open navigation"
-      >
-        <span class="orbit-core-ring" aria-hidden="true"></span>
-        <span class="orbit-core-label" data-closed="Menu" data-open="Close">Menu</span>
-      </button>
+  <div class="nav-backdrop" id="nav-backdrop" hidden></div>
 
-      <nav class="orbit-links" id="orbit-links" aria-hidden="true">
-        <a class="orbit-chip" href="#lab" style="--i: 0">Lab</a>
-        <a class="orbit-chip" href="#example" style="--i: 1">Example</a>
-        <a class="orbit-chip" href="#judge" style="--i: 2">Judge</a>
-        <a class="orbit-chip" href="#metrics" style="--i: 3">Metrics</a>
-        <a class="orbit-chip" href="#pipeline" style="--i: 4">Pipeline</a>
-        <a
-          class="orbit-chip orbit-chip-ext"
-          href="https://github.com/aarushkandukoori/AI-Research-CoT-Project"
-          target="_blank"
-          rel="noopener"
-          style="--i: 5"
-          >GitHub</a
-        >
-      </nav>
-    </div>
+  <div class="fab" id="fab">
+    <button type="button" class="fab-core" id="fab-core" aria-expanded="false" aria-label="Open navigation">
+      <span class="fab-pulse" aria-hidden="true"></span>
+      <span class="fab-label" id="fab-label">Menu</span>
+    </button>
   </div>
+
+  <nav class="fab-planets" id="fab-planets" aria-hidden="true">
+    <a class="fab-planet" data-nav href="#lab">Lab</a>
+    <a class="fab-planet" data-nav href="#example">Example</a>
+    <a class="fab-planet" data-nav href="#judge">Judge</a>
+    <a class="fab-planet" data-nav href="#metrics">Metrics</a>
+    <a class="fab-planet" data-nav href="#pipeline">Pipeline</a>
+    <a
+      class="fab-planet fab-planet-ext"
+      href="https://github.com/aarushkandukoori/AI-Research-CoT-Project"
+      target="_blank"
+      rel="noopener"
+      >GitHub</a
+    >
+  </nav>
 
   <main id="top">
     <!-- HERO -->
@@ -278,6 +271,6 @@
     </p>
   </footer>
 
-  <script src="./app.js" type="module"></script>
+  <script src="./app.js?v=3" type="module"></script>
 </body>
 </html>
