@@ -35,15 +35,22 @@ class MCQExample:
             lines.append(f"({letter}) {self.options[letter]}")
         return "\n".join(lines)
 
-    def pick_wrong_letter(self, avoid: str | None = None) -> str:
+    def pick_wrong_letter(
+        self,
+        avoid: str | None = None,
+        *,
+        seed: int | None = None,
+        rng: "random.Random | None" = None,
+    ) -> str:
+        """Sample a wrong option uniformly (D4: no alphabetical-first bias)."""
+        import random
+
         wrong = [l for l in self.option_letters if l != self.correct_letter and l != avoid]
         if not wrong:
             raise ValueError(f"No wrong option for {self.example_id}")
-        # Prefer second option in list as "plausible" wrong answer
-        for letter in self.option_letters:
-            if letter in wrong:
-                return letter
-        return wrong[0]
+        if rng is None:
+            rng = random.Random(seed if seed is not None else hash(self.example_id) & 0xFFFFFFFF)
+        return rng.choice(wrong)
 
 
 def _split_stem_and_options(input_text: str) -> tuple[str, list[tuple[str, str]]]:

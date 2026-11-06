@@ -6,7 +6,7 @@ import json
 from datetime import datetime
 from pathlib import Path
 
-from cot_faithfulness.analysis.bootstrap import faithfulness_summary
+from cot_faithfulness.analysis.bootstrap import faithfulness_summary, faithfulness_bracket
 from cot_faithfulness.config import MIN_INFLUENCED_FOR_CI
 
 
@@ -35,11 +35,12 @@ def build_report(
     judge_validation: dict | None,
     config: dict,
     output_dir: Path,
+    steering_stats: dict | None = None,
 ) -> dict:
     """Assemble full experiment report."""
     influenced_dicts = [_case_to_dict(c) for c in influenced_cases]
 
-    # Per-model, per-hint-type metrics
+    # Per-model, per-hint-type metrics with F± bracket
     cells = {}
     for jr in judge_results:
         key = (jr["model_id"], jr["hint_type"])
@@ -47,15 +48,29 @@ def build_report(
 
     metrics = {}
     for (model_id, hint_type), judges in cells.items():
-        faithful = [j["classification"] == "FAITHFUL" for j in judges]
-        summary = faithfulness_summary(faithful, min_n=MIN_INFLUENCED_FOR_CI)
+        labels = [j["classification"] for j in judges]
+        bracket = faithfulness_bracket(labels)
+        primary = bracket["F"]
         metrics[f"{model_id}__{hint_type}"] = {
             "model_id": model_id,
             "hint_type": hint_type,
-            "n_influenced": summary["n"],
-            "n_faithful": summary["faithful_count"],
-            "n_unfaithful_or_ambiguous": summary["unfaithful_count"],
-            **{k: summary[k] for k in ["point_estimate", "ci_lower", "ci_upper", "too_small"]},
+            "n_influenced": primary["n"],
+            "n_faithful": primary["faithful_count"],
+            "n_unfaithful_or_ambiguous": primary["unfaithful_count"],
+            "n_ambiguous": bracket["n_ambiguous"],
+            "method": primary.get("method"),
+            "F_minus": {
+                k: bracket["F_minus"][k]
+                for k in ("n", "point_estimate", "ci_lower", "ci_upper", "method", "too_small")
+            },
+            "F_plus": {
+                k: bracket["F_plus"][k]
+                for k in ("n", "point_estimate", "ci_lower", "ci_upper", "method", "too_small")
+            },
+            **{
+                k: primary[k]
+                for k in ["point_estimate", "ci_lower", "ci_upper", "too_small"]
+            },
         }
 
     # Overall per model
@@ -72,9 +87,15 @@ def build_report(
         sample_sizes[str(key)] = sample_sizes.get(str(key), 0) + 1
 
     n_influenced_total = len(influenced_dicts)
-    influence_rate = n_influenced_total / max(
-        len({(r["model_id"], r["example_id"]) for r in records if r.get("hint_type")}), 1
+    # D2: denominator is (model, item, condition) triples with a real hint target
+    n_hint_triples = len(
+        {
+            (r["model_id"], r["example_id"], r["hint_type"])
+            for r in records
+            if r.get("hint_type") in ("sycophancy", "reorder")
+        }
     )
+    influence_rate = n_influenced_total / max(n_hint_triples, 1)
 
     report = {
         "generated_at": datetime.utcnow().isoformat() + "Z",
@@ -84,6 +105,7 @@ def build_report(
         "total_generations": len(records),
         "total_influenced_cases": n_influenced_total,
         "influence_rate": influence_rate,
+        "steering_stats": steering_stats or {},
         "metrics_by_cell": metrics,
         "metrics_by_model": {
             k: {kk: vv for kk, vv in v.items() if kk != "too_small" or True}
