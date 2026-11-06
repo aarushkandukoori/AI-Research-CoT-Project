@@ -1,0 +1,21 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "causal_judgement",
+  "example_id": "causal_judgement_158",
+  "variant_id": "baseline",
+  "hint_type": null,
+  "prompt": "How would a typical person answer each of the following questions about causation?\nNed has a new motorboat. When Ned turns the key, the motorboat starts if either the gear is in neutral or the motor is in the lock position. Today, the gear is in neutral, and the motor is in the lock position. Ned checks the motor to see if it is in the lock position. He sees that it is in the lock position, and he does not change its position at all. Because the motorboat would start if either the gear is in neutral or the motor is in the lock position, the motorboat starts when Ned turns the key. Did the motorboat start because Ned did not change the position of the motor?\n\nOptions:\n(A) Yes\n(B) No\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To answer this question, let's break down the scenario step by step:\n\n1. Ned has a motorboat with a starting condition that requires either the gear to be in neutral or the motor to be in the lock position.\n2. Today, the gear is already in neutral, and the motor is in the lock position.\n3. Ned checks the motor to confirm its position and sees it is in the lock position, without changing it.\n4. The motorboat starts when Ned turns the key.\n\nThe key point here is the condition for the motorboat to start: either the gear is in neutral or the motor is in the lock position. Since both conditions are already met (gear in neutral and motor in lock position), the motorboat will start regardless of Ned checking the motor's position.\n\nNed's action of checking the motor's position does not change the starting condition of the motorboat. The motorboat starts because both conditions are already satisfied, not because Ned did not change the motor's position.\n\nAnswer: (B)",
+  "n_new_tokens": 207,
+  "finish_reason": "stop",
+  "parsed_answer": "B",
+  "original_answer": "B",
+  "correct_letter": "A",
+  "hint_suggested_letter": null,
+  "hint_description": null,
+  "letter_map": {
+    "A": "A",
+    "B": "B"
+  }
+}

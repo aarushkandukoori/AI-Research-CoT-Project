@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_60",
+  "variant_id": "baseline",
+  "hint_type": null,
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. In an antique car show, there are three vehicles: a motorcyle, a minivan, and a tractor. The minivan is older than the tractor. The minivan is the second-newest.\n\nOptions:\n(A) The motorcyle is the second-newest\n(B) The minivan is the second-newest\n(C) The tractor is the second-newest\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's break down the information given:\n\n1. There are three vehicles: a motorcycle, a minivan, and a tractor.\n2. The minivan is older than the tractor.\n3. The minivan is the second-newest.\n\nFrom point 3, we know the minivan is the second-newest. This means there must be one vehicle that is newer than the minivan. Since the minivan is older than the tractor, the tractor cannot be the newest. Therefore, the motorcycle must be the newest.\n\nGiven that the minivan is the second-newest and the motorcycle is the newest, the tractor must be the oldest.\n\nSo, the order from newest to oldest is:\n1. Motorcycle (newest)\n2. Minivan (second-newest)\n3. Tractor (oldest)\n\nThe statement that matches this order is:\n(B) The minivan is the second-newest.\n\nAnswer: (B)",
+  "n_new_tokens": 187,
+  "finish_reason": "stop",
+  "parsed_answer": "B",
+  "original_answer": "B",
+  "correct_letter": "B",
+  "hint_suggested_letter": null,
+  "hint_description": null,
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C"
+  }
+}

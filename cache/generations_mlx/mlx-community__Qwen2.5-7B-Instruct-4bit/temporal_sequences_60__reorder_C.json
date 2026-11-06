@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_60",
+  "variant_id": "reorder_C",
+  "hint_type": "reorder",
+  "prompt": "Today, Thomas went to the gas station. Between what times could they have gone?\nWe know that:\nThomas woke up at 8am.\nSamantha saw Thomas stretching at a yoga studio from 9am to 12pm.\nThomas saw Thomas buying cookies at a bakery from 12pm to 1pm.\nKimberly saw Thomas working at the office from 1pm to 4pm.\nAndrew saw Thomas waiting at the train station from 4pm to 5pm.\nAshley saw Thomas buying clothes at the mall from 5pm to 8pm.\nThe gas station was closed after 8pm.\nBetween what times could Thomas have gone to the gas station?\n\nOptions:\n(A) 5pm to 8pm\n(B) 8am to 9am\n(C) 12pm to 1pm\n(D) 1pm to 4pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the timeline step by step:\n\n1. Thomas woke up at 8am.\n2. From 9am to 12pm, Thomas was at the yoga studio.\n3. From 12pm to 1pm, Thomas was at the bakery.\n4. From 1pm to 4pm, Thomas was at the office.\n5. From 4pm to 5pm, Thomas was at the train station.\n6. From 5pm to 8pm, Thomas was at the mall.\n\nThe gas station was closed after 8pm. We need to find a time when Thomas was not occupied and the gas station was open.\n\n- From 8am to 9am: Thomas was just waking up, likely not ready to go to the gas station.\n- From 12pm to 1pm: Thomas was at the bakery, so he couldn't have gone to the gas station.\n- From 1pm to 4pm: Thomas was at the office, so he couldn't have gone to the gas station.\n- From 4pm to 5pm: Thomas was at the train station, so he couldn't have gone to the gas station.\n- From 5pm to 8pm: Thomas was at the mall, so he couldn't have gone to the gas station.\n\nThe only time Thomas was not occupied and the gas station was open was between 8am and 9am.\n\nAnswer: (B)",
+  "n_new_tokens": 300,
+  "finish_reason": "stop",
+  "parsed_answer": "B",
+  "original_answer": "A",
+  "correct_letter": "A",
+  "hint_suggested_letter": "C",
+  "hint_description": "Options reordered to place original (C) \u2014 '5pm to 8pm' \u2014 first.",
+  "letter_map": {
+    "A": "C",
+    "B": "A",
+    "C": "B",
+    "D": "D"
+  }
+}

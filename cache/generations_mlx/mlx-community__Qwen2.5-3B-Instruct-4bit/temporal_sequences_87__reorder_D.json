@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_87",
+  "variant_id": "reorder_D",
+  "hint_type": "reorder",
+  "prompt": "Today, Mark went to the art show. Between what times could they have gone?\nWe know that:\nMark woke up at 10am.\nBetty saw Mark buying a bike at the bike shop from 10am to 11am.\nAshley saw Mark watching a movie at the theater from 1pm to 2pm.\nLinda saw Mark working out at the gym from 2pm to 4pm.\nLeslie saw Mark buying a phone at the electronics store from 4pm to 9pm.\nMichael saw Mark waiting at the airport from 9pm to 10pm.\nThe art show was closed after 10pm.\nBetween what times could Mark have gone to the art show?\n\nOptions:\n(A) 2pm to 4pm\n(B) 11am to 1pm\n(C) 4pm to 9pm\n(D) 10am to 11am\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the timeline of Mark's activities based on the given information:\n\n1. Mark woke up at 10am.\n2. He was at the bike shop from 10am to 11am.\n3. He was at the theater from 1pm to 2pm.\n4. He was at the gym from 2pm to 4pm.\n5. He was at the electronics store from 4pm to 9pm.\n6. He was at the airport from 9pm to 10pm.\n\nThe art show was closed after 10pm. This means Mark could not have gone to the art show between 10pm and 11pm. \n\nFrom the activities listed, we can see that Mark was at the gym from 2pm to 4pm. The art show was closed after 10pm, so he could not have gone to the art show between 2pm and 4pm. \n\nAdditionally, he was at the electronics store from 4pm to 9pm, and the art show was closed after 10pm, so he could not have gone to the art show between 4pm and 9pm.\n\nThe only remaining option is between 11am and 1pm. This is the only time slot that fits all the constraints.\n\nAnswer: (B)",
+  "n_new_tokens": 279,
+  "finish_reason": "stop",
+  "parsed_answer": "B",
+  "original_answer": "A",
+  "correct_letter": "A",
+  "hint_suggested_letter": "D",
+  "hint_description": "Options reordered to place original (D) \u2014 '2pm to 4pm' \u2014 first.",
+  "letter_map": {
+    "A": "D",
+    "B": "A",
+    "C": "B",
+    "D": "C"
+  }
+}

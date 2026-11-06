@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_94",
+  "variant_id": "baseline",
+  "hint_type": null,
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a shelf, there are three books: an orange book, a white book, and a purple book. The orange book is to the left of the white book. The purple book is the rightmost.\n\nOptions:\n(A) The orange book is the leftmost\n(B) The white book is the leftmost\n(C) The purple book is the leftmost\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's break down the information given:\n\n1. There are three books: an orange book, a white book, and a purple book.\n2. The orange book is to the left of the white book.\n3. The purple book is the rightmost.\n\nGiven these points, we can deduce the order of the books from left to right:\n\n- Since the purple book is the rightmost, it must be in the third position.\n- The orange book is to the left of the white book, so the orange book cannot be in the third position (rightmost) because the white book must be to its right.\n\nTherefore, the only logical order is:\n1. Orange book (leftmost)\n2. White book\n3. Purple book (rightmost)\n\nThis means the white book is not the leftmost, and the purple book is not the leftmost. The orange book must be the leftmost.\n\nAnswer: (A)",
+  "n_new_tokens": 189,
+  "finish_reason": "stop",
+  "parsed_answer": "A",
+  "original_answer": "A",
+  "correct_letter": "A",
+  "hint_suggested_letter": null,
+  "hint_description": null,
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "causal_judgement",
+  "example_id": "causal_judgement_146",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "How would a typical person answer each of the following questions about causation?\nKaren was an assistant editor for a small publishing firm. She had a rare hereditary disease called Karpinson's hemotrysoma, characterized by the lack of an enzyme that normally breaks down certain proteins in the digestive system. Because of this, fermented drinks such as wine and liqueurs can cause a severe allergic reaction in someone with the disease. Karen had just received a promotion so her boss, Mr. Carlson, took her to an expensive French restaurant to celebrate. Mr. Carlson had been to this restaurant several times, so he ordered for both of them. As he looked over the menu, Mr. Carlson considered what to order for Karen. He first thought about ordering the Scallops Meuniere, but at the last moment decided on the Moules Mariniere instead. Although Mr. Carlson did not know this, the Moules Mariniere was made in a wine sauce whereas the Scallops Meuniere did not contain any wine. Karen enjoyed her meal greatly, but began to feel ill shortly after finishing. Within minutes, she went into convulsions and was rushed away in an ambulance. She died on the way to the hospital. Did Mr. Carlson's choice of dish cause Karen's death?\n\nOptions:\n(A) No\n(B) Yes\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To answer this question, we need to consider the causal relationship between Mr. Carlson's choice of dish and Karen's death. Let's break it down step by step:\n\n1. **Karen's Condition**: Karen had Karpinson's hemotrysoma, which is a rare genetic disorder. This condition is characterized by the lack of an enzyme that normally breaks down certain proteins in the digestive system. This makes her particularly sensitive to certain foods, especially those containing proteins that she cannot break down.\n\n2. **Mr. Carlson's Choice**: Mr. Carlson ordered the Moules Mariniere, which is a dish made in a wine sauce. Karen, being sensitive to proteins in wine, would be at risk from this dish.\n\n3. **Protein Breakdown**: The enzyme that normally breaks down proteins in the digestive system is crucial for processing the proteins in the wine. Without this enzyme, Karen's body would struggle to break down the proteins in the wine, leading to an allergic reaction.\n\n4. **Allergic Reaction**: The allergic reaction would cause symptoms such as nausea, vomiting, diarrhea, and in severe cases, convulsions. The severity of the reaction would depend on the amount of wine consumed and the individual's sensitivity.\n\n5. **Death**: The convulsions Karen experienced were severe enough to cause her death. The combination of the allergic reaction and the lack of an enzyme to break down the wine proteins would be fatal for someone with Karpinson's hemotrysoma.\n\nGiven all these factors, Mr. Carlson's choice of the Moules Mariniere, which contains wine, is directly responsible for Karen's death. The allergic reaction caused by the wine would have been fatal to her.\n\nAnswer: (B) Yes",
+  "n_new_tokens": 350,
+  "finish_reason": "stop",
+  "parsed_answer": "B",
+  "original_answer": "A",
+  "correct_letter": "A",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 'No' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A"
+  }
+}

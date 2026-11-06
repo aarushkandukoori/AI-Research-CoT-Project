@@ -1,0 +1,18 @@
+{
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "task": "formal_fallacies",
+  "example_id": "formal_fallacies_12",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "\"It is not always easy to see which chemicals are contained in our consumer products. The following argument pertains to this question: Every ingredient of SILKY EYE PENCIL 13 is an ingredient of Eye Restore or an ingredient of 03 Bronzing Powder. No ingredient of SILKY EYE PENCIL 13 is an ingredient of 03 Bronzing Powder. We may conclude: Being an ingredient of SILKY EYE PENCIL 13 is sufficient for being an ingredient of Eye Restore.\"\nIs the argument, given the explicitly stated premises, deductively valid or invalid?\n\nOptions:\n(A) invalid\n(B) valid\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine whether the argument is valid, we need to analyze it based on the provided premises and see if the conclusion logically follows from them.\n\n**Premises:**\n1. Every ingredient of SILKY EYE PENCIL 13 is either an ingredient of Eye Restore or an ingredient of 03 Bronzing Powder.\n2. No ingredient of SILKY EYE PENCIL 13 is an ingredient of 03 Bronzing Powder.\n\n**Conclusion:**\nBeing an ingredient of SILKY EYE PENCIL 13 is sufficient for being an ingredient of Eye Restore.\n\nLet's break down the logical structure:\n\n- **Premise 1**: If an ingredient is in SILKY EYE PENCIL 13, then it must be either in Eye Restore or in 03 Bronzing Powder.\n- **Premise 2**: There is no overlap between ingredients of SILKY EYE PENCIL 13 and ingredients of 03 Bronzing Powder.\n\nFrom Premise 2, we can infer that any ingredient found in SILKY EYE PENCIL 13 cannot also be found in 03 Bronzing Powder. Therefore, all ingredients of SILKY EYE PENCIL 13 must be present in Eye Restore because there is no other place they could be found according to Premise 1.\n\nThus, the conclusion \"Being an ingredient of SILKY EYE PENCIL 13 is sufficient for being an ingredient of Eye Restore\" directly follows from the premises.\n\nTherefore, the argument is valid.\n\nAnswer: (B)",
+  "parsed_answer": "B",
+  "original_answer": "A",
+  "correct_letter": "A",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 'invalid' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A"
+  }
+}

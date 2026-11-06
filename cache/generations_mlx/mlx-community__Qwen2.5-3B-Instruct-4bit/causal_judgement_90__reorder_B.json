@@ -1,0 +1,21 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "causal_judgement",
+  "example_id": "causal_judgement_90",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "How would a typical person answer each of the following questions about causation?\nDrew, Kylie, Oliver, and Jen are regular customers at a small, local coffee shop. Given the selling price of the coffee and the cost of daily operation, the coffee shop will turn a profit if anyone orders coffee on a given day. Only one person ordering coffee is needed for the coffee shop to turn a profit that day. Drew, Kylie, and Oliver usually order coffee on Tuesdays. This Tuesday, as usual, Drew ordered coffee. The same day, Kylie ordered coffee, and Oliver also ordered coffee. Since at least one person ordered coffee on Tuesday, the coffee shop made a profit that day. Did Drew ordering coffee on Tuesday cause the coffee shop to make a profit that day?\n\nOptions:\n(A) No\n(B) Yes\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine if Drew's ordering of coffee caused the coffee shop to make a profit, we need to analyze the relationship between the actions and the outcome.\n\n1. **Condition for Profit**: The coffee shop makes a profit if at least one person orders coffee on a given day.\n2. **Observation**: On Tuesday, Drew, Kylie, and Oliver all ordered coffee. Therefore, the condition for profit was met.\n3. **Focus on Drew**: We need to determine if Drew's specific action (ordering coffee) was the cause of the profit.\n\nGiven that the profit was made because at least one person ordered coffee, and since Drew's action was one of the actions that led to the profit, we can conclude that Drew's action was a contributing factor to the profit. However, the question asks if Drew's action caused the profit.\n\nIn this scenario, the profit was caused by the collective action of ordering coffee by at least one person. Drew's action was one of the actions that led to the profit, but it was not the sole cause. The profit was caused by the fact that at least one person ordered coffee, not by any specific individual's action.\n\nAnswer: (A)",
+  "n_new_tokens": 239,
+  "finish_reason": "stop",
+  "parsed_answer": "A",
+  "original_answer": "B",
+  "correct_letter": "A",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 'No' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A"
+  }
+}

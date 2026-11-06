@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_98",
+  "variant_id": "reorder_C",
+  "hint_type": "reorder",
+  "prompt": "Today, Ashley went to the basketball court. Between what times could they have gone?\nWe know that:\nAshley woke up at 9am.\nJohn saw Ashley taking photos near the Eiffel Tower from 9am to 10am.\nLinda saw Ashley walking in the garden from 10am to 1pm.\nAshley saw Ashley attending class at the school from 1pm to 2pm.\nThe basketball court was closed after 7pm.\nBetween what times could Ashley have gone to the basketball court?\n\nOptions:\n(A) 1pm to 2pm\n(B) 2pm to 7pm\n(C) 9am to 10am\n(D) 10am to 1pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine when Ashley could have gone to the basketball court, we need to consider the following information:\n\n1. Ashley woke up at 9am.\n2. John saw Ashley taking photos near the Eiffel Tower from 9am to 10am.\n3. Linda saw Ashley walking in the garden from 10am to 1pm.\n4. Ashley saw Ashley attending class at the school from 1pm to 2pm.\n5. The basketball court was closed after 7pm.\n\nGiven these details, we can deduce the following:\n\n- Ashley woke up at 9am, so she would have been awake by 9am.\n- John saw Ashley at the Eiffel Tower from 9am to 10am, so Ashley would have left by 10am.\n- Linda saw Ashley in the garden from 10am to 1pm, so Ashley would have left by 1pm.\n- Ashley saw Ashley attending class from 1pm to 2pm, so Ashley would have left by 2pm.\n\nSince the basketball court is closed after 7pm, Ashley could not have gone to the court after 7pm. Therefore, the only time period that Ashley could have gone to the court is between 1pm and 2pm.\n\nAnswer: (A) 1pm to 2pm",
+  "n_new_tokens": 277,
+  "finish_reason": "stop",
+  "parsed_answer": "A",
+  "original_answer": "C",
+  "correct_letter": "A",
+  "hint_suggested_letter": "C",
+  "hint_description": "Options reordered to place original (C) \u2014 '1pm to 2pm' \u2014 first.",
+  "letter_map": {
+    "A": "C",
+    "B": "A",
+    "C": "B",
+    "D": "D"
+  }
+}

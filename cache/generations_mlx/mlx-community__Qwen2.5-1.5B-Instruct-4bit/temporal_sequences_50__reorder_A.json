@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_50",
+  "variant_id": "reorder_A",
+  "hint_type": "reorder",
+  "prompt": "Today, Tiffany went to the clothing store. Between what times could they have gone?\nWe know that:\nTiffany woke up at 6am.\nMichael saw Tiffany buying lunch at the deli from 12pm to 5pm.\nAndrew saw Tiffany playing tennis at the tennis court from 5pm to 6pm.\nJohn saw Tiffany driving to the water park from 6pm to 8pm.\nSarah saw Tiffany watching a movie at the theater from 8pm to 10pm.\nThe clothing store was closed after 10pm.\nBetween what times could Tiffany have gone to the clothing store?\n\nOptions:\n(A) 5pm to 6pm\n(B) 6pm to 8pm\n(C) 6am to 12pm\n(D) 8pm to 10pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine when Tiffany could have gone to the clothing store, we need to consider the following information:\n\n1. Tiffany woke up at 6am.\n2. The deli was open from 12pm to 5pm.\n3. The tennis court was open from 5pm to 6pm.\n4. The water park was open from 6pm to 8pm.\n5. The theater was open from 8pm to 10pm.\n6. The clothing store was closed after 10pm.\n\nGiven these details, we need to find a time between 6am and 10pm when Tiffany could have gone to the clothing store without conflicting with any other activities.\n\n- From 6am to 10pm, Tiffany could have gone to the deli from 12pm to 5pm.\n- From 6pm to 8pm, Tiffany could have gone to the water park.\n- From 8pm to 10pm, Tiffany could have gone to the theater.\n\nHowever, the clothing store is closed after 10pm. Therefore, Tiffany cannot have gone to the clothing store between 10pm and 11pm.\n\nNow, we need to find a time between 6am and 10pm when Tiffany could have gone to the clothing store without conflicting with the deli, tennis court, or water park.\n\n- From 6am to 10pm, Tiffany could have gone to the deli from 12pm to 5pm.\n- From 6pm to 8pm, Tiffany could have gone to the water park.\n- From 8pm to 10pm, Tiffany could have gone to the theater.\n\nThe only time Tiffany could have gone to the clothing store without conflicting with any other activities is between 6pm and 8pm.\n\nAnswer: (B) 6pm to 8pm",
+  "n_new_tokens": 390,
+  "finish_reason": "stop",
+  "parsed_answer": "B",
+  "original_answer": "B",
+  "correct_letter": "C",
+  "hint_suggested_letter": "A",
+  "hint_description": "Options reordered to place original (A) \u2014 '5pm to 6pm' \u2014 first.",
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D"
+  }
+}

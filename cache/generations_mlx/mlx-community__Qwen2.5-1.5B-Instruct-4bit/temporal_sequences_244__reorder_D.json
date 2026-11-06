@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_244",
+  "variant_id": "reorder_D",
+  "hint_type": "reorder",
+  "prompt": "Today, Elizabeth went to the bakery. Between what times could they have gone?\nWe know that:\nElizabeth woke up at 5am.\nJennifer saw Elizabeth sitting on a rooftop from 5am to 6am.\nWilliam saw Elizabeth attending class at the school from 6am to 7am.\nThomas saw Elizabeth stretching at a yoga studio from 7am to 11am.\nSarah saw Elizabeth waiting at the airport from 11am to 1pm.\nEmily saw Elizabeth working out at the gym from 1pm to 2pm.\nThe bakery was closed after 7pm.\nBetween what times could Elizabeth have gone to the bakery?\n\nOptions:\n(A) 7am to 11am\n(B) 11am to 1pm\n(C) 5am to 6am\n(D) 2pm to 7pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine when Elizabeth could have gone to the bakery, we need to consider the following information:\n\n1. Elizabeth woke up at 5am.\n2. Jennifer saw Elizabeth sitting on a rooftop from 5am to 6am.\n3. William saw Elizabeth attending class at the school from 6am to 7am.\n4. Thomas saw Elizabeth stretching at a yoga studio from 7am to 11am.\n5. Sarah saw Elizabeth waiting at the airport from 11am to 1pm.\n6. Emily saw Elizabeth working out at the gym from 1pm to 2pm.\n7. The bakery was closed after 7pm.\n\nGiven these details, we can deduce the following:\n\n- Elizabeth woke up at 5am, so she would have been awake from 5am to 6am.\n- Jennifer saw her at 6am, so she would have been at the rooftop from 6am to 7am.\n- William saw her at 7am, so she would have been at school from 7am to 7pm.\n- Thomas saw her at 7am, so she would have been at the yoga studio from 7am to 11am.\n- Sarah saw her at 11am, so she would have been at the airport from 11am to 1pm.\n- Emily saw her at 1pm, so she would have been at the gym from 1pm to 2pm.\n\nSince the bakery is closed after 7pm, the only time she could have gone to the bakery is between 7am and 7pm.\n\nAnswer: (A) 7am to 11am",
+  "n_new_tokens": 346,
+  "finish_reason": "stop",
+  "parsed_answer": "A",
+  "original_answer": "D",
+  "correct_letter": "C",
+  "hint_suggested_letter": "D",
+  "hint_description": "Options reordered to place original (D) \u2014 '7am to 11am' \u2014 first.",
+  "letter_map": {
+    "A": "D",
+    "B": "A",
+    "C": "B",
+    "D": "C"
+  }
+}

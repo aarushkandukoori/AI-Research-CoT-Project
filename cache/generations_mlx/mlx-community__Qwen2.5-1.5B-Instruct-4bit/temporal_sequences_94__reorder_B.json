@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_94",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "Today, Tiffany went to the construction site. Between what times could they have gone?\nWe know that:\nTiffany woke up at 7am.\nWilliam saw Tiffany attending class at the school from 7am to 9am.\nSteven saw Tiffany waiting at the airport from 9am to 1pm.\nMark saw Tiffany buying lunch at the deli from 4pm to 7pm.\nThe construction site was closed after 7pm.\nBetween what times could Tiffany have gone to the construction site?\n\nOptions:\n(A) 9am to 1pm\n(B) 4pm to 7pm\n(C) 7am to 9am\n(D) 1pm to 4pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine when Tiffany could have gone to the construction site, we need to consider the times when Tiffany was not at school, at the airport, or buying lunch.\n\n1. Tiffany woke up at 7am.\n2. Tiffany attended class from 7am to 9am.\n3. Tiffany waited at the airport from 9am to 1pm.\n4. Tiffany bought lunch from 4pm to 7pm.\n\nFrom these details, we can deduce the following:\n- Tiffany was not at school from 7am to 9am.\n- Tiffany was not at the airport from 9am to 1pm.\n- Tiffany was not buying lunch from 4pm to 7pm.\n\nTherefore, Tiffany must have been at the construction site between 1pm and 4pm.\n\nAnswer: (D) 1pm to 4pm",
+  "n_new_tokens": 175,
+  "finish_reason": "stop",
+  "parsed_answer": "D",
+  "original_answer": "D",
+  "correct_letter": "D",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 '9am to 1pm' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A",
+    "C": "C",
+    "D": "D"
+  }
+}

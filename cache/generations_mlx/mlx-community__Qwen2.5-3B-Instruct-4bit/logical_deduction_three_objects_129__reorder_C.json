@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_129",
+  "variant_id": "reorder_C",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. In a golf tournament, there were three golfers: Eli, Mya, and Eve. Eli finished last. Mya finished second.\n\nOptions:\n(A) Eve finished second\n(B) Eli finished second\n(C) Mya finished second\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the information given:\n\n1. We know from the problem statement that:\n   - Eli finished last.\n   - Mya finished second.\n\n2. The question asks about the position of Eve. We need to determine her position based on the information provided.\n\n3. Since Eli finished last and Mya finished second, the only position left for Eve is first.\n\n4. Therefore, Eve must have finished first.\n\nNow, let's match this with the options:\n\n- (A) Eve finished second: This is incorrect because we determined that Eve finished first.\n- (B) Eli finished second: This is incorrect because we determined that Mya finished second.\n- (C) Mya finished second: This is correct based on the information given.\n\nAnswer: (C)",
+  "n_new_tokens": 156,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "B",
+  "correct_letter": "B",
+  "hint_suggested_letter": "C",
+  "hint_description": "Options reordered to place original (C) \u2014 'Eve finished second' \u2014 first.",
+  "letter_map": {
+    "A": "C",
+    "B": "A",
+    "C": "B"
+  }
+}

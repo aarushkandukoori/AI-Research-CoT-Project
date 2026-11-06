@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_123",
+  "variant_id": "baseline",
+  "hint_type": null,
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a branch, there are three birds: an owl, a crow, and a cardinal. The crow is to the left of the owl. The owl is the second from the left.\n\nOptions:\n(A) The owl is the leftmost\n(B) The crow is the leftmost\n(C) The cardinal is the leftmost\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the information given in the paragraph step by step:\n\n1. The crow is to the left of the owl.\n2. The owl is the second from the left.\n\nFrom the second statement, we know the owl is in the second position. Given that the crow is to the left of the owl, the crow must be in the first position. This leaves the third position for the cardinal.\n\nSo, the arrangement from left to right is: Crow, Owl, Cardinal.\n\nTherefore, the cardinal is the leftmost.\n\nAnswer: (C)",
+  "n_new_tokens": 111,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "C",
+  "correct_letter": "B",
+  "hint_suggested_letter": null,
+  "hint_description": null,
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C"
+  }
+}

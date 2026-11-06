@@ -1,0 +1,19 @@
+{
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_24",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. In a golf tournament, there were three golfers: Eve, Joe, and Amy. Eve finished below Amy. Eve finished above Joe.\n\nOptions:\n(A) Joe finished first\n(B) Eve finished first\n(C) Amy finished first\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine the correct order of finish for the golfers based on the given information:\n\n1. **Eve finished below Amy**: This means that either Eve or Amy is not at the top position.\n2. **Eve finished above Joe**: This means that Joe must be below both Eve and Amy.\n\nGiven these two pieces of information, we can deduce the following:\n- Since Eve finished above Joe, Joe cannot be at the bottom position.\n- Therefore, Joe must be at the second place because he is between Eve and Amy who are both higher than him.\n\nNow, let's consider the remaining positions:\n- There are only three golfers: Eve, Joe, and Amy.\n- We know that Joe is second place.\n- This leaves Amy to be third place since she is the highest among them.\n\nThus, the logical sequence from first to third place would be:\n1. First place - Joe\n2. Second place - Eve\n3. Third place - Amy\n\nTherefore, the correct order of finish is:\nAnswer: (B) Joe finished first",
+  "parsed_answer": "B",
+  "original_answer": "A",
+  "correct_letter": "C",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 'Joe finished first' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A",
+    "C": "C"
+  }
+}

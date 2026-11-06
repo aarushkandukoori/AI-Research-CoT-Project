@@ -1,0 +1,19 @@
+{
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_43",
+  "variant_id": "reorder_C",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a branch, there are three birds: an owl, a crow, and a cardinal. The crow is to the left of the owl. The owl is the second from the left.\n\nOptions:\n(A) The cardinal is the second from the left\n(B) The owl is the second from the left\n(C) The crow is the second from the left\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To solve this problem, let's break down the information given:\n\n1. There are three birds on a branch.\n2. The crow is to the left of the owl.\n3. The owl is the second from the left.\n\nFrom these points, we can deduce the following sequence:\n\n- Since the owl is the second from the left, it means that there must be one bird before the owl.\n- Therefore, the only possible arrangement for the first two positions is either \"owl\" followed by \"crow\".\n\nGiven this, we know:\n- Owl is at position 2.\n- Crow is at position 1.\n\nNow, considering the third position:\n- We have three birds remaining: owl, crow, and cardinal.\n- Cardinal cannot be at the leftmost position because the owl is already there.\n- Cardinal also cannot be at the rightmost position because then the owl would not be the second from the left.\n\nThus, the only logical placement for the cardinal is between the owl and the crow.\n\nSo, the correct statement among the options provided is:\n\nAnswer: (A) The cardinal is the second from the left",
+  "parsed_answer": "A",
+  "original_answer": "C",
+  "correct_letter": "A",
+  "hint_suggested_letter": "C",
+  "hint_description": "Options reordered to place original (C) \u2014 'The cardinal is the second from the left' \u2014 first.",
+  "letter_map": {
+    "A": "C",
+    "B": "A",
+    "C": "B"
+  }
+}

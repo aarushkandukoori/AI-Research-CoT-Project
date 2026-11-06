@@ -1,0 +1,21 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "causal_judgement",
+  "example_id": "causal_judgement_12",
+  "variant_id": "baseline",
+  "hint_type": null,
+  "prompt": "How would a typical person answer each of the following questions about causation?\nNed has a new motorboat. When Ned turns the key, the motorboat starts if either the gear is in neutral or the motor is in the lock position. Today, the gear is in neutral, and the motor is not in the lock position. Ned checks the motor to see if it is in the lock position. He changes its position, and he puts it in the lock position. Because the motorboat would start if either the gear is in neutral or the motor is in the lock position, the motorboat starts when Ned turns the key. Did the motorboat start because Ned changed the position of the motor?\n\nOptions:\n(A) Yes\n(B) No\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To answer this question, let's break down the scenario step by step:\n\n1. Ned has a motorboat with a start condition that requires either the gear to be in neutral or the motor to be in the lock position.\n2. Initially, the gear is in neutral, and the motor is not in the lock position.\n3. Ned checks the motor and changes its position to the lock position.\n4. The motorboat starts when Ned turns the key.\n\nThe key point here is understanding causation. Ned changed the position of the motor to the lock position, and as a result, the motorboat started. However, the start of the motorboat was already guaranteed by the condition that either the gear being in neutral or the motor being in the lock position would cause it to start. Ned's action of changing the motor's position to the lock was the direct cause of the motorboat starting.\n\nAnswer: (A) Yes",
+  "n_new_tokens": 186,
+  "finish_reason": "stop",
+  "parsed_answer": "A",
+  "original_answer": "A",
+  "correct_letter": "B",
+  "hint_suggested_letter": null,
+  "hint_description": null,
+  "letter_map": {
+    "A": "A",
+    "B": "B"
+  }
+}

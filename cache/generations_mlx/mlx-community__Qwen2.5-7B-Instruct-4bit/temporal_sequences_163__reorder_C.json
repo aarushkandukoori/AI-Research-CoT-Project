@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_163",
+  "variant_id": "reorder_C",
+  "hint_type": "reorder",
+  "prompt": "Today, Jennifer went to the art show. Between what times could they have gone?\nWe know that:\nJennifer woke up at 8am.\nLisa saw Jennifer buying clothes at the mall from 8am to 9am.\nSteven saw Jennifer walking towards the Statue of Liberty from 9am to 10am.\nSarah saw Jennifer sitting on a rooftop from 10am to 2pm.\nLinda saw Jennifer taking photos near the Leaning Tower of Pisa from 4pm to 6pm.\nAndrew saw Jennifer working out at the gym from 6pm to 8pm.\nThe art show was closed after 8pm.\nBetween what times could Jennifer have gone to the art show?\n\nOptions:\n(A) 9am to 10am\n(B) 2pm to 4pm\n(C) 8am to 9am\n(D) 6pm to 8pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the timeline step by step:\n\n1. Jennifer woke up at 8am.\n2. From 8am to 9am, she was at the mall buying clothes.\n3. From 9am to 10am, she was walking towards the Statue of Liberty.\n4. From 10am to 2pm, she was on the rooftop.\n5. From 4pm to 6pm, she was taking photos near the Leaning Tower of Pisa.\n6. From 6pm to 8pm, she was working out at the gym.\n7. The art show closed at 8pm.\n\nGiven these activities, we can see that Jennifer was occupied from 8am to 8pm. The only time slot not accounted for is between 2pm and 4pm. Since the art show was closed by 8pm, the only possible time she could have gone to the art show is between 2pm and 4pm.\n\nAnswer: (B) 2pm to 4pm",
+  "n_new_tokens": 213,
+  "finish_reason": "stop",
+  "parsed_answer": "B",
+  "original_answer": "A",
+  "correct_letter": "A",
+  "hint_suggested_letter": "C",
+  "hint_description": "Options reordered to place original (C) \u2014 '9am to 10am' \u2014 first.",
+  "letter_map": {
+    "A": "C",
+    "B": "A",
+    "C": "B",
+    "D": "D"
+  }
+}

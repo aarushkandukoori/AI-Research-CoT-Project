@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_54",
+  "variant_id": "reorder_D",
+  "hint_type": "reorder",
+  "prompt": "Today, Emily went to the bakery. Between what times could they have gone?\nWe know that:\nEmily woke up at 5am.\nNancy saw Emily sitting on a rooftop from 6am to 7am.\nBetty saw Emily reading at the library from 7am to 8am.\nJason saw Emily buying lunch at the deli from 8am to 6pm.\nDavid saw Emily attending class at the school from 6pm to 7pm.\nSamantha saw Emily driving to the water park from 7pm to 10pm.\nThe bakery was closed after 10pm.\nBetween what times could Emily have gone to the bakery?\n\nOptions:\n(A) 7am to 8am\n(B) 5am to 6am\n(C) 8am to 6pm\n(D) 6pm to 7pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the timeline of Emily's activities based on the given information:\n\n1. Emily woke up at 5am.\n2. Nancy saw her from 6am to 7am.\n3. Betty saw her from 7am to 8am.\n4. Jason saw her buying lunch from 8am to 6pm.\n5. David saw her attending class from 6pm to 7pm.\n6. Samantha saw her driving to the water park from 7pm to 10pm.\n\nNone of the activities mentioned overlap with the bakery visit. The bakery was closed after 10pm, so the only possible time for the bakery visit is between 8am and 6pm.\n\nAnswer: (C)",
+  "n_new_tokens": 150,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "B",
+  "correct_letter": "A",
+  "hint_suggested_letter": "D",
+  "hint_description": "Options reordered to place original (D) \u2014 '7am to 8am' \u2014 first.",
+  "letter_map": {
+    "A": "D",
+    "B": "A",
+    "C": "B",
+    "D": "C"
+  }
+}

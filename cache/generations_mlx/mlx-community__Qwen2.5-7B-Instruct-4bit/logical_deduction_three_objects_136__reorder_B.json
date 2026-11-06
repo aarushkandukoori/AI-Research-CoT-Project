@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_136",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. A fruit stand sells three fruits: plums, apples, and loquats. The loquats are the cheapest. The plums are less expensive than the apples.\n\nOptions:\n(A) The apples are the second-most expensive\n(B) The plums are the second-most expensive\n(C) The loquats are the second-most expensive\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's break down the information given:\n\n1. The loquats are the cheapest.\n2. The plums are less expensive than the apples.\n\nFrom point 1, we know the order of price from cheapest to most expensive must be: loquats, plums, apples.\n\nNow, let's evaluate the options:\n\n(A) The apples are the second-most expensive.\n- This aligns with our established order: loquats (cheapest), plums, apples (second-most expensive).\n\n(B) The plums are the second-most expensive.\n- This also aligns with our established order: loquats (cheapest), plums, apples (second-most expensive).\n\n(C) The loquats are the second-most expensive.\n- This contradicts our established order, as loquats are the cheapest.\n\nBoth (A) and (B) are consistent with the given information, but since we need to choose the correct answer, we should select the one that directly matches the order we've established.\n\nAnswer: (A)",
+  "n_new_tokens": 210,
+  "finish_reason": "stop",
+  "parsed_answer": "A",
+  "original_answer": "B",
+  "correct_letter": "A",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 'The apples are the second-most expensive' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A",
+    "C": "C"
+  }
+}

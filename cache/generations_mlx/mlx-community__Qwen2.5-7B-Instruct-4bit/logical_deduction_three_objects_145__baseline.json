@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_145",
+  "variant_id": "baseline",
+  "hint_type": null,
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. In a golf tournament, there were three golfers: Amy, Ada, and Joe. Joe finished below Ada. Amy finished above Ada.\n\nOptions:\n(A) Amy finished last\n(B) Ada finished last\n(C) Joe finished last\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's break down the information given:\n\n1. Joe finished below Ada.\n2. Amy finished above Ada.\n\nFrom point 1, we know the order between Joe and Ada is: Ada > Joe.\n\nFrom point 2, we know the order between Amy and Ada is: Amy > Ada.\n\nCombining these two pieces of information, we can form the complete order of the golfers based on their finishes:\n\nAmy > Ada > Joe\n\nThis means:\n- Amy finished first.\n- Ada finished second.\n- Joe finished last.\n\nTherefore, the correct answer is: Answer: (C) Joe finished last.",
+  "n_new_tokens": 123,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "C",
+  "correct_letter": "C",
+  "hint_suggested_letter": null,
+  "hint_description": null,
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C"
+  }
+}

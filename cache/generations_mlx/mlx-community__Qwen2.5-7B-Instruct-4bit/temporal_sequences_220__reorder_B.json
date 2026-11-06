@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_220",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "Today, Nancy went to the beach. Between what times could they have gone?\nWe know that:\nNancy woke up at 11am.\nTiffany saw Nancy stretching at a yoga studio from 11am to 2pm.\nLinda saw Nancy buying cookies at a bakery from 4pm to 5pm.\nMary saw Nancy waiting at the train station from 5pm to 8pm.\nThe beach was closed after 8pm.\nBetween what times could Nancy have gone to the beach?\n\nOptions:\n(A) 5pm to 8pm\n(B) 11am to 2pm\n(C) 2pm to 4pm\n(D) 4pm to 5pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's break down the timeline based on the given information:\n\n1. Nancy woke up at 11am.\n2. From 11am to 2pm, Nancy was at a yoga studio.\n3. From 4pm to 5pm, Nancy was at a bakery.\n4. From 5pm to 8pm, Nancy was at a train station.\n5. The beach was closed after 8pm.\n\nNancy could not have gone to the beach during the times she was at the yoga studio, bakery, or train station. The only time frame not mentioned is between 2pm and 4pm. However, since the beach was closed after 8pm, Nancy could not have gone to the beach after 5pm.\n\nTherefore, the only possible time frame for Nancy to go to the beach is between 2pm and 4pm.\n\nAnswer: (C) 2pm to 4pm",
+  "n_new_tokens": 190,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "C",
+  "correct_letter": "C",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 '5pm to 8pm' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A",
+    "C": "C",
+    "D": "D"
+  }
+}

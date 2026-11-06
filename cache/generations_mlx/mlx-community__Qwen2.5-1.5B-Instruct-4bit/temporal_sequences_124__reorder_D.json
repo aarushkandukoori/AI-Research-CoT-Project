@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_124",
+  "variant_id": "reorder_D",
+  "hint_type": "reorder",
+  "prompt": "Today, Jessica went to the bookstore. Between what times could they have gone?\nWe know that:\nJessica woke up at 6am.\nSusan saw Jessica working out at the gym from 8am to 9am.\nAndrew saw Jessica driving to the water park from 9am to 10am.\nDavid saw Jessica walking towards the Statue of Liberty from 10am to 1pm.\nLinda saw Jessica buying lunch at the deli from 1pm to 8pm.\nJames saw Jessica taking photos near the Eiffel Tower from 8pm to 9pm.\nThe bookstore was closed after 9pm.\nBetween what times could Jessica have gone to the bookstore?\n\nOptions:\n(A) 8am to 9am\n(B) 9am to 10am\n(C) 6am to 8am\n(D) 8pm to 9pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine when Jessica could have gone to the bookstore, we need to consider the following information:\n\n1. Jessica woke up at 6am.\n2. Susan saw Jessica working out at the gym from 8am to 9am.\n3. Andrew saw Jessica driving to the water park from 9am to 10am.\n4. David saw Jessica walking towards the Statue of Liberty from 10am to 1pm.\n5. Linda saw Jessica buying lunch at the deli from 1pm to 8pm.\n6. James saw Jessica taking photos near the Eiffel Tower from 8pm to 9pm.\n7. The bookstore was closed after 9pm.\n\nGiven these details, we need to find a time between 6am and 9pm when Jessica was not seen by anyone else.\n\n- From 6am to 8am, Jessica was seen by Susan working out.\n- From 8am to 9am, Jessica was seen by Susan working out.\n- From 9am to 10am, Jessica was seen by Andrew driving to the water park.\n- From 10am to 1pm, Jessica was seen by David walking towards the Statue of Liberty.\n- From 1pm to 8pm, Jessica was seen by Linda buying lunch at the deli.\n- From 8pm to 9pm, Jessica was seen by James taking photos near the Eiffel Tower.\n\nThe only time period when Jessica was not seen by anyone else is from 6am to 8am.\n\nAnswer: (C) 6am to 8am",
+  "n_new_tokens": 330,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "B",
+  "correct_letter": "B",
+  "hint_suggested_letter": "D",
+  "hint_description": "Options reordered to place original (D) \u2014 '8am to 9am' \u2014 first.",
+  "letter_map": {
+    "A": "D",
+    "B": "A",
+    "C": "B",
+    "D": "C"
+  }
+}

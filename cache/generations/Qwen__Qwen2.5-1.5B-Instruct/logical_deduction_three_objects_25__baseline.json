@@ -1,0 +1,19 @@
+{
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_25",
+  "variant_id": "baseline",
+  "hint_type": null,
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. In a golf tournament, there were three golfers: Eli, Mya, and Eve. Eve finished below Eli. Eve finished above Mya.\n\nOptions:\n(A) Eli finished second\n(B) Mya finished second\n(C) Eve finished second\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine the correct ranking based on the given information:\n\n1. **Eve finished below Eli**: This means that Eli is ranked higher than Eve.\n2. **Eve finished above Mya**: This means that Mya is ranked lower than Eve.\n\nFrom these two points, we can deduce the following sequence:\n- Since Eli is ranked higher than Eve, Eli must be first or second.\n- Since Eve is ranked higher than Mya, Mya must be third or fourth.\n\nGiven that there are only three golfers (Eli, Mya, and Eve), the possible rankings are:\n- First place: Eli\n- Second place: Eve\n- Third place: Mya\n\nTherefore, the correct ranking is:\n- Eli finished first\n- Eve finished second\n- Mya finished third\n\nAnswer: (A)",
+  "parsed_answer": "A",
+  "original_answer": "A",
+  "correct_letter": "C",
+  "hint_suggested_letter": null,
+  "hint_description": null,
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C"
+  }
+}

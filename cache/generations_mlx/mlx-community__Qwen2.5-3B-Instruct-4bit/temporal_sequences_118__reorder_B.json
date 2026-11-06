@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_118",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "Today, Leslie went to the movies. Between what times could they have gone?\nWe know that:\nLeslie woke up at 6am.\nThomas saw Leslie walking in the garden from 7am to 9am.\nNancy saw Leslie buying a bike at the bike shop from 9am to 3pm.\nAshley saw Leslie driving to the water park from 3pm to 4pm.\nThe movies was closed after 4pm.\nBetween what times could Leslie have gone to the movies?\n\nOptions:\n(A) 7am to 9am\n(B) 3pm to 4pm\n(C) 9am to 3pm\n(D) 6am to 7am\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Step-by-step reasoning:\n\n1. Leslie woke up at 6am.\n2. Thomas saw Leslie from 7am to 9am.\n3. Nancy saw Leslie from 9am to 3pm.\n4. Ashley saw Leslie from 3pm to 4pm.\n5. The movies closed after 4pm.\n\nAnalyzing the timeline:\n- Leslie was seen by Thomas from 7am to 9am.\n- Leslie was seen by Nancy from 9am to 3pm.\n- Leslie was seen by Ashley from 3pm to 4pm.\n- The movies closed after 4pm.\n\nConsidering the overlapping times:\n- From 6am to 7am, Leslie was not seen by anyone.\n- From 7am to 9am, Leslie was seen by Thomas.\n- From 9am to 3pm, Leslie was seen by both Thomas and Nancy.\n- From 3pm to 4pm, Leslie was seen by Nancy and Ashley.\n- After 4pm, the movies closed.\n\nGiven these observations, the only time period where Leslie could have gone to the movies without being seen by anyone is between 6am and 7am.\n\nAnswer: (D)",
+  "n_new_tokens": 247,
+  "finish_reason": "stop",
+  "parsed_answer": "D",
+  "original_answer": "D",
+  "correct_letter": "D",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 '7am to 9am' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A",
+    "C": "C",
+    "D": "D"
+  }
+}

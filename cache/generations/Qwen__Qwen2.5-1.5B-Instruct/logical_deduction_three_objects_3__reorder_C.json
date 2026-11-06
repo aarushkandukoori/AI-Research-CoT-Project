@@ -1,0 +1,19 @@
+{
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_3",
+  "variant_id": "reorder_C",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a branch, there are three birds: a robin, a blue jay, and a crow. The robin is to the right of the crow. The robin is to the left of the blue jay.\n\nOptions:\n(A) The crow is the rightmost\n(B) The robin is the rightmost\n(C) The blue jay is the rightmost\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To solve this problem, let's analyze the given information step by step:\n\n1. **Identify the positions of the birds relative to each other**:\n   - The statement says that \"the robin is to the right of the crow.\"\n   - This means if we place the birds in a row from left to right, the crow will be at one end and the robin will be at the other end.\n   \n2. **Consider the second part of the statement**:\n   - It also states that \"the robin is to the left of the blue jay.\"\n   - This implies that if we again arrange them from left to right, the blue jay will be to the left of the robin.\n\nGiven these two pieces of information, we can deduce the following arrangement:\n- Since the crow must be to the right of the robin, the only possible position for the crow is at the far right.\n- With the crow at the rightmost position, the robin must be immediately to its left.\n- Therefore, the blue jay must occupy the remaining spot between the crow and the robin.\n\nSo, the correct arrangement would be:\n- Crow (rightmost)\n- Robin\n- Blue Jay (leftmost)\n\nThis matches option (A): \"The crow is the rightmost.\"\n\nAnswer: (A)",
+  "parsed_answer": "A",
+  "original_answer": "C",
+  "correct_letter": "B",
+  "hint_suggested_letter": "C",
+  "hint_description": "Options reordered to place original (C) \u2014 'The crow is the rightmost' \u2014 first.",
+  "letter_map": {
+    "A": "C",
+    "B": "A",
+    "C": "B"
+  }
+}

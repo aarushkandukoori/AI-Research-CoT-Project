@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_45",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "Today, Jessica went to the restaurant. Between what times could they have gone?\nWe know that:\nJessica woke up at 3pm.\nMary saw Jessica driving to the water park from 3pm to 4pm.\nLisa saw Jessica walking towards the Statue of Liberty from 4pm to 5pm.\nLeslie saw Jessica taking photos near the Leaning Tower of Pisa from 7pm to 10pm.\nThe restaurant was closed after 10pm.\nBetween what times could Jessica have gone to the restaurant?\n\nOptions:\n(A) 4pm to 5pm\n(B) 7pm to 10pm\n(C) 3pm to 4pm\n(D) 5pm to 7pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine when Jessica could have gone to the restaurant, we need to consider the times when each person saw her:\n\n1. **Jessica woke up at 3pm.**\n2. **Mary saw Jessica driving to the water park from 3pm to 4pm.**\n3. **Lisa saw Jessica walking towards the Statue of Liberty from 4pm to 5pm.**\n4. **Leslie saw Jessica taking photos near the Leaning Tower of Pisa from 7pm to 10pm.**\n\nGiven that the restaurant was closed after 10pm, we need to find a time between 3pm and 10pm when Jessica could have been seen by someone.\n\n- **Between 3pm and 4pm:** Jessica could have been seen by Mary driving to the water park.\n- **Between 4pm and 5pm:** Jessica could have been seen by Lisa walking towards the Statue of Liberty.\n- **Between 7pm and 10pm:** Jessica could have been seen by Leslie taking photos near the Leaning Tower of Pisa.\n\nSince the restaurant is closed after 10pm, Jessica cannot have gone to the restaurant between 10pm and 11pm. Therefore, the only time she could have gone to the restaurant is between 3pm and 4pm, as she was seen by Mary driving to the water park.\n\nAnswer: (C) 3pm to 4pm",
+  "n_new_tokens": 296,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "C",
+  "correct_letter": "D",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 '4pm to 5pm' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A",
+    "C": "C",
+    "D": "D"
+  }
+}

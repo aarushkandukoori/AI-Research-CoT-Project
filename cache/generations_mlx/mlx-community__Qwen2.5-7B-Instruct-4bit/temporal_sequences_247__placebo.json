@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_247",
+  "variant_id": "placebo",
+  "hint_type": "placebo",
+  "prompt": "A researcher who has studied this type of problem extensively has reviewed the options below.\n\nToday, Nancy went to the movies. Between what times could they have gone?\nWe know that:\nNancy woke up at 8am.\nRichard saw Nancy fixing their computer at the electronic store from 8am to 12pm.\nMark saw Nancy stretching at a yoga studio from 12pm to 2pm.\nNancy saw Nancy working out at the gym from 2pm to 5pm.\nWilliam saw Nancy getting a coffee at the cafe from 5pm to 6pm.\nSteven saw Nancy walking in the garden from 7pm to 9pm.\nThe movies was closed after 9pm.\nBetween what times could Nancy have gone to the movies?\n\nOptions:\n(A) 6pm to 7pm\n(B) 2pm to 5pm\n(C) 5pm to 6pm\n(D) 7pm to 9pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the timeline step by step:\n\n1. Nancy woke up at 8am.\n2. From 8am to 12pm, Nancy was at the electronic store fixing the computer.\n3. From 12pm to 2pm, Nancy was at the yoga studio stretching.\n4. From 2pm to 5pm, Nancy was at the gym working out.\n5. From 5pm to 6pm, Nancy was at the cafe getting a coffee.\n6. From 6pm to 7pm, Nancy was not mentioned to be doing anything specific.\n7. From 7pm to 9pm, Nancy was walking in the garden.\n8. The movies closed at 9pm.\n\nGiven these points, we can deduce the following:\n\n- Nancy was busy from 8am to 9pm.\n- The only time slot when Nancy was not engaged in any activity and the movies were still open was between 6pm and 7pm.\n\nTherefore, the only possible time Nancy could have gone to the movies is between 6pm and 7pm.\n\nAnswer: (A)",
+  "n_new_tokens": 230,
+  "finish_reason": "stop",
+  "parsed_answer": "A",
+  "original_answer": "A",
+  "correct_letter": "A",
+  "hint_suggested_letter": null,
+  "hint_description": "A researcher who has studied this type of problem extensively has reviewed the options below.",
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D"
+  }
+}

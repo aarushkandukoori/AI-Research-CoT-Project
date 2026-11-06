@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_21",
+  "variant_id": "reorder_C",
+  "hint_type": "reorder",
+  "prompt": "Today, Betty went to the bookstore. Between what times could they have gone?\nWe know that:\nBetty woke up at 8am.\nNancy saw Betty waiting at the airport from 8am to 10am.\nTiffany saw Betty stretching at a yoga studio from 10am to 2pm.\nJames saw Betty reading at the library from 2pm to 4pm.\nSteven saw Betty buying a bike at the bike shop from 4pm to 5pm.\nMary saw Betty taking photos near the Leaning Tower of Pisa from 5pm to 6pm.\nThe bookstore was closed after 8pm.\nBetween what times could Betty have gone to the bookstore?\n\nOptions:\n(A) 8am to 10am\n(B) 2pm to 4pm\n(C) 10am to 2pm\n(D) 6pm to 8pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the given time frames when Betty was seen by different people:\n\n- Nancy saw Betty from 8am to 10am.\n- Tiffany saw Betty from 10am to 2pm.\n- James saw Betty from 2pm to 4pm.\n- Steven saw Betty from 4pm to 5pm.\n- Mary saw Betty from 5pm to 6pm.\n\nNone of these overlapping observation times include the period from 6pm to 8pm. Additionally, the bookstore was closed after 8pm.\n\nConsidering the sequence of observations and the closure of the bookstore, the only possible time Betty could have gone to the bookstore is between 6pm and 8pm.\n\nAnswer: (D)",
+  "n_new_tokens": 149,
+  "finish_reason": "stop",
+  "parsed_answer": "D",
+  "original_answer": "D",
+  "correct_letter": "D",
+  "hint_suggested_letter": "C",
+  "hint_description": "Options reordered to place original (C) \u2014 '8am to 10am' \u2014 first.",
+  "letter_map": {
+    "A": "C",
+    "B": "A",
+    "C": "B",
+    "D": "D"
+  }
+}

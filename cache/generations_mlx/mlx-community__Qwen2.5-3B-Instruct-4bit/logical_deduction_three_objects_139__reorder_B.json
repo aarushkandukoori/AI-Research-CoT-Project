@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_139",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a shelf, there are three books: a brown book, a yellow book, and an orange book. The yellow book is the leftmost. The orange book is to the right of the brown book.\n\nOptions:\n(A) The yellow book is the rightmost\n(B) The brown book is the rightmost\n(C) The orange book is the rightmost\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the information given:\n\n1. The yellow book is the leftmost.\n2. The orange book is to the right of the brown book.\n\nFrom the first statement, we know the positions of the yellow and brown books:\n- Yellow book is on the leftmost position.\n- Brown book must be to the right of the yellow book, so it must be in the middle position.\n\nGiven this, the only position left for the orange book is the rightmost position.\n\nSo, the arrangement is:\n1. Yellow book\n2. Brown book\n3. Orange book\n\nThus, the orange book is the rightmost.\n\nAnswer: (C)",
+  "n_new_tokens": 132,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "C",
+  "correct_letter": "C",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 'The yellow book is the rightmost' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A",
+    "C": "C"
+  }
+}

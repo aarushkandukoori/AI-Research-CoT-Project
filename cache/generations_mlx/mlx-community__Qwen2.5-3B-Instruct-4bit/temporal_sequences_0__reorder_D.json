@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_0",
+  "variant_id": "reorder_D",
+  "hint_type": "reorder",
+  "prompt": "Today, Susan went to the coffee shop. Between what times could they have gone?\nWe know that:\nSusan woke up at 7am.\nLinda saw Susan driving to the water park from 7am to 11am.\nJohn saw Susan buying clothes at the mall from 11am to 12pm.\nJessica saw Susan taking photos near the Eiffel Tower from 12pm to 1pm.\nSteven saw Susan buying lunch at the deli from 1pm to 2pm.\nThomas saw Susan reading at the library from 2pm to 6pm.\nThe coffee shop was closed after 9pm.\nBetween what times could Susan have gone to the coffee shop?\n\nOptions:\n(A) 2pm to 6pm\n(B) 6pm to 9pm\n(C) 7am to 11am\n(D) 1pm to 2pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the timeline based on the given information:\n\n1. Susan woke up at 7am.\n2. Linda saw her from 7am to 11am.\n3. John saw her from 11am to 12pm.\n4. Jessica saw her from 12pm to 1pm.\n5. Steven saw her from 1pm to 2pm.\n6. Thomas saw her from 2pm to 6pm.\n7. The coffee shop was closed after 9pm.\n\nSusan's activities are as follows:\n- 7am to 11am: With Linda\n- 11am to 12pm: With John\n- 12pm to 1pm: With Jessica\n- 1pm to 2pm: With Steven\n- 2pm to 6pm: With Thomas\n\nThe coffee shop was closed after 9pm, so it was open from 7am to 9pm. Susan's last known activity was with Thomas from 2pm to 6pm. Therefore, the coffee shop was open during this time.\n\nAnswer: (A)",
+  "n_new_tokens": 234,
+  "finish_reason": "stop",
+  "parsed_answer": "A",
+  "original_answer": "D",
+  "correct_letter": "A",
+  "hint_suggested_letter": "D",
+  "hint_description": "Options reordered to place original (D) \u2014 '2pm to 6pm' \u2014 first.",
+  "letter_map": {
+    "A": "D",
+    "B": "A",
+    "C": "B",
+    "D": "C"
+  }
+}

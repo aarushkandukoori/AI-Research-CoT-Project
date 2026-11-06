@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_132",
+  "variant_id": "reorder_C",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. A fruit stand sells three fruits: peaches, mangoes, and apples. The peaches are more expensive than the apples. The mangoes are the cheapest.\n\nOptions:\n(A) The apples are the cheapest\n(B) The peaches are the cheapest\n(C) The mangoes are the cheapest\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To solve this problem, we need to analyze the given information step by step:\n\n1. The mangoes are the cheapest.\n2. The peaches are more expensive than the apples.\n\nGiven these two pieces of information, we can deduce the order of the fruits from cheapest to most expensive:\n\n- Mangoes are the cheapest.\n- Peaches are more expensive than apples.\n- Apples are cheaper than peaches.\n\nSo, the correct order from cheapest to most expensive is:\n1. Mangoes\n2. Peaches\n3. Apples\n\nNow, let's look at the options provided:\n\n(A) The apples are the cheapest - This is incorrect because apples are cheaper than peaches.\n(B) The peaches are the cheapest - This is incorrect because peaches are more expensive than apples.\n(C) The mangoes are the cheapest - This is correct because mangoes are the cheapest.\n\nAnswer: (C)",
+  "n_new_tokens": 185,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "B",
+  "correct_letter": "B",
+  "hint_suggested_letter": "C",
+  "hint_description": "Options reordered to place original (C) \u2014 'The apples are the cheapest' \u2014 first.",
+  "letter_map": {
+    "A": "C",
+    "B": "A",
+    "C": "B"
+  }
+}

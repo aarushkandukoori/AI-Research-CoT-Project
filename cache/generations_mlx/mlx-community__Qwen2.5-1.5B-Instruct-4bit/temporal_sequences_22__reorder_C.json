@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_22",
+  "variant_id": "reorder_C",
+  "hint_type": "reorder",
+  "prompt": "Today, Linda went to the beach. Between what times could they have gone?\nWe know that:\nLinda woke up at 10am.\nElizabeth saw Linda waiting at the train station from 10am to 12pm.\nDavid saw Linda working at the office from 2pm to 4pm.\nSarah saw Linda waiting at the airport from 4pm to 5pm.\nAshley saw Linda attending class at the school from 5pm to 9pm.\nBetty saw Linda walking in the garden from 9pm to 10pm.\nThe beach was closed after 10pm.\nBetween what times could Linda have gone to the beach?\n\nOptions:\n(A) 2pm to 4pm\n(B) 12pm to 2pm\n(C) 10am to 12pm\n(D) 4pm to 5pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine when Linda could have gone to the beach, we need to consider the following information:\n\n1. Linda woke up at 10am.\n2. Elizabeth saw Linda at the train station from 10am to 12pm.\n3. David saw Linda at the office from 2pm to 4pm.\n4. Sarah saw Linda at the airport from 4pm to 5pm.\n5. Ashley saw Linda at the school from 5pm to 9pm.\n6. Betty saw Linda walking in the garden from 9pm to 10pm.\n7. The beach was closed after 10pm.\n\nGiven these details, we need to find a time between 10am and 10pm when Linda could have been at the beach.\n\n- From 10am to 10pm, there are no times when Linda could have been at the beach because the beach is closed after 10pm.\n\nTherefore, the only time when Linda could have been at the beach is between 10am and 10pm.\n\nAnswer: (C) 10am to 10pm",
+  "n_new_tokens": 235,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "B",
+  "correct_letter": "A",
+  "hint_suggested_letter": "C",
+  "hint_description": "Options reordered to place original (C) \u2014 '2pm to 4pm' \u2014 first.",
+  "letter_map": {
+    "A": "C",
+    "B": "A",
+    "C": "B",
+    "D": "D"
+  }
+}

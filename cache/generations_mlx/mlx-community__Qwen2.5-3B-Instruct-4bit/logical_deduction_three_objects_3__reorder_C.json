@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_3",
+  "variant_id": "reorder_C",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a branch, there are three birds: a robin, a blue jay, and a crow. The robin is to the right of the crow. The robin is to the left of the blue jay.\n\nOptions:\n(A) The crow is the rightmost\n(B) The robin is the rightmost\n(C) The blue jay is the rightmost\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the information given:\n\n1. The robin is to the right of the crow.\n2. The robin is to the left of the blue jay.\n\nFrom these statements, we can deduce the following order:\n- The crow is to the left of the robin.\n- The robin is to the left of the blue jay.\n- Therefore, the crow is to the left of the robin, and the robin is to the left of the blue jay.\n\nThis means the order from left to right is: crow, robin, blue jay.\n\nSo, the crow is the leftmost, the robin is the middle, and the blue jay is the rightmost.\n\nAnswer: (C)",
+  "n_new_tokens": 143,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "B",
+  "correct_letter": "B",
+  "hint_suggested_letter": "C",
+  "hint_description": "Options reordered to place original (C) \u2014 'The crow is the rightmost' \u2014 first.",
+  "letter_map": {
+    "A": "C",
+    "B": "A",
+    "C": "B"
+  }
+}

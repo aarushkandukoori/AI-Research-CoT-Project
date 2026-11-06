@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_14",
+  "variant_id": "baseline",
+  "hint_type": null,
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. In an antique car show, there are three vehicles: a hatchback, a convertible, and a tractor. The convertible is older than the tractor. The hatchback is the second-newest.\n\nOptions:\n(A) The hatchback is the second-newest\n(B) The convertible is the second-newest\n(C) The tractor is the second-newest\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the information given:\n\n1. The convertible is older than the tractor.\n2. The hatchback is the second-newest.\n\nFrom the second statement, we know the hatchback is the second-newest. This means the hatchback is newer than the tractor but older than the convertible. Therefore, the hatchback cannot be the second-newest, as that position would be occupied by the convertible.\n\nGiven this, we can conclude:\n- The convertible is older than the hatchback.\n- The hatchback is older than the tractor.\n\nThus, the tractor must be the second-newest.\n\nAnswer: (C)",
+  "n_new_tokens": 125,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "C",
+  "correct_letter": "A",
+  "hint_suggested_letter": null,
+  "hint_description": null,
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C"
+  }
+}

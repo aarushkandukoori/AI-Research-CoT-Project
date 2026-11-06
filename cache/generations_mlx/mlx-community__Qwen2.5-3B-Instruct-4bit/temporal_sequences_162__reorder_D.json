@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_162",
+  "variant_id": "reorder_D",
+  "hint_type": "reorder",
+  "prompt": "Today, Jennifer went to the restaurant. Between what times could they have gone?\nWe know that:\nJennifer woke up at 6am.\nMary saw Jennifer driving to the water park from 6am to 11am.\nSarah saw Jennifer reading at the library from 1pm to 5pm.\nDavid saw Jennifer stretching at a yoga studio from 5pm to 6pm.\nMichael saw Jennifer watching a movie at the theater from 6pm to 10pm.\nThe restaurant was closed after 10pm.\nBetween what times could Jennifer have gone to the restaurant?\n\nOptions:\n(A) 5pm to 6pm\n(B) 1pm to 5pm\n(C) 11am to 1pm\n(D) 6am to 11am\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the timeline of Jennifer's activities based on the given information:\n\n1. Jennifer woke up at 6am.\n2. Mary saw her driving from 6am to 11am.\n3. Sarah saw her reading from 1pm to 5pm.\n4. David saw her stretching from 5pm to 6pm.\n5. Michael saw her watching a movie from 6pm to 10pm.\n6. The restaurant was closed after 10pm.\n\nFrom the timeline, we can see that Jennifer was seen at the library from 1pm to 5pm, at the yoga studio from 5pm to 6pm, and at the theater from 6pm to 10pm. The restaurant was closed after 10pm, so Jennifer could not have gone to the restaurant between 6pm and 10pm.\n\nTherefore, the only time period left for Jennifer to have gone to the restaurant is between 1pm and 5pm.\n\nAnswer: (B)",
+  "n_new_tokens": 210,
+  "finish_reason": "stop",
+  "parsed_answer": "B",
+  "original_answer": "A",
+  "correct_letter": "B",
+  "hint_suggested_letter": "D",
+  "hint_description": "Options reordered to place original (D) \u2014 '5pm to 6pm' \u2014 first.",
+  "letter_map": {
+    "A": "D",
+    "B": "A",
+    "C": "B",
+    "D": "C"
+  }
+}

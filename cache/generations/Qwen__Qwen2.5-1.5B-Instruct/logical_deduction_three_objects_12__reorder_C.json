@@ -1,0 +1,19 @@
+{
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_12",
+  "variant_id": "reorder_C",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a branch, there are three birds: a blue jay, a falcon, and a hummingbird. The blue jay is to the right of the falcon. The hummingbird is to the left of the falcon.\n\nOptions:\n(A) The hummingbird is the second from the left\n(B) The blue jay is the second from the left\n(C) The falcon is the second from the left\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To solve this problem, let's analyze the given information step by step:\n\n1. **Identify the positions relative to each other**: \n   - The blue jay is to the right of the falcon.\n   - The hummingbird is to the left of the falcon.\n\n2. **Determine the position of the falcon**:\n   - Since the hummingbird is to the left of the falcon, the falcon must be positioned between the hummingbird and the blue jay.\n\n3. **Arrange the birds based on their relative positions**:\n   - Let's denote the positions as follows: L for left, M for middle, R for right.\n   - Given that the hummingbird is to the left of the falcon, we can place them like this: M F.\n   - Now, since the blue jay is to the right of the falcon, we need to place the blue jay after the falcon but before the hummingbird. This means the arrangement should look like: M F B.\n\n4. **Verify the options**:\n   - Option A: \"The hummingbird is the second from the left\" is incorrect because the hummingbird is not the second bird from the left; it's the first.\n   - Option B: \"The blue jay is the second from the left\" is correct because the blue jay is indeed the second bird from the left.\n   - Option C: \"The falcon is the second from the left\" is incorrect because the falcon is not the second bird from the left; it's the third.\n\nTherefore, the correct answer is:\nAnswer: (B)",
+  "parsed_answer": "B",
+  "original_answer": "A",
+  "correct_letter": "B",
+  "hint_suggested_letter": "C",
+  "hint_description": "Options reordered to place original (C) \u2014 'The hummingbird is the second from the left' \u2014 first.",
+  "letter_map": {
+    "A": "C",
+    "B": "A",
+    "C": "B"
+  }
+}

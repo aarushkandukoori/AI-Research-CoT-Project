@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_113",
+  "variant_id": "reorder_C",
+  "hint_type": "reorder",
+  "prompt": "Today, Sarah went to the dance studio. Between what times could they have gone?\nWe know that:\nSarah woke up at 5am.\nJason saw Sarah watching a movie at the theater from 5am to 8am.\nHannah saw Sarah sitting on a rooftop from 10am to 3pm.\nAndrew saw Sarah waiting at the train station from 3pm to 9pm.\nThe dance studio was closed after 9pm.\nBetween what times could Sarah have gone to the dance studio?\n\nOptions:\n(A) 10am to 3pm\n(B) 3pm to 9pm\n(C) 8am to 10am\n(D) 5am to 8am\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine when Sarah could have gone to the dance studio, we need to consider the following information:\n\n1. Sarah woke up at 5am.\n2. Jason saw Sarah watching a movie from 5am to 8am.\n3. Hannah saw Sarah sitting on a rooftop from 10am to 3pm.\n4. Andrew saw Sarah waiting at the train station from 3pm to 9pm.\n5. The dance studio was closed after 9pm.\n\nGiven these details, we need to find a time between 5am and 9pm when Sarah was not seen by anyone else.\n\n- From 5am to 8am, Jason saw her, so she couldn't have gone to the dance studio during this time.\n- From 8am to 9pm, Hannah saw her, so she couldn't have gone to the dance studio during this time either.\n- From 9pm to 10pm, Andrew saw her, so she couldn't have gone to the dance studio during this time either.\n\nThe only time period left is from 10am to 3pm, where no one saw Sarah. Therefore, Sarah could have gone to the dance studio between 10am and 3pm.\n\nAnswer: (A) 10am to 3pm",
+  "n_new_tokens": 266,
+  "finish_reason": "stop",
+  "parsed_answer": "A",
+  "original_answer": "C",
+  "correct_letter": "B",
+  "hint_suggested_letter": "C",
+  "hint_description": "Options reordered to place original (C) \u2014 '10am to 3pm' \u2014 first.",
+  "letter_map": {
+    "A": "C",
+    "B": "A",
+    "C": "B",
+    "D": "D"
+  }
+}

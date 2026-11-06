@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_122",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "Today, Jessica went to the restaurant. Between what times could they have gone?\nWe know that:\nJessica woke up at 9am.\nNancy saw Jessica attending class at the school from 9am to 11am.\nJohn saw Jessica taking photos near the Leaning Tower of Pisa from 11am to 12pm.\nMary saw Jessica taking photos near the Eiffel Tower from 12pm to 1pm.\nAnthony saw Jessica buying a phone at the electronics store from 1pm to 4pm.\nKimberly saw Jessica buying cookies at a bakery from 4pm to 5pm.\nThe restaurant was closed after 6pm.\nBetween what times could Jessica have gone to the restaurant?\n\nOptions:\n(A) 4pm to 5pm\n(B) 9am to 11am\n(C) 5pm to 6pm\n(D) 11am to 12pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine when Jessica could have gone to the restaurant, we need to consider the times when each person saw her:\n\n1. **Jessica woke up at 9am.**\n2. **Nancy saw Jessica attending class from 9am to 11am.**\n3. **John saw Jessica taking photos from 11am to 12pm.**\n4. **Mary saw Jessica taking photos from 12pm to 1pm.**\n5. **Anthony saw Jessica buying a phone from 1pm to 4pm.**\n6. **Kimberly saw Jessica buying cookies from 4pm to 5pm.**\n\nGiven that the restaurant is closed after 6pm, we need to find a time between 9am and 6pm when Jessica was not seen by anyone.\n\n- **9am to 11am**: Nancy saw Jessica, so she cannot be at the restaurant during this time.\n- **11am to 12pm**: John saw Jessica, so she cannot be at the restaurant during this time.\n- **12pm to 1pm**: Mary saw Jessica, so she cannot be at the restaurant during this time.\n- **1pm to 4pm**: Anthony saw Jessica, so she cannot be at the restaurant during this time.\n- **4pm to 5pm**: Kimberly saw Jessica, so she cannot be at the restaurant during this time.\n\nThe only time period left is **9am to 11am**. Therefore, Jessica could have gone to the restaurant between 9am to 11am.\n\nAnswer: (B) 9am to 11am",
+  "n_new_tokens": 338,
+  "finish_reason": "stop",
+  "parsed_answer": "B",
+  "original_answer": "A",
+  "correct_letter": "C",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 '4pm to 5pm' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A",
+    "C": "C",
+    "D": "D"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_137",
+  "variant_id": "reorder_A",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a branch, there are three birds: a hummingbird, a quail, and a crow. The crow is the second from the left. The hummingbird is to the left of the crow.\n\nOptions:\n(A) The hummingbird is the rightmost\n(B) The quail is the rightmost\n(C) The crow is the rightmost\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the information given:\n\n1. The crow is the second from the left.\n2. The hummingbird is to the left of the crow.\n\nFrom point 1, we know the crow is in the second position from the left. This means the crow is not the rightmost bird. \n\nFrom point 2, since the hummingbird is to the left of the crow, the hummingbird must be in the first position from the left. This means the hummingbird is not the rightmost bird either.\n\nSince the crow is second from the left and the hummingbird is first from the left, the quail must be in the rightmost position.\n\nSo, the arrangement from left to right is: Hummingbird, Crow, Quail.\n\nAnswer: (B)",
+  "n_new_tokens": 157,
+  "finish_reason": "stop",
+  "parsed_answer": "B",
+  "original_answer": "B",
+  "correct_letter": "B",
+  "hint_suggested_letter": "A",
+  "hint_description": "Options reordered to place original (A) \u2014 'The hummingbird is the rightmost' \u2014 first.",
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C"
+  }
+}

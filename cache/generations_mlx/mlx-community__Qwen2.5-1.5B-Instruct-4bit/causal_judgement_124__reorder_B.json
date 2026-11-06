@@ -1,0 +1,21 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "causal_judgement",
+  "example_id": "causal_judgement_124",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "How would a typical person answer each of the following questions about causation?\nDavid has a new dryer in his apartment. David's clothes will dry in sixty minutes if either the cycle is set to MAX DRY or the temperature is set to HIGH. Today, the cycle is already set to MAX DRY, and the temperature is set on HIGH. David checks the dryer's settings, and he sees that the temperature is set on HIGH. He does not change the setting at all, and he leaves the temperature set to HIGH. He then turns on the dryer. Because the dryer would dry David's clothes in sixty minutes if either the cycle is set to MAX DRY or the temperature is set to HIGH, the dryer dries David's clothes in sixty minutes. Did David's clothes dry in sixty minutes because David did not change the temperature setting?\n\nOptions:\n(A) No\n(B) Yes\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To answer this question, we need to understand the sequence of events and the conditions under which the dryer operates. Let's break it down step by step:\n\n1. **Initial Condition**: David's clothes dry in 60 minutes under two conditions: either the cycle is set to MAX DRY or the temperature is set to HIGH.\n2. **Current Condition**: The cycle is set to MAX DRY, and the temperature is set to HIGH.\n3. **Dryer's Function**: The dryer operates based on the settings. If the cycle is set to MAX DRY, the dryer will dry the clothes in 60 minutes. If the temperature is set to HIGH, the dryer will also dry the clothes in 60 minutes.\n4. **David's Action**: David does not change the temperature setting. The temperature is already set to HIGH.\n\nGiven these conditions, the dryer will dry David's clothes in 60 minutes because the temperature is set to HIGH, which is one of the conditions under which the dryer operates.\n\n**Answer: (B) Yes**",
+  "n_new_tokens": 216,
+  "finish_reason": "stop",
+  "parsed_answer": "B",
+  "original_answer": "A",
+  "correct_letter": "A",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 'No' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A"
+  }
+}

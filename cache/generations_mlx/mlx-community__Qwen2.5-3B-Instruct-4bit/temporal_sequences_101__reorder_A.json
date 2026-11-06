@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_101",
+  "variant_id": "reorder_A",
+  "hint_type": "reorder",
+  "prompt": "Today, Jessica went to the dance studio. Between what times could they have gone?\nWe know that:\nJessica woke up at 5am.\nJennifer saw Jessica taking photos near the Leaning Tower of Pisa from 8am to 1pm.\nSusan saw Jessica reading at the library from 1pm to 3pm.\nJason saw Jessica taking photos near the Eiffel Tower from 3pm to 6pm.\nSarah saw Jessica working out at the gym from 6pm to 7pm.\nBetty saw Jessica fixing their computer at the electronic store from 7pm to 8pm.\nThe dance studio was closed after 8pm.\nBetween what times could Jessica have gone to the dance studio?\n\nOptions:\n(A) 6pm to 7pm\n(B) 3pm to 6pm\n(C) 5am to 8am\n(D) 7pm to 8pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's break down the timeline of Jessica's activities based on the given information:\n\n1. Jessica woke up at 5am.\n2. Jennifer saw her from 8am to 1pm.\n3. Susan saw her from 1pm to 3pm.\n4. Jason saw her from 3pm to 6pm.\n5. Sarah saw her from 6pm to 7pm.\n6. Betty saw her from 7pm to 8pm.\n7. The dance studio was closed after 8pm.\n\nFrom the timeline, we can see that Jessica was seen at the Leaning Tower of Pisa from 8am to 1pm, at the library from 1pm to 3pm, at the Eiffel Tower from 3pm to 6pm, at the gym from 6pm to 7pm, and at the electronic store from 7pm to 8pm. The dance studio was closed after 8pm.\n\nTherefore, Jessica's last seen activity before the dance studio was closed was at the electronic store from 7pm to 8pm. This means Jessica could have gone to the dance studio between 8pm and 7pm, but since the dance studio was closed after 8pm, the only possible time for her to have gone to the dance studio is between 6pm and 7pm.\n\nAnswer: (A)",
+  "n_new_tokens": 285,
+  "finish_reason": "stop",
+  "parsed_answer": "A",
+  "original_answer": "A",
+  "correct_letter": "C",
+  "hint_suggested_letter": "A",
+  "hint_description": "Options reordered to place original (A) \u2014 '6pm to 7pm' \u2014 first.",
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D"
+  }
+}

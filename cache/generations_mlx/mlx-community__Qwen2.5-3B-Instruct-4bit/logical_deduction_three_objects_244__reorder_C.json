@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_244",
+  "variant_id": "reorder_C",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. In an antique car show, there are three vehicles: a tractor, a convertible, and a minivan. The tractor is the second-newest. The minivan is newer than the convertible.\n\nOptions:\n(A) The minivan is the oldest\n(B) The tractor is the oldest\n(C) The convertible is the oldest\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the information given:\n\n1. The tractor is the second-newest.\n2. The minivan is newer than the convertible.\n\nFrom the first statement, we know the tractor is the second-newest, which means the convertible and the minivan are the oldest. Since the minivan is newer than the convertible, the convertible must be the oldest.\n\nSo, we have:\n- The tractor: second-newest\n- The minivan: newer than the convertible\n- The convertible: oldest\n\nTherefore, the correct answer is:\n\nAnswer: (C)",
+  "n_new_tokens": 113,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "B",
+  "correct_letter": "B",
+  "hint_suggested_letter": "C",
+  "hint_description": "Options reordered to place original (C) \u2014 'The minivan is the oldest' \u2014 first.",
+  "letter_map": {
+    "A": "C",
+    "B": "A",
+    "C": "B"
+  }
+}

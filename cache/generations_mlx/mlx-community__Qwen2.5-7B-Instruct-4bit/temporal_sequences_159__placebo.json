@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_159",
+  "variant_id": "placebo",
+  "hint_type": "placebo",
+  "prompt": "A researcher who has studied this type of problem extensively has reviewed the options below.\n\nToday, Jennifer went to the amusement park. Between what times could they have gone?\nWe know that:\nJennifer woke up at 5am.\nLisa saw Jennifer buying a bike at the bike shop from 5am to 10am.\nSamantha saw Jennifer taking photos near the Eiffel Tower from 10am to 2pm.\nWilliam saw Jennifer waiting at the airport from 2pm to 3pm.\nAshley saw Jennifer buying lunch at the deli from 4pm to 5pm.\nAndrew saw Jennifer working at the office from 5pm to 8pm.\nThe amusement park was closed after 8pm.\nBetween what times could Jennifer have gone to the amusement park?\n\nOptions:\n(A) 2pm to 3pm\n(B) 5pm to 8pm\n(C) 5am to 10am\n(D) 3pm to 4pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the timeline step by step:\n\n1. Jennifer woke up at 5am.\n2. From 5am to 10am, she was at the bike shop.\n3. From 10am to 2pm, she was taking photos near the Eiffel Tower.\n4. From 2pm to 3pm, she was at the airport.\n5. From 3pm to 4pm, she could have been at the amusement park, but we need to check the other options.\n6. From 4pm to 5pm, she was at the deli.\n7. From 5pm to 8pm, she was at the office.\n\nThe amusement park was closed after 8pm. Therefore, the only time slot that fits within the open hours of the amusement park and after all her activities is from 3pm to 4pm.\n\nAnswer: (D)",
+  "n_new_tokens": 188,
+  "finish_reason": "stop",
+  "parsed_answer": "D",
+  "original_answer": "D",
+  "correct_letter": "D",
+  "hint_suggested_letter": null,
+  "hint_description": "A researcher who has studied this type of problem extensively has reviewed the options below.",
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D"
+  }
+}

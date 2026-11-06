@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_246",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "Today, Lisa went to the art show. Between what times could they have gone?\nWe know that:\nLisa woke up at 10am.\nLisa saw Lisa driving to the water park from 12pm to 2pm.\nHannah saw Lisa waiting at the airport from 2pm to 3pm.\nThomas saw Lisa buying a phone at the electronics store from 3pm to 4pm.\nThe art show was closed after 4pm.\nBetween what times could Lisa have gone to the art show?\n\nOptions:\n(A) 12pm to 2pm\n(B) 3pm to 4pm\n(C) 10am to 12pm\n(D) 2pm to 3pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine when Lisa could have gone to the art show, we need to consider the following information:\n\n1. Lisa woke up at 10am.\n2. Lisa saw Lisa driving to the water park from 12pm to 2pm.\n3. Hannah saw Lisa waiting at the airport from 2pm to 3pm.\n4. Thomas saw Lisa buying a phone at the electronics store from 3pm to 4pm.\n5. The art show was closed after 4pm.\n\nGiven these details, we need to find a time between 10am and 4pm when Lisa could have gone to the art show without conflicting with any other activities.\n\nLet's break it down:\n\n- Lisa woke up at 10am, so she would need to leave before 10am to be ready by 10am.\n- The art show is closed after 4pm, so she cannot go after 4pm.\n\nConsidering these constraints, the only time between 10am and 4pm when Lisa could have gone to the art show without conflicting with any other activities is between 12pm and 2pm.\n\nAnswer: (A) 12pm to 2pm",
+  "n_new_tokens": 248,
+  "finish_reason": "stop",
+  "parsed_answer": "A",
+  "original_answer": "B",
+  "correct_letter": "C",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 '12pm to 2pm' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A",
+    "C": "C",
+    "D": "D"
+  }
+}

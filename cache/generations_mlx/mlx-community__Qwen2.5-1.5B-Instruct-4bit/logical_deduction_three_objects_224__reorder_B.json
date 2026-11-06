@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_224",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. In a golf tournament, there were three golfers: Joe, Dan, and Eve. Eve finished above Dan. Dan finished above Joe.\n\nOptions:\n(A) Dan finished last\n(B) Joe finished last\n(C) Eve finished last\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To solve this problem, we need to carefully analyze the information provided about the golfers' rankings:\n\n1. **Eve finished above Dan**.\n2. **Dan finished above Joe**.\n\nFrom these statements, we can deduce the following order:\n\n- **Eve > Dan** (Eve finished higher than Dan).\n- **Dan > Joe** (Dan finished higher than Joe).\n\nCombining these two pieces of information, we get:\n\n- **Eve > Dan > Joe**.\n\nThis means that Eve finished higher than Dan, and Dan finished higher than Joe. Therefore, Eve finished last.\n\nAnswer: (C) Eve finished last",
+  "n_new_tokens": 130,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "C",
+  "correct_letter": "A",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 'Dan finished last' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A",
+    "C": "C"
+  }
+}

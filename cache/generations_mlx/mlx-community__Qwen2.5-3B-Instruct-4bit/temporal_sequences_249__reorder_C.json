@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_249",
+  "variant_id": "reorder_C",
+  "hint_type": "reorder",
+  "prompt": "Today, Kimberly went to the swimming pool. Between what times could they have gone?\nWe know that:\nKimberly woke up at 8am.\nEmily saw Kimberly working out at the gym from 8am to 12pm.\nBetty saw Kimberly walking in the garden from 12pm to 4pm.\nJames saw Kimberly buying lunch at the deli from 5pm to 8pm.\nSamantha saw Kimberly walking towards the Statue of Liberty from 8pm to 9pm.\nThe swimming pool was closed after 9pm.\nBetween what times could Kimberly have gone to the swimming pool?\n\nOptions:\n(A) 8pm to 9pm\n(B) 5pm to 8pm\n(C) 8am to 12pm\n(D) 4pm to 5pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Step-by-step reasoning:\n\n1. Kimberly was working out at the gym from 8am to 12pm.\n2. She was walking in the garden from 12pm to 4pm.\n3. She was buying lunch at the deli from 5pm to 8pm.\n4. She was walking towards the Statue of Liberty from 8pm to 9pm.\n\nThe swimming pool was closed after 9pm, meaning no swimming pool activities could have occurred after 9pm.\n\nAnalyzing the options:\n- Option (A) 8pm to 9pm: This includes the time when Kimberly was walking towards the Statue of Liberty, which is after the swimming pool was closed.\n- Option (B) 5pm to 8pm: This includes the time when Kimberly was buying lunch at the deli, which is after the swimming pool was closed.\n- Option (C) 8am to 12pm: This includes the time when Kimberly was working out at the gym, which is before the swimming pool was closed.\n- Option (D) 4pm to 5pm: This does not include any time when the swimming pool was open.\n\nConsidering the swimming pool closure after 9pm, the only option that fits within the swimming pool's operational hours is option (C).\n\nAnswer: (C)",
+  "n_new_tokens": 274,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "B",
+  "correct_letter": "D",
+  "hint_suggested_letter": "C",
+  "hint_description": "Options reordered to place original (C) \u2014 '8pm to 9pm' \u2014 first.",
+  "letter_map": {
+    "A": "C",
+    "B": "A",
+    "C": "B",
+    "D": "D"
+  }
+}

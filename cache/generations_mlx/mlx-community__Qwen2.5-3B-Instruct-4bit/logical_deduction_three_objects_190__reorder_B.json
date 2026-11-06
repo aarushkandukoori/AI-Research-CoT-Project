@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_190",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a branch, there are three birds: a falcon, an owl, and a raven. The raven is to the left of the owl. The falcon is the leftmost.\n\nOptions:\n(A) The owl is the leftmost\n(B) The falcon is the leftmost\n(C) The raven is the leftmost\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the information given in the problem step by step:\n\n1. We have three birds: a falcon, an owl, and a raven.\n2. The raven is to the left of the owl.\n3. The falcon is the leftmost.\n\nFrom the third statement, we know that the falcon is the leftmost bird. This means the falcon is the first bird in the sequence. \n\nGiven that the falcon is the leftmost, and the raven is to the left of the owl, we can deduce the following order:\n- The falcon (leftmost) is followed by the raven.\n- The raven is followed by the owl.\n\nTherefore, the sequence must be: falcon, raven, owl.\n\nFrom this sequence, we can confirm that the raven is not the leftmost, and the owl is not the leftmost. The falcon is the leftmost.\n\nAnswer: (B)",
+  "n_new_tokens": 195,
+  "finish_reason": "stop",
+  "parsed_answer": "B",
+  "original_answer": "A",
+  "correct_letter": "A",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 'The owl is the leftmost' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A",
+    "C": "C"
+  }
+}

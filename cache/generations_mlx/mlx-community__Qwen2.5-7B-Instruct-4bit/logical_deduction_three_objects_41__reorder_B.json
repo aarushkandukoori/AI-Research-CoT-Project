@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_41",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. A fruit stand sells three fruits: cantaloupes, oranges, and watermelons. The oranges are the most expensive. The cantaloupes are more expensive than the watermelons.\n\nOptions:\n(A) The oranges are the cheapest\n(B) The cantaloupes are the cheapest\n(C) The watermelons are the cheapest\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's break down the information given:\n\n1. The oranges are the most expensive.\n2. The cantaloupes are more expensive than the watermelons.\n\nFrom point 1, we know that oranges are at the top of the price range. From point 2, we know that among the cantaloupes and watermelons, the watermelons are cheaper than the cantaloupes.\n\nSo, the order from most expensive to least expensive must be:\n1. Oranges\n2. Cantaloupes\n3. Watermelons\n\nGiven this order, the watermelons are the cheapest.\n\nAnswer: (C)",
+  "n_new_tokens": 131,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "C",
+  "correct_letter": "C",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 'The oranges are the cheapest' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A",
+    "C": "C"
+  }
+}

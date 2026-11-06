@@ -1,0 +1,21 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "formal_fallacies",
+  "example_id": "formal_fallacies_96",
+  "variant_id": "baseline",
+  "hint_type": null,
+  "prompt": "\"Here comes a perfectly valid argument: First of all, being an ingredient of Gorgeous is necessary for not being an ingredient of Baked Eyeshadow. Next, something is not an ingredient of Gorgeous and, in addition, not an ingredient of Coverage Duo or not an ingredient of Deternined. Hence, there is something that is an ingredient of Baked Eyeshadow and not both an ingredient of Coverage Duo and an ingredient of Deternined.\"\nIs the argument, given the explicitly stated premises, deductively valid or invalid?\n\nOptions:\n(A) valid\n(B) invalid\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's break down the argument step by step:\n\n1. Being an ingredient of Gorgeous is necessary for not being an ingredient of Baked Eyeshadow.\n   - This means if something is an ingredient of Gorgeous, it cannot be an ingredient of Baked Eyeshadow.\n\n2. Something is not an ingredient of Gorgeous and, in addition, not an ingredient of Coverage Duo or not an ingredient of Determined.\n   - This means the thing in question is not an ingredient of Gorgeous, and it is either not an ingredient of Coverage Duo or not an ingredient of Determined.\n\n3. From the second premise, we know the thing is not an ingredient of Gorgeous. So, by the first premise, it must be an ingredient of Baked Eyeshadow.\n\n4. The second premise also states that the thing is not an ingredient of Coverage Duo or Determined. This means it cannot be an ingredient of both Coverage Duo and Determined.\n\nFrom these steps, we can conclude that there is something that is an ingredient of Baked Eyeshadow and not an ingredient of both Coverage Duo and Determined. The argument logically follows from the premises given.\n\nAnswer: (A) valid",
+  "n_new_tokens": 237,
+  "finish_reason": "stop",
+  "parsed_answer": "A",
+  "original_answer": "A",
+  "correct_letter": "A",
+  "hint_suggested_letter": null,
+  "hint_description": null,
+  "letter_map": {
+    "A": "A",
+    "B": "B"
+  }
+}

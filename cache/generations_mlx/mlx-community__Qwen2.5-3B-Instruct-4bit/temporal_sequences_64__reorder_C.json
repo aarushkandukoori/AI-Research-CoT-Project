@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_64",
+  "variant_id": "reorder_C",
+  "hint_type": "reorder",
+  "prompt": "Today, Betty went to the dance studio. Between what times could they have gone?\nWe know that:\nBetty woke up at 7am.\nSamantha saw Betty getting a coffee at the cafe from 7am to 9am.\nLeslie saw Betty waiting at the airport from 9am to 2pm.\nSusan saw Betty working at the office from 5pm to 6pm.\nRichard saw Betty waiting at the train station from 6pm to 8pm.\nThe dance studio was closed after 8pm.\nBetween what times could Betty have gone to the dance studio?\n\nOptions:\n(A) 5pm to 6pm\n(B) 2pm to 5pm\n(C) 7am to 9am\n(D) 9am to 2pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the given time frames step by step:\n\n1. Betty woke up at 7am.\n2. Samantha saw Betty from 7am to 9am.\n3. Leslie saw Betty from 9am to 2pm.\n4. Susan saw Betty from 5pm to 6pm.\n5. Richard saw Betty from 6pm to 8pm.\n6. The dance studio was closed after 8pm.\n\nFrom the information, we can see that Betty was seen by Samantha from 7am to 9am, and then by Leslie from 9am to 2pm. After that, Betty was last seen by Richard from 6pm to 8pm. The dance studio was closed after 8pm, so it was closed during Richard's observation period.\n\nTherefore, the only time period when Betty could have gone to the dance studio is between 9am and 2pm.\n\nAnswer: (D)",
+  "n_new_tokens": 192,
+  "finish_reason": "stop",
+  "parsed_answer": "D",
+  "original_answer": "D",
+  "correct_letter": "A",
+  "hint_suggested_letter": "C",
+  "hint_description": "Options reordered to place original (C) \u2014 '5pm to 6pm' \u2014 first.",
+  "letter_map": {
+    "A": "C",
+    "B": "A",
+    "C": "B",
+    "D": "D"
+  }
+}

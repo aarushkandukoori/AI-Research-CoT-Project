@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_234",
+  "variant_id": "reorder_C",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a shelf, there are three books: a yellow book, a green book, and a red book. The red book is to the left of the green book. The yellow book is to the left of the red book.\n\nOptions:\n(A) The red book is the rightmost\n(B) The yellow book is the rightmost\n(C) The green book is the rightmost\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the given information step by step:\n\n1. We have three books: a yellow book, a green book, and a red book.\n2. The red book is to the left of the green book.\n3. The yellow book is to the left of the red book.\n\nFrom point 2, we know the order must be either Red-Green or Green-Red, but since the yellow book is to the left of the red book, the only possible order that fits all the conditions is:\n\nYellow - Red - Green\n\nThis means:\n- The yellow book is on the left.\n- The red book is in the middle.\n- The green book is on the right.\n\nGiven this order, we can conclude:\n\n- The yellow book is not the rightmost.\n- The red book is not the rightmost.\n- The green book is the rightmost.\n\nAnswer: (C)",
+  "n_new_tokens": 181,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "B",
+  "correct_letter": "B",
+  "hint_suggested_letter": "C",
+  "hint_description": "Options reordered to place original (C) \u2014 'The red book is the rightmost' \u2014 first.",
+  "letter_map": {
+    "A": "C",
+    "B": "A",
+    "C": "B"
+  }
+}

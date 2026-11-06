@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_113",
+  "variant_id": "reorder_C",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. In an antique car show, there are three vehicles: a motorcyle, a bus, and a tractor. The motorcyle is the oldest. The bus is newer than the tractor.\n\nOptions:\n(A) The tractor is the oldest\n(B) The motorcyle is the oldest\n(C) The bus is the oldest\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the information given:\n\n1. The motorcyle is the oldest.\n2. The bus is newer than the tractor.\n\nFrom the second statement, we know that the bus is newer than the tractor. This means the tractor cannot be the oldest because the bus is newer than it. Therefore, the motorcyle, being the oldest, cannot be the tractor.\n\nGiven this, the only option left is that the bus is the oldest. \n\nAnswer: (B)",
+  "n_new_tokens": 96,
+  "finish_reason": "stop",
+  "parsed_answer": "B",
+  "original_answer": "A",
+  "correct_letter": "A",
+  "hint_suggested_letter": "C",
+  "hint_description": "Options reordered to place original (C) \u2014 'The tractor is the oldest' \u2014 first.",
+  "letter_map": {
+    "A": "C",
+    "B": "A",
+    "C": "B"
+  }
+}

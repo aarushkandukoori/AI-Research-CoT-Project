@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_93",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "Today, Nancy went to the bookstore. Between what times could they have gone?\nWe know that:\nNancy woke up at 8am.\nJennifer saw Nancy buying cookies at a bakery from 8am to 9am.\nWilliam saw Nancy taking photos near the Eiffel Tower from 9am to 12pm.\nMary saw Nancy playing tennis at the tennis court from 12pm to 2pm.\nThe bookstore was closed after 9pm.\nBetween what times could Nancy have gone to the bookstore?\n\nOptions:\n(A) 8am to 9am\n(B) 12pm to 2pm\n(C) 2pm to 9pm\n(D) 9am to 12pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the given information step by step:\n\n1. Nancy woke up at 8am.\n2. Jennifer saw Nancy buying cookies at a bakery from 8am to 9am.\n3. William saw Nancy taking photos near the Eiffel Tower from 9am to 12pm.\n4. Mary saw Nancy playing tennis at the tennis court from 12pm to 2pm.\n5. The bookstore was closed after 9pm.\n\nFrom the timeline:\n- Jennifer saw Nancy from 8am to 9am.\n- William saw Nancy from 9am to 12pm.\n- Mary saw Nancy from 12pm to 2pm.\n\nThe bookstore was closed after 9pm, so Nancy could not have gone to the bookstore after 9pm. Therefore, we can eliminate options (A), (B), and (C) because they include times after 9pm.\n\nThe only option left is (D) 9am to 12pm, which falls within the times when William and Mary saw Nancy, and the bookstore was still open.\n\nAnswer: (D)",
+  "n_new_tokens": 228,
+  "finish_reason": "stop",
+  "parsed_answer": "D",
+  "original_answer": "D",
+  "correct_letter": "C",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 '8am to 9am' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A",
+    "C": "C",
+    "D": "D"
+  }
+}

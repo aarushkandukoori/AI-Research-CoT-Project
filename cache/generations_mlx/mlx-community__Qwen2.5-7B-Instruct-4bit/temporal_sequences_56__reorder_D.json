@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_56",
+  "variant_id": "reorder_D",
+  "hint_type": "reorder",
+  "prompt": "Today, David went to the swimming pool. Between what times could they have gone?\nWe know that:\nDavid woke up at 9am.\nKimberly saw David working out at the gym from 9am to 10am.\nMichael saw David watching a movie at the theater from 11am to 12pm.\nJennifer saw David attending class at the school from 12pm to 1pm.\nJason saw David buying a phone at the electronics store from 1pm to 2pm.\nWilliam saw David sitting on a rooftop from 2pm to 10pm.\nThe swimming pool was closed after 10pm.\nBetween what times could David have gone to the swimming pool?\n\nOptions:\n(A) 9am to 10am\n(B) 10am to 11am\n(C) 12pm to 1pm\n(D) 2pm to 10pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the timeline of David's activities:\n\n1. David woke up at 9am.\n2. From 9am to 10am, David was working out at the gym.\n3. From 11am to 12pm, David was watching a movie at the theater.\n4. From 12pm to 1pm, David was attending class at the school.\n5. From 1pm to 2pm, David was buying a phone at the electronics store.\n6. From 2pm to 10pm, David was sitting on a rooftop.\n\nThe swimming pool was closed after 10pm. Therefore, the only time slot when David could have gone to the swimming pool is between 10am and 11am, as this is the only time not occupied by any of his activities.\n\nAnswer: (B)",
+  "n_new_tokens": 179,
+  "finish_reason": "stop",
+  "parsed_answer": "B",
+  "original_answer": "A",
+  "correct_letter": "A",
+  "hint_suggested_letter": "D",
+  "hint_description": "Options reordered to place original (D) \u2014 '9am to 10am' \u2014 first.",
+  "letter_map": {
+    "A": "D",
+    "B": "A",
+    "C": "B",
+    "D": "C"
+  }
+}

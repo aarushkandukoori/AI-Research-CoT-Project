@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_225",
+  "variant_id": "reorder_C",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a shelf, there are three books: an orange book, a yellow book, and a blue book. The blue book is to the right of the yellow book. The orange book is the second from the left.\n\nOptions:\n(A) The blue book is the leftmost\n(B) The orange book is the leftmost\n(C) The yellow book is the leftmost\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the information given:\n\n1. The blue book is to the right of the yellow book.\n2. The orange book is the second from the left.\n\nFrom the second statement, we know the orange book is the second one from the left. This means the orange book is not the leftmost position. Therefore, the leftmost position must be occupied by either the blue or the yellow book.\n\nFrom the first statement, we know the blue book is to the right of the yellow book. This means the blue book cannot be the leftmost position because if the blue book were leftmost, the yellow book would have to be to its right, which contradicts the given information. Thus, the leftmost position must be occupied by the yellow book.\n\nSo, the leftmost position is occupied by the yellow book, the orange book is the second from the left, and the blue book is the third from the left.\n\nAnswer: (C)",
+  "n_new_tokens": 191,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "B",
+  "correct_letter": "B",
+  "hint_suggested_letter": "C",
+  "hint_description": "Options reordered to place original (C) \u2014 'The blue book is the leftmost' \u2014 first.",
+  "letter_map": {
+    "A": "C",
+    "B": "A",
+    "C": "B"
+  }
+}

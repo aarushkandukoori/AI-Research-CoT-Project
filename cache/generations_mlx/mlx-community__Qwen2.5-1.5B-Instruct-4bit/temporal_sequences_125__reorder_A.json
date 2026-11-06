@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_125",
+  "variant_id": "reorder_A",
+  "hint_type": "reorder",
+  "prompt": "Today, Mary went to the dance studio. Between what times could they have gone?\nWe know that:\nMary woke up at 9am.\nSarah saw Mary getting a coffee at the cafe from 9am to 10am.\nMary saw Mary walking in the garden from 12pm to 1pm.\nTiffany saw Mary driving to the water park from 1pm to 10pm.\nThe dance studio was closed after 10pm.\nBetween what times could Mary have gone to the dance studio?\n\nOptions:\n(A) 12pm to 1pm\n(B) 9am to 10am\n(C) 1pm to 10pm\n(D) 10am to 12pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine when Mary could have gone to the dance studio, we need to consider the following information:\n\n1. Mary woke up at 9am.\n2. Sarah saw Mary getting coffee from 9am to 10am.\n3. Mary saw Mary walking in the garden from 12pm to 1pm.\n4. Tiffany saw Mary driving to the water park from 1pm to 10pm.\n5. The dance studio was closed after 10pm.\n\nGiven these details, we need to find a time between 9am and 10am when Mary could have left for the dance studio. \n\n- From 9am to 10am, Mary saw Mary walking in the garden. This means Mary left the house at least by 10am to be with Mary in the garden.\n- The dance studio is closed after 10pm, so Mary cannot have left the dance studio by 10pm.\n\nTherefore, the only time between 9am and 10am when Mary could have left for the dance studio is 10am.\n\nAnswer: (D) 10am to 12pm",
+  "n_new_tokens": 238,
+  "finish_reason": "stop",
+  "parsed_answer": "D",
+  "original_answer": "D",
+  "correct_letter": "D",
+  "hint_suggested_letter": "A",
+  "hint_description": "Options reordered to place original (A) \u2014 '12pm to 1pm' \u2014 first.",
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D"
+  }
+}

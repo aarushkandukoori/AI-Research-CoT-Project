@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_64",
+  "variant_id": "baseline",
+  "hint_type": null,
+  "prompt": "Today, Betty went to the dance studio. Between what times could they have gone?\nWe know that:\nBetty woke up at 7am.\nSamantha saw Betty getting a coffee at the cafe from 7am to 9am.\nLeslie saw Betty waiting at the airport from 9am to 2pm.\nSusan saw Betty working at the office from 5pm to 6pm.\nRichard saw Betty waiting at the train station from 6pm to 8pm.\nThe dance studio was closed after 8pm.\nBetween what times could Betty have gone to the dance studio?\n\nOptions:\n(A) 2pm to 5pm\n(B) 7am to 9am\n(C) 5pm to 6pm\n(D) 9am to 2pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine when Betty could have gone to the dance studio, we need to consider the following information:\n\n1. Betty woke up at 7am.\n2. Samantha saw Betty getting a coffee from 7am to 9am.\n3. Leslie saw Betty waiting at the airport from 9am to 2pm.\n4. Susan saw Betty working at the office from 5pm to 6pm.\n5. Richard saw Betty waiting at the train station from 6pm to 8pm.\n6. The dance studio was closed after 8pm.\n\nGiven these details, we can deduce the following:\n\n- Betty woke up at 7am, so she would have been at the coffee shop by 7am.\n- Samantha saw Betty get coffee from 7am to 9am, so she would have been at the coffee shop by 9am.\n- Leslie saw Betty wait at the airport from 9am to 2pm, so she would have been at the airport by 2pm.\n- Susan saw Betty work at the office from 5pm to 6pm, so she would have been at the office by 6pm.\n- Richard saw Betty wait at the train station from 6pm to 8pm, so she would have been at the train station by 8pm.\n\nSince the dance studio is closed after 8pm, Betty could not have gone to the dance studio between 8pm and 9pm. Therefore, the only time she could have gone to the dance studio is between 9am and 2pm.\n\nAnswer: (D) 9am to 2pm",
+  "n_new_tokens": 333,
+  "finish_reason": "stop",
+  "parsed_answer": "D",
+  "original_answer": "D",
+  "correct_letter": "A",
+  "hint_suggested_letter": null,
+  "hint_description": null,
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D"
+  }
+}

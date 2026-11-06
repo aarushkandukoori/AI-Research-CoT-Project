@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_77",
+  "variant_id": "baseline",
+  "hint_type": null,
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a branch, there are three birds: a quail, an owl, and a hummingbird. The quail is to the left of the owl. The owl is to the left of the hummingbird.\n\nOptions:\n(A) The quail is the leftmost\n(B) The owl is the leftmost\n(C) The hummingbird is the leftmost\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the information given:\n\n1. The quail is to the left of the owl.\n2. The owl is to the left of the hummingbird.\n\nFrom these statements, we can deduce the following order:\n- The quail must be the leftmost because it is to the left of the owl.\n- The owl must be to the right of the quail but to the left of the hummingbird.\n- The hummingbird must be the rightmost because it is to the right of the owl.\n\nSo, the order from left to right is: Quail, Owl, Hummingbird.\n\nAnswer: (A)",
+  "n_new_tokens": 128,
+  "finish_reason": "stop",
+  "parsed_answer": "A",
+  "original_answer": "A",
+  "correct_letter": "A",
+  "hint_suggested_letter": null,
+  "hint_description": null,
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C"
+  }
+}

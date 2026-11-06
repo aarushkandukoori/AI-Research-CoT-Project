@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_107",
+  "variant_id": "reorder_A",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a shelf, there are three books: a purple book, a black book, and a blue book. The purple book is to the right of the blue book. The black book is the second from the left.\n\nOptions:\n(A) The purple book is the leftmost\n(B) The black book is the leftmost\n(C) The blue book is the leftmost\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the information given:\n\n1. The purple book is to the right of the blue book.\n2. The black book is the second from the left.\n\nFrom the second statement, we know the black book is in the second position from the left. This means the black book cannot be the leftmost position because there must be at least one book to its left. \n\nGiven that the black book is the second from the left, the leftmost position must be occupied by either the purple or the blue book. Since the purple book is to the right of the blue book, the blue book must be the leftmost position to satisfy both conditions.\n\nTherefore, the blue book is the leftmost position.\n\nAnswer: (C)",
+  "n_new_tokens": 147,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "C",
+  "correct_letter": "C",
+  "hint_suggested_letter": "A",
+  "hint_description": "Options reordered to place original (A) \u2014 'The purple book is the leftmost' \u2014 first.",
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C"
+  }
+}

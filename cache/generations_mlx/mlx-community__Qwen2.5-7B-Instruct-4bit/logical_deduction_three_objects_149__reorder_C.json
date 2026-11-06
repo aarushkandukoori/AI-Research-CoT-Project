@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_149",
+  "variant_id": "reorder_C",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. In a golf tournament, there were three golfers: Ana, Rob, and Joe. Joe finished above Ana. Rob finished above Joe.\n\nOptions:\n(A) Joe finished first\n(B) Ana finished first\n(C) Rob finished first\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's break down the information given:\n\n1. Joe finished above Ana.\n2. Rob finished above Joe.\n\nFrom the first statement, we know that Joe did not finish last because Ana finished below Joe. From the second statement, we know that Rob finished above Joe, so Rob did not finish last either.\n\nGiven these two pieces of information, we can deduce the order of the finish:\n\n- Rob finished above Joe.\n- Joe finished above Ana.\n\nTherefore, the order from first to last is: Rob, Joe, Ana.\n\nAnswer: (C) Rob finished first.",
+  "n_new_tokens": 116,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "B",
+  "correct_letter": "B",
+  "hint_suggested_letter": "C",
+  "hint_description": "Options reordered to place original (C) \u2014 'Joe finished first' \u2014 first.",
+  "letter_map": {
+    "A": "C",
+    "B": "A",
+    "C": "B"
+  }
+}

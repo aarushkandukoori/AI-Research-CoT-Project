@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_91",
+  "variant_id": "baseline",
+  "hint_type": null,
+  "prompt": "Today, Tiffany went to the library. Between what times could they have gone?\nWe know that:\nTiffany woke up at 5am.\nAnthony saw Tiffany walking in the garden from 6am to 8am.\nEmily saw Tiffany working out at the gym from 8am to 5pm.\nKimberly saw Tiffany working at the office from 5pm to 7pm.\nThomas saw Tiffany playing tennis at the tennis court from 7pm to 8pm.\nThe library was closed after 8pm.\nBetween what times could Tiffany have gone to the library?\n\nOptions:\n(A) 8am to 5pm\n(B) 5am to 6am\n(C) 7pm to 8pm\n(D) 6am to 8am\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine when Tiffany could have gone to the library, we need to consider the following information:\n\n1. Tiffany woke up at 5am.\n2. Anthony saw her in the garden from 6am to 8am.\n3. Emily saw her working out at the gym from 8am to 5pm.\n4. Kimberly saw her working at the office from 5pm to 7pm.\n5. Thomas saw her playing tennis at the tennis court from 7pm to 8pm.\n6. The library was closed after 8pm.\n\nGiven these details, Tiffany's activities from 5am to 8pm are:\n\n- 5am to 6am: Garden\n- 6am to 8am: Garden\n- 8am to 5pm: Gym\n- 5pm to 7pm: Office\n- 7pm to 8pm: Tennis court\n\nThe library is closed after 8pm, so Tiffany cannot have gone to the library between 8pm and 8am. Therefore, the only time period when Tiffany could have gone to the library is:\n\nAnswer: (A) 8am to 5pm",
+  "n_new_tokens": 241,
+  "finish_reason": "stop",
+  "parsed_answer": "A",
+  "original_answer": "A",
+  "correct_letter": "B",
+  "hint_suggested_letter": null,
+  "hint_description": null,
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D"
+  }
+}

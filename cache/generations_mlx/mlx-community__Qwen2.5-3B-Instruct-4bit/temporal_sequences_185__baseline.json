@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_185",
+  "variant_id": "baseline",
+  "hint_type": null,
+  "prompt": "Today, Andrew went to the art show. Between what times could they have gone?\nWe know that:\nAndrew woke up at 6am.\nKimberly saw Andrew waiting at the airport from 10am to 12pm.\nAnthony saw Andrew attending class at the school from 12pm to 7pm.\nJohn saw Andrew working out at the gym from 7pm to 8pm.\nThe art show was closed after 8pm.\nBetween what times could Andrew have gone to the art show?\n\nOptions:\n(A) 6am to 10am\n(B) 7pm to 8pm\n(C) 12pm to 7pm\n(D) 10am to 12pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's break down the timeline based on the given information:\n\n1. Andrew woke up at 6am.\n2. Kimberly saw Andrew from 10am to 12pm.\n3. Anthony saw Andrew from 12pm to 7pm.\n4. John saw Andrew from 7pm to 8pm.\n5. The art show closed after 8pm.\n\nNow, let's analyze the times when Andrew could have gone to the art show:\n\n- Andrew was at home from 6am to 10am.\n- From 10am to 12pm, Andrew was at the airport with Kimberly.\n- From 12pm to 7pm, Andrew was at school with Anthony.\n- From 7pm to 8pm, Andrew was at the gym with John.\n\nGiven that the art show closed after 8pm, Andrew could not have gone to the art show between 7pm and 8pm. Therefore, the only time period left for Andrew to go to the art show is between 6am and 10am.\n\nAnswer: (A)",
+  "n_new_tokens": 226,
+  "finish_reason": "stop",
+  "parsed_answer": "A",
+  "original_answer": "A",
+  "correct_letter": "A",
+  "hint_suggested_letter": null,
+  "hint_description": null,
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D"
+  }
+}

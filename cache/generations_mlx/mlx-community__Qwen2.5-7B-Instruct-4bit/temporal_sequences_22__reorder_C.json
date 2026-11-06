@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_22",
+  "variant_id": "reorder_C",
+  "hint_type": "reorder",
+  "prompt": "Today, Linda went to the beach. Between what times could they have gone?\nWe know that:\nLinda woke up at 10am.\nElizabeth saw Linda waiting at the train station from 10am to 12pm.\nDavid saw Linda working at the office from 2pm to 4pm.\nSarah saw Linda waiting at the airport from 4pm to 5pm.\nAshley saw Linda attending class at the school from 5pm to 9pm.\nBetty saw Linda walking in the garden from 9pm to 10pm.\nThe beach was closed after 10pm.\nBetween what times could Linda have gone to the beach?\n\nOptions:\n(A) 2pm to 4pm\n(B) 12pm to 2pm\n(C) 10am to 12pm\n(D) 4pm to 5pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the timeline step by step:\n\n1. Linda woke up at 10am.\n2. From 10am to 12pm, Linda was at the train station.\n3. From 2pm to 4pm, Linda was at the office.\n4. From 4pm to 5pm, Linda was at the airport.\n5. From 5pm to 9pm, Linda was at school.\n6. From 9pm to 10pm, Linda was in the garden.\n7. The beach was closed after 10pm.\n\nNow, let's identify the gaps in Linda's schedule where she could have gone to the beach:\n\n- From 12pm to 2pm: Linda was not accounted for, and this is the only period before the beach closed at 10pm where she was not seen at any other location.\n\nTherefore, the only time Linda could have gone to the beach is between 12pm to 2pm.\n\nAnswer: (B)",
+  "n_new_tokens": 210,
+  "finish_reason": "stop",
+  "parsed_answer": "B",
+  "original_answer": "A",
+  "correct_letter": "A",
+  "hint_suggested_letter": "C",
+  "hint_description": "Options reordered to place original (C) \u2014 '2pm to 4pm' \u2014 first.",
+  "letter_map": {
+    "A": "C",
+    "B": "A",
+    "C": "B",
+    "D": "D"
+  }
+}

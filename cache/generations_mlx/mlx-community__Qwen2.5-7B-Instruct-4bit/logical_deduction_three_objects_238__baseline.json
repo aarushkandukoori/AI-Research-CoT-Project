@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_238",
+  "variant_id": "baseline",
+  "hint_type": null,
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a branch, there are three birds: a hawk, a crow, and a raven. The raven is to the right of the hawk. The crow is the rightmost.\n\nOptions:\n(A) The hawk is the rightmost\n(B) The crow is the rightmost\n(C) The raven is the rightmost\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's break down the information given:\n\n1. There are three birds on a branch: a hawk, a crow, and a raven.\n2. The raven is to the right of the hawk.\n3. The crow is the rightmost.\n\nGiven these points, we can deduce the order from left to right:\n\n- Since the crow is the rightmost, it must be in the third position.\n- The raven is to the right of the hawk, which means the raven cannot be the leftmost. Therefore, the hawk must be to the left of the raven.\n- With the crow being the rightmost, the only positions left for the hawk and the raven are the first and second positions. Since the raven is to the right of the hawk, the hawk must be in the first position and the raven in the second position.\n\nSo, the order from left to right is: hawk, raven, crow.\n\nThe crow is the rightmost, which matches option (B).\n\nAnswer: (B)",
+  "n_new_tokens": 211,
+  "finish_reason": "stop",
+  "parsed_answer": "B",
+  "original_answer": "B",
+  "correct_letter": "B",
+  "hint_suggested_letter": null,
+  "hint_description": null,
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C"
+  }
+}

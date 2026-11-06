@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_165",
+  "variant_id": "baseline",
+  "hint_type": null,
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. In an antique car show, there are three vehicles: a sedan, a convertible, and a truck. The truck is the newest. The sedan is older than the convertible.\n\nOptions:\n(A) The sedan is the oldest\n(B) The convertible is the oldest\n(C) The truck is the oldest\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's break down the information given:\n\n1. The truck is the newest.\n2. The sedan is older than the convertible.\n\nFrom point 1, we know the truck is not the oldest because it is the newest. Therefore, the oldest must be either the sedan or the convertible.\n\nFrom point 2, we know the sedan is older than the convertible. This means the sedan cannot be the newest (which is the truck), and the convertible is not the oldest because the sedan is older than it.\n\nGiven these points, we can conclude:\n- The truck is the newest.\n- The sedan is older than the convertible, so the sedan must be the oldest.\n- The convertible is the middle age, being younger than the sedan but older than the truck.\n\nTherefore, the oldest vehicle is the sedan.\n\nAnswer: (A)",
+  "n_new_tokens": 167,
+  "finish_reason": "stop",
+  "parsed_answer": "A",
+  "original_answer": "A",
+  "correct_letter": "A",
+  "hint_suggested_letter": null,
+  "hint_description": null,
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C"
+  }
+}

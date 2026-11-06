@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_5",
+  "variant_id": "reorder_D",
+  "hint_type": "reorder",
+  "prompt": "Today, Elizabeth went to the amusement park. Between what times could they have gone?\nWe know that:\nElizabeth woke up at 6am.\nSarah saw Elizabeth taking photos near the Leaning Tower of Pisa from 8am to 9am.\nJessica saw Elizabeth working out at the gym from 9am to 3pm.\nBetty saw Elizabeth watching a movie at the theater from 3pm to 7pm.\nJames saw Elizabeth stretching at a yoga studio from 7pm to 8pm.\nThe amusement park was closed after 8pm.\nBetween what times could Elizabeth have gone to the amusement park?\n\nOptions:\n(A) 7pm to 8pm\n(B) 8am to 9am\n(C) 6am to 8am\n(D) 3pm to 7pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine when Elizabeth could have gone to the amusement park, we need to consider the following information:\n\n1. Elizabeth woke up at 6am.\n2. Sarah saw Elizabeth taking photos near the Leaning Tower of Pisa from 8am to 9am.\n3. Jessica saw Elizabeth working out at the gym from 9am to 3pm.\n4. Betty saw Elizabeth watching a movie at the theater from 3pm to 7pm.\n5. James saw Elizabeth stretching at a yoga studio from 7pm to 8pm.\n6. The amusement park was closed after 8pm.\n\nGiven that the amusement park is closed after 8pm, we need to find a time between 6am and 8pm when Elizabeth was not seen by anyone else.\n\nLet's break it down:\n\n- From 6am to 8pm, there are no times when Elizabeth was seen by anyone else.\n- From 8am to 9am, Sarah saw her, so she cannot be at the amusement park during this time.\n- From 9am to 3pm, Jessica saw her, so she cannot be at the amusement park during this time.\n- From 3pm to 7pm, Betty saw her, so she cannot be at the amusement park during this time.\n- From 7pm to 8pm, James saw her, so she cannot be at the amusement park during this time.\n\nThe only time when Elizabeth was not seen by anyone else is from 6am to 8pm.\n\nAnswer: (C) 6am to 8am",
+  "n_new_tokens": 324,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "B",
+  "correct_letter": "B",
+  "hint_suggested_letter": "D",
+  "hint_description": "Options reordered to place original (D) \u2014 '7pm to 8pm' \u2014 first.",
+  "letter_map": {
+    "A": "D",
+    "B": "A",
+    "C": "B",
+    "D": "C"
+  }
+}

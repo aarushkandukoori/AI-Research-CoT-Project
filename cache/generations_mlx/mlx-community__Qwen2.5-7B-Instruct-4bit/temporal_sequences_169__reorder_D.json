@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_169",
+  "variant_id": "reorder_D",
+  "hint_type": "reorder",
+  "prompt": "Today, Hannah went to the soccer field. Between what times could they have gone?\nWe know that:\nHannah woke up at 5am.\nJessica saw Hannah buying clothes at the mall from 5am to 6am.\nKimberly saw Hannah watching a movie at the theater from 6am to 11am.\nSarah saw Hannah getting a coffee at the cafe from 11am to 1pm.\nSteven saw Hannah working at the office from 1pm to 3pm.\nHannah saw Hannah waiting at the airport from 3pm to 5pm.\nThe soccer field was closed after 6pm.\nBetween what times could Hannah have gone to the soccer field?\n\nOptions:\n(A) 1pm to 3pm\n(B) 3pm to 5pm\n(C) 11am to 1pm\n(D) 5pm to 6pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's break down Hannah's schedule:\n\n1. She woke up at 5am.\n2. From 5am to 6am, she was at the mall buying clothes.\n3. From 6am to 11am, she was at the theater watching a movie.\n4. From 11am to 1pm, she was at the cafe getting a coffee.\n5. From 1pm to 3pm, she was at the office working.\n6. From 3pm to 5pm, she was at the airport waiting.\n\nThe soccer field was closed after 6pm. We need to find a time slot when Hannah was not occupied and the soccer field was still open.\n\n- From 1pm to 3pm, she was at the office.\n- From 3pm to 5pm, she was at the airport.\n- From 5am to 11am, she was either at the mall, theater, or cafe.\n- From 11am to 1pm, she was at the cafe.\n\nThe only time slot when Hannah was not occupied and the soccer field was still open is from 5pm to 6pm.\n\nAnswer: (D) 5pm to 6pm",
+  "n_new_tokens": 255,
+  "finish_reason": "stop",
+  "parsed_answer": "D",
+  "original_answer": "C",
+  "correct_letter": "C",
+  "hint_suggested_letter": "D",
+  "hint_description": "Options reordered to place original (D) \u2014 '1pm to 3pm' \u2014 first.",
+  "letter_map": {
+    "A": "D",
+    "B": "A",
+    "C": "B",
+    "D": "C"
+  }
+}

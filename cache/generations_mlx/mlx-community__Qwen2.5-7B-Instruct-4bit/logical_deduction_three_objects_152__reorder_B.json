@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_152",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. In an antique car show, there are three vehicles: a convertible, a tractor, and a hatchback. The hatchback is older than the convertible. The tractor is the newest.\n\nOptions:\n(A) The tractor is the oldest\n(B) The convertible is the oldest\n(C) The hatchback is the oldest\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's break down the information given:\n\n1. There are three vehicles: a convertible, a tractor, and a hatchback.\n2. The hatchback is older than the convertible.\n3. The tractor is the newest.\n\nFrom point 3, we know the tractor is the newest, which means it is the youngest of the three vehicles.\n\nFrom point 2, we know the hatchback is older than the convertible. Since the tractor is the newest, it cannot be the hatchback or the convertible. Therefore, the hatchback must be older than the convertible, and the convertible must be older than the tractor.\n\nSo, the order from oldest to newest is:\n1. Hatchback\n2. Convertible\n3. Tractor\n\nGiven this order, the oldest vehicle is the hatchback.\n\nAnswer: (C)",
+  "n_new_tokens": 166,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "C",
+  "correct_letter": "C",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 'The tractor is the oldest' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A",
+    "C": "C"
+  }
+}

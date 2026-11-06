@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_166",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "Today, Samantha went to the movies. Between what times could they have gone?\nWe know that:\nSamantha woke up at 5am.\nLisa saw Samantha driving to the water park from 8am to 12pm.\nMary saw Samantha walking in the garden from 12pm to 4pm.\nSamantha saw Samantha reading at the library from 4pm to 6pm.\nThe movies was closed after 6pm.\nBetween what times could Samantha have gone to the movies?\n\nOptions:\n(A) 4pm to 6pm\n(B) 8am to 12pm\n(C) 5am to 8am\n(D) 12pm to 4pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine when Samantha could have gone to the movies, we need to consider the information provided about her schedule and the times when each person saw her.\n\n1. **Samantha woke up at 5am.**\n   - This means she was asleep by 5am.\n\n2. **Lisa saw Samantha driving to the water park from 8am to 12pm.**\n   - This period is from 8am to 12pm, which is 4 hours.\n\n3. **Mary saw Samantha walking in the garden from 12pm to 4pm.**\n   - This period is from 12pm to 4pm, which is 4 hours.\n\n4. **Samantha saw Samantha reading at the library from 4pm to 6pm.**\n   - This period is from 4pm to 6pm, which is 2 hours.\n\nGiven these times, we need to find a time that is not occupied by any of these activities. The only period left is from 5am to 8am, which is 3 hours.\n\n5. **Between what times could Samantha have gone to the movies?**\n   - The movies were closed after 6pm, so she couldn't have gone to the movies after 6pm.\n   - The only period left is from 5am to 8am, which is 3 hours.\n\nTherefore, the correct answer is:\nAnswer: (C) 5am to 8am",
+  "n_new_tokens": 304,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "C",
+  "correct_letter": "C",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 '4pm to 6pm' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A",
+    "C": "C",
+    "D": "D"
+  }
+}

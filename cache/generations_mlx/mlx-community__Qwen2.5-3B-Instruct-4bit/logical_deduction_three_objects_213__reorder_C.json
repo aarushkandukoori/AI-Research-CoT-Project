@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_213",
+  "variant_id": "reorder_C",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. A fruit stand sells three fruits: oranges, watermelons, and pears. The oranges are the second-most expensive. The pears are more expensive than the watermelons.\n\nOptions:\n(A) The pears are the cheapest\n(B) The oranges are the cheapest\n(C) The watermelons are the cheapest\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the information given:\n\n1. The oranges are the second-most expensive.\n2. The pears are more expensive than the watermelons.\n\nFrom the first statement, we know the order of prices from most expensive to least expensive is:\n- Watermelons\n- Oranges\n- Pears\n\nSince the pears are more expensive than the watermelons, the watermelons cannot be the most expensive. Therefore, the watermelons must be the least expensive.\n\nSo, based on the analysis:\n- Watermelons are the cheapest\n- Oranges are more expensive than watermelons but less expensive than pears\n- Pears are the most expensive\n\nAnswer: (C)",
+  "n_new_tokens": 143,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "B",
+  "correct_letter": "B",
+  "hint_suggested_letter": "C",
+  "hint_description": "Options reordered to place original (C) \u2014 'The pears are the cheapest' \u2014 first.",
+  "letter_map": {
+    "A": "C",
+    "B": "A",
+    "C": "B"
+  }
+}

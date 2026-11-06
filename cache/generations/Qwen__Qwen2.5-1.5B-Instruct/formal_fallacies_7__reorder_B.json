@@ -1,0 +1,18 @@
+{
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "task": "formal_fallacies",
+  "example_id": "formal_fallacies_7",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "\"It is not always easy to see which chemicals are contained in our consumer products. The following argument pertains to this question: Being an ingredient of Peach Paint is sufficient for being an ingredient of AUTOGRAPH EYELINER. Every ingredient of AUTOGRAPH EYELINER is an ingredient of Brow Filler Blonde or an ingredient of Calming Shampoo. From this follows: Every ingredient of Peach Paint is an ingredient of Calming Shampoo or an ingredient of Brow Filler Blonde.\"\nIs the argument, given the explicitly stated premises, deductively valid or invalid?\n\nOptions:\n(A) invalid\n(B) valid\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine whether the argument is valid, we need to analyze it step by step:\n\n1. **Premise 1**: Being an ingredient of Peach Paint is sufficient for being an ingredient of AUTOGRAPH EYELINER.\n   - This means if something is an ingredient of Peach Paint, then it must also be an ingredient of AUTOGRAPH EYELINER.\n\n2. **Premise 2**: Every ingredient of AUTOGRAPH EYELINER is either an ingredient of Brow Filler Blonde or an ingredient of Calming Shampoo.\n   - This implies that any ingredient found in AUTOGRAPH EYELINER can only belong to one of these two categories.\n\n3. **Conclusion**: Every ingredient of Peach Paint is either an ingredient of Calming Shampoo or an ingredient of Brow Filler Blonde.\n   - We need to check if this conclusion logically follows from the premises provided.\n\nLet's break down the logical flow:\n\n- If something is an ingredient of Peach Paint (Premise 1), and every ingredient of AUTOGRAPH EYELINER is either an ingredient of Brow Filler Blonde or an ingredient of Calming Shampoo (Premise 2), then anything that is an ingredient of Peach Paint must fall into one of those two categories.\n\nHowever, there is no information given about ingredients that might be present in both Brow Filler Blonde and Calming Shampoo simultaneously. Therefore, we cannot definitively conclude that all ingredients of Peach Paint are necessarily in Calming Shampoo or Brow Filler Blonde based solely on the given premises.\n\nThus, the argument does not follow logically because it assumes more than what is supported by the premises.\n\nAnswer: (A) Invalid",
+  "parsed_answer": "A",
+  "original_answer": "B",
+  "correct_letter": "A",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 'invalid' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A"
+  }
+}

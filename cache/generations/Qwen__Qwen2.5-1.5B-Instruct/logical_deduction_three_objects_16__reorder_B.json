@@ -1,0 +1,19 @@
+{
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_16",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. A fruit stand sells three fruits: mangoes, watermelons, and kiwis. The watermelons are less expensive than the kiwis. The kiwis are the second-most expensive.\n\nOptions:\n(A) The watermelons are the most expensive\n(B) The mangoes are the most expensive\n(C) The kiwis are the most expensive\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine which statement is correct based on the given information:\n\n1. **Watermelons are less expensive than kiwis**.\n2. **Kiwis are the second-most expensive**.\n\nLet's analyze each option:\n\n- **Option (A): The watermelons are the most expensive**\n  - This contradicts the first statement because it says watermelons are less expensive than kiwis.\n\n- **Option (B): The mangoes are the most expensive**\n  - There is no mention of mangoes or their price relative to other fruits. Therefore, we cannot conclude anything about them from the given information.\n\n- **Option (C): The kiwis are the most expensive**\n  - This aligns with both statements:\n    - Watermelons are less expensive than kiwis.\n    - Kiwis are the second-most expensive.\n\nThus, the only logical conclusion based on the provided information is that the kiwis are the most expensive.\n\nAnswer: (C)",
+  "parsed_answer": "C",
+  "original_answer": "C",
+  "correct_letter": "A",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 'The watermelons are the most expensive' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A",
+    "C": "C"
+  }
+}

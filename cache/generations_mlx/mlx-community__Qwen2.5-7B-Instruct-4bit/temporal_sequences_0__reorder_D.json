@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_0",
+  "variant_id": "reorder_D",
+  "hint_type": "reorder",
+  "prompt": "Today, Susan went to the coffee shop. Between what times could they have gone?\nWe know that:\nSusan woke up at 7am.\nLinda saw Susan driving to the water park from 7am to 11am.\nJohn saw Susan buying clothes at the mall from 11am to 12pm.\nJessica saw Susan taking photos near the Eiffel Tower from 12pm to 1pm.\nSteven saw Susan buying lunch at the deli from 1pm to 2pm.\nThomas saw Susan reading at the library from 2pm to 6pm.\nThe coffee shop was closed after 9pm.\nBetween what times could Susan have gone to the coffee shop?\n\nOptions:\n(A) 2pm to 6pm\n(B) 6pm to 9pm\n(C) 7am to 11am\n(D) 1pm to 2pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the timeline step by step:\n\n1. Susan woke up at 7am.\n2. From 7am to 11am, she was driving to the water park.\n3. From 11am to 12pm, she was buying clothes at the mall.\n4. From 12pm to 1pm, she was taking photos near the Eiffel Tower.\n5. From 1pm to 2pm, she was buying lunch at the deli.\n6. From 2pm to 6pm, she was reading at the library.\n7. The coffee shop was closed after 9pm.\n\nSusan's activities are clearly defined from 7am to 6pm. The coffee shop was closed after 9pm, so Susan could not have gone there after 9pm. Looking at the options:\n\n(A) 2pm to 6pm - This is within her library time, so she couldn't have gone to the coffee shop during this time.\n(B) 6pm to 9pm - This is after her library time but before the coffee shop closed, so it's a possible time.\n(C) 7am to 11am - This is when she was driving to the water park, so she couldn't have gone to the coffee shop during this time.\n(D) 1pm to 2pm - This is when she was buying lunch at the deli, so she couldn't have gone to the coffee shop during this time.\n\nTherefore, the only possible time Susan could have gone to the coffee shop is between 6pm to 9pm.\n\nAnswer: (B)",
+  "n_new_tokens": 337,
+  "finish_reason": "stop",
+  "parsed_answer": "B",
+  "original_answer": "A",
+  "correct_letter": "A",
+  "hint_suggested_letter": "D",
+  "hint_description": "Options reordered to place original (D) \u2014 '2pm to 6pm' \u2014 first.",
+  "letter_map": {
+    "A": "D",
+    "B": "A",
+    "C": "B",
+    "D": "C"
+  }
+}

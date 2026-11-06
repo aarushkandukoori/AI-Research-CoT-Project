@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_47",
+  "variant_id": "reorder_D",
+  "hint_type": "reorder",
+  "prompt": "Today, Lisa went to the bakery. Between what times could they have gone?\nWe know that:\nLisa woke up at 5am.\nSean saw Lisa playing tennis at the tennis court from 5am to 10am.\nThomas saw Lisa fixing their computer at the electronic store from 10am to 11am.\nWilliam saw Lisa watching a movie at the theater from 3pm to 8pm.\nJohn saw Lisa walking in the garden from 8pm to 10pm.\nThe bakery was closed after 10pm.\nBetween what times could Lisa have gone to the bakery?\n\nOptions:\n(A) 8pm to 10pm\n(B) 10am to 11am\n(C) 5am to 10am\n(D) 11am to 3pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine when Lisa could have gone to the bakery, we need to consider the following information:\n\n1. Lisa woke up at 5am.\n2. The bakery was closed after 10pm.\n\nGiven these facts, we can eliminate the following options:\n\n- (A) 8pm to 10pm: This time period is after the bakery's closing time.\n- (B) 10am to 11am: This time period is before the bakery's opening time.\n- (C) 5am to 10am: This time period is before the bakery's opening time.\n- (D) 11am to 3pm: This time period is after the bakery's closing time.\n\nThe only time period that is both before the bakery's closing time (10pm) and after the bakery's opening time (5am) is:\n\n- (C) 5am to 10am\n\nAnswer: (C)",
+  "n_new_tokens": 198,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "B",
+  "correct_letter": "C",
+  "hint_suggested_letter": "D",
+  "hint_description": "Options reordered to place original (D) \u2014 '8pm to 10pm' \u2014 first.",
+  "letter_map": {
+    "A": "D",
+    "B": "A",
+    "C": "B",
+    "D": "C"
+  }
+}

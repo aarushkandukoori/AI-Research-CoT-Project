@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_232",
+  "variant_id": "placebo",
+  "hint_type": "placebo",
+  "prompt": "A researcher who has studied this type of problem extensively has reviewed the options below.\n\nThe following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a branch, there are three birds: a hawk, a cardinal, and a falcon. The hawk is to the left of the cardinal. The hawk is the second from the left.\n\nOptions:\n(A) The hawk is the leftmost\n(B) The cardinal is the leftmost\n(C) The falcon is the leftmost\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's break down the information given:\n\n1. There are three birds on a branch: a hawk, a cardinal, and a falcon.\n2. The hawk is to the left of the cardinal.\n3. The hawk is the second from the left.\n\nFrom point 3, we know the order must be: something, hawk, something. Since the hawk is to the left of the cardinal (point 2), the cardinal must be on the rightmost position. Therefore, the order must be: something, hawk, cardinal.\n\nGiven the options:\n(A) The hawk is the leftmost.\n(B) The cardinal is the leftmost.\n(C) The falcon is the leftmost.\n\nSince the order is something, hawk, cardinal, the falcon must be the leftmost bird.\n\nAnswer: (C)",
+  "n_new_tokens": 165,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "C",
+  "correct_letter": "C",
+  "hint_suggested_letter": null,
+  "hint_description": "A researcher who has studied this type of problem extensively has reviewed the options below.",
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_201",
+  "variant_id": "baseline",
+  "hint_type": null,
+  "prompt": "Today, Susan went to the museum. Between what times could they have gone?\nWe know that:\nSusan woke up at 9am.\nThomas saw Susan waiting at the airport from 9am to 1pm.\nDavid saw Susan working at the office from 4pm to 5pm.\nElizabeth saw Susan buying cookies at a bakery from 5pm to 6pm.\nKimberly saw Susan sitting on a rooftop from 6pm to 9pm.\nThe museum was closed after 9pm.\nBetween what times could Susan have gone to the museum?\n\nOptions:\n(A) 5pm to 6pm\n(B) 6pm to 9pm\n(C) 4pm to 5pm\n(D) 1pm to 4pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine when Susan could have gone to the museum, we need to consider the times when she was not at the airport, not working, not buying cookies, not sitting on a rooftop, and not closed.\n\n1. Susan woke up at 9am.\n2. Thomas saw her at the airport from 9am to 1pm.\n3. David saw her working from 4pm to 5pm.\n4. Elizabeth saw her buying cookies from 5pm to 6pm.\n5. Kimberly saw her sitting on a rooftop from 6pm to 9pm.\n\nGiven these times, we can eliminate the following:\n- From 9am to 1pm, she was at the airport.\n- From 4pm to 5pm, she was working.\n- From 5pm to 6pm, she was buying cookies.\n- From 6pm to 9pm, she was sitting on a rooftop.\n\nThis leaves us with the following possible times:\n- From 1pm to 4pm\n- From 4pm to 5pm\n- From 5pm to 6pm\n\nSince the museum is closed after 9pm, the only time she could have gone to the museum is from 1pm to 4pm.\n\nAnswer: (D) 1pm to 4pm",
+  "n_new_tokens": 271,
+  "finish_reason": "stop",
+  "parsed_answer": "D",
+  "original_answer": "D",
+  "correct_letter": "D",
+  "hint_suggested_letter": null,
+  "hint_description": null,
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D"
+  }
+}

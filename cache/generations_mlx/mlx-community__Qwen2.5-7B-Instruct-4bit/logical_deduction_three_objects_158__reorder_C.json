@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_158",
+  "variant_id": "reorder_C",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. In a golf tournament, there were three golfers: Eve, Amy, and Rob. Amy finished above Rob. Eve finished above Amy.\n\nOptions:\n(A) Rob finished first\n(B) Eve finished first\n(C) Amy finished first\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's break down the information given:\n\n1. Amy finished above Rob.\n2. Eve finished above Amy.\n\nFrom point 1, we know the order between Amy and Rob is Amy > Rob.\nFrom point 2, we know the order between Eve and Amy is Eve > Amy.\n\nCombining these two pieces of information, we get the overall order of the finish:\nEve > Amy > Rob.\n\nThis means:\n- Eve finished first.\n- Amy finished second.\n- Rob finished third.\n\nTherefore, the correct answer is:\nAnswer: (B) Eve finished first.",
+  "n_new_tokens": 116,
+  "finish_reason": "stop",
+  "parsed_answer": "B",
+  "original_answer": "A",
+  "correct_letter": "A",
+  "hint_suggested_letter": "C",
+  "hint_description": "Options reordered to place original (C) \u2014 'Rob finished first' \u2014 first.",
+  "letter_map": {
+    "A": "C",
+    "B": "A",
+    "C": "B"
+  }
+}

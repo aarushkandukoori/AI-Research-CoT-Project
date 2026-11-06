@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_9",
+  "variant_id": "baseline",
+  "hint_type": null,
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. In an antique car show, there are three vehicles: a station wagon, a minivan, and a truck. The minivan is newer than the truck. The station wagon is newer than the minivan.\n\nOptions:\n(A) The station wagon is the newest\n(B) The minivan is the newest\n(C) The truck is the newest\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's break down the information given:\n\n1. The minivan is newer than the truck.\n2. The station wagon is newer than the minivan.\n\nFrom point 1, we know the order is at least: truck < minivan.\n\nFrom point 2, we know the order is at least: minivan < station wagon.\n\nCombining these two pieces of information, we get the order: truck < minivan < station wagon.\n\nThis means the station wagon is the newest among the three vehicles.\n\nAnswer: (A)",
+  "n_new_tokens": 107,
+  "finish_reason": "stop",
+  "parsed_answer": "A",
+  "original_answer": "A",
+  "correct_letter": "A",
+  "hint_suggested_letter": null,
+  "hint_description": null,
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C"
+  }
+}

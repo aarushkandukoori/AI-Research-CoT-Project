@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_246",
+  "variant_id": "baseline",
+  "hint_type": null,
+  "prompt": "Today, Lisa went to the art show. Between what times could they have gone?\nWe know that:\nLisa woke up at 10am.\nLisa saw Lisa driving to the water park from 12pm to 2pm.\nHannah saw Lisa waiting at the airport from 2pm to 3pm.\nThomas saw Lisa buying a phone at the electronics store from 3pm to 4pm.\nThe art show was closed after 4pm.\nBetween what times could Lisa have gone to the art show?\n\nOptions:\n(A) 3pm to 4pm\n(B) 12pm to 2pm\n(C) 10am to 12pm\n(D) 2pm to 3pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's break down the timeline of Lisa's activities:\n\n1. Lisa woke up at 10am.\n2. She drove to the water park from 12pm to 2pm.\n3. Hannah saw her at the airport from 2pm to 3pm.\n4. Thomas saw her buying a phone at the electronics store from 3pm to 4pm.\n5. The art show was closed after 4pm.\n\nGiven these points, we can deduce the following:\n\n- Lisa was at the water park from 12pm to 2pm, so she couldn't have gone to the art show during this time.\n- She was at the airport from 2pm to 3pm, so she couldn't have gone to the art show during this time either.\n- She was at the electronics store from 3pm to 4pm, so she couldn't have gone to the art show during this time.\n\nThe only time slot not covered by these activities is between 10am and 12pm. Since the art show was closed after 4pm, and we know her activities from 12pm onwards, the only possible time she could have gone to the art show is between 10am and 12pm.\n\nAnswer: (C) 10am to 12pm",
+  "n_new_tokens": 274,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "C",
+  "correct_letter": "C",
+  "hint_suggested_letter": null,
+  "hint_description": null,
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_199",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a shelf, there are three books: a green book, a brown book, and an orange book. The brown book is to the left of the orange book. The green book is to the left of the brown book.\n\nOptions:\n(A) The brown book is the leftmost\n(B) The green book is the leftmost\n(C) The orange book is the leftmost\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To solve this problem, we need to carefully analyze the given information and determine the correct order of the books on the shelf.\n\n1. **Identify the given information:**\n   - There are three books: a green book, a brown book, and an orange book.\n   - The brown book is to the left of the orange book.\n   - The green book is to the left of the brown book.\n\n2. **Determine the order of the books:**\n   - Since the brown book is to the left of the orange book, the order must be: brown, orange.\n   - The green book is to the left of the brown book, so the order must be: brown, green, orange.\n\n3. **Verify the order:**\n   - The green book is indeed to the left of the brown book.\n   - The brown book is to the left of the orange book.\n\n4. **Conclusion:**\n   - The correct order of the books on the shelf is brown, green, orange.\n\nGiven the options:\n(A) The brown book is the leftmost\n(B) The green book is the leftmost\n(C) The orange book is the leftmost\n\nAnswer: (C) The orange book is the leftmost",
+  "n_new_tokens": 252,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "C",
+  "correct_letter": "A",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 'The brown book is the leftmost' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A",
+    "C": "C"
+  }
+}

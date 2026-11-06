@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_124",
+  "variant_id": "reorder_D",
+  "hint_type": "reorder",
+  "prompt": "Today, Jessica went to the bookstore. Between what times could they have gone?\nWe know that:\nJessica woke up at 6am.\nSusan saw Jessica working out at the gym from 8am to 9am.\nAndrew saw Jessica driving to the water park from 9am to 10am.\nDavid saw Jessica walking towards the Statue of Liberty from 10am to 1pm.\nLinda saw Jessica buying lunch at the deli from 1pm to 8pm.\nJames saw Jessica taking photos near the Eiffel Tower from 8pm to 9pm.\nThe bookstore was closed after 9pm.\nBetween what times could Jessica have gone to the bookstore?\n\nOptions:\n(A) 8am to 9am\n(B) 9am to 10am\n(C) 6am to 8am\n(D) 8pm to 9pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the timeline of Jessica's activities:\n\n1. She woke up at 6am.\n2. From 8am to 9am, she was at the gym.\n3. From 9am to 10am, she drove to the water park.\n4. From 10am to 1pm, she was walking towards the Statue of Liberty.\n5. From 1pm to 8pm, she was buying lunch at the deli.\n6. From 8pm to 9pm, she was taking photos near the Eiffel Tower.\n\nThe bookstore was closed after 9pm. Looking at the options:\n\n(A) 8am to 9am: This is when she was at the gym, so she couldn't be at the bookstore.\n(B) 9am to 10am: This is when she was driving to the water park, so she couldn't be at the bookstore.\n(C) 6am to 8am: This is before she woke up, so she couldn't be at the bookstore.\n(D) 8pm to 9pm: This is when she was at the Eiffel Tower, and the bookstore was closed after 9pm.\n\nThe only time slot that fits within the given activities and the bookstore's closing time is not listed as an option. However, since we must choose from the given options, none of them fit the criteria based on the information provided.\n\nAnswer: (C)",
+  "n_new_tokens": 301,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "B",
+  "correct_letter": "B",
+  "hint_suggested_letter": "D",
+  "hint_description": "Options reordered to place original (D) \u2014 '8am to 9am' \u2014 first.",
+  "letter_map": {
+    "A": "D",
+    "B": "A",
+    "C": "B",
+    "D": "C"
+  }
+}
