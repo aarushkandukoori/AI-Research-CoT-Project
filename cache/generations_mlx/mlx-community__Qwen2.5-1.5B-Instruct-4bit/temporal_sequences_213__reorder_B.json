@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_213",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "Today, Elizabeth went to the art studio. Between what times could they have gone?\nWe know that:\nElizabeth woke up at 6am.\nSean saw Elizabeth buying lunch at the deli from 6am to 8am.\nLisa saw Elizabeth working at the office from 8am to 9am.\nDavid saw Elizabeth stretching at a yoga studio from 12pm to 1pm.\nSamantha saw Elizabeth walking towards the Statue of Liberty from 1pm to 5pm.\nThe art studio was closed after 5pm.\nBetween what times could Elizabeth have gone to the art studio?\n\nOptions:\n(A) 8am to 9am\n(B) 9am to 12pm\n(C) 6am to 8am\n(D) 12pm to 1pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine when Elizabeth could have gone to the art studio, we need to consider the following information:\n\n1. Elizabeth woke up at 6am.\n2. Sean saw Elizabeth buy lunch from 6am to 8am.\n3. Lisa saw Elizabeth work at the office from 8am to 9am.\n4. David saw Elizabeth stretch at a yoga studio from 12pm to 1pm.\n5. Samantha saw Elizabeth walk towards the Statue of Liberty from 1pm to 5pm.\n6. The art studio was closed after 5pm.\n\nGiven these details, we need to find a time between 6am and 5pm when Elizabeth was not seen by anyone else.\n\n- From 6am to 8am, Sean saw Elizabeth buy lunch, so she cannot have gone to the art studio during this time.\n- From 8am to 9am, Lisa saw Elizabeth work, so she cannot have gone to the art studio during this time.\n- From 12pm to 1pm, David saw Elizabeth stretch, so she cannot have gone to the art studio during this time.\n- From 1pm to 5pm, Samantha saw Elizabeth walk towards the Statue of Liberty, so she cannot have gone to the art studio during this time.\n\nThe only time left is from 6am to 8am, which is not closed, so Elizabeth could have gone to the art studio during this time.\n\nAnswer: (C) 6am to 8am",
+  "n_new_tokens": 306,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "C",
+  "correct_letter": "A",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 '8am to 9am' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A",
+    "C": "C",
+    "D": "D"
+  }
+}

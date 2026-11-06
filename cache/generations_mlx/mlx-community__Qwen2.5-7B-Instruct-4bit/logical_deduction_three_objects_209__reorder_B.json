@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_209",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a branch, there are three birds: a blue jay, a falcon, and a raven. The falcon is to the left of the blue jay. The falcon is to the right of the raven.\n\nOptions:\n(A) The falcon is the rightmost\n(B) The blue jay is the rightmost\n(C) The raven is the rightmost\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the given information step by step:\n\n1. There are three birds: a blue jay, a falcon, and a raven.\n2. The falcon is to the left of the blue jay.\n3. The falcon is to the right of the raven.\n\nFrom point 2, we know the blue jay is to the right of the falcon. From point 3, we know the raven is to the left of the falcon. Let's arrange these birds based on these clues:\n\n- The raven must be to the left of the falcon because the falcon is to the right of the raven.\n- The blue jay must be to the right of the falcon because the falcon is to the left of the blue jay.\n\nTherefore, the order from left to right must be: raven, falcon, blue jay.\n\nGiven this order, the falcon is not the rightmost bird, and the blue jay is not the rightmost bird. The raven is the leftmost bird, the falcon is the middle bird, and the blue jay is the rightmost bird.\n\nAnswer: (B) The blue jay is the rightmost.",
+  "n_new_tokens": 252,
+  "finish_reason": "stop",
+  "parsed_answer": "B",
+  "original_answer": "A",
+  "correct_letter": "A",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 'The falcon is the rightmost' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A",
+    "C": "C"
+  }
+}

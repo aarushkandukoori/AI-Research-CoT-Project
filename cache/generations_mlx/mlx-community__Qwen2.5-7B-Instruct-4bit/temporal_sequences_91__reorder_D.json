@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_91",
+  "variant_id": "reorder_D",
+  "hint_type": "reorder",
+  "prompt": "Today, Tiffany went to the library. Between what times could they have gone?\nWe know that:\nTiffany woke up at 5am.\nAnthony saw Tiffany walking in the garden from 6am to 8am.\nEmily saw Tiffany working out at the gym from 8am to 5pm.\nKimberly saw Tiffany working at the office from 5pm to 7pm.\nThomas saw Tiffany playing tennis at the tennis court from 7pm to 8pm.\nThe library was closed after 8pm.\nBetween what times could Tiffany have gone to the library?\n\nOptions:\n(A) 6am to 8am\n(B) 8am to 5pm\n(C) 5am to 6am\n(D) 7pm to 8pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the timeline step by step:\n\n1. Tiffany woke up at 5am.\n2. From 6am to 8am, Anthony saw Tiffany in the garden.\n3. From 8am to 5pm, Emily saw Tiffany at the gym.\n4. From 5pm to 7pm, Kimberly saw Tiffany at the office.\n5. From 7pm to 8pm, Thomas saw Tiffany playing tennis.\n6. The library was closed after 8pm.\n\nGiven these points, we can deduce the following:\n\n- Tiffany was seen at the gym from 8am to 5pm, so she couldn't have gone to the library during this time.\n- After 5pm, Tiffany was seen at the office until 7pm, so she couldn't have gone to the library during this time either.\n- After 7pm, Tiffany was seen playing tennis until 8pm, so she couldn't have gone to the library during this time.\n\nThe only time period not covered by these sightings is between 8am and 5pm. However, since Tiffany was seen at the gym during this entire period, she couldn't have gone to the library then.\n\nThe only remaining time period is between 5am and 6am, which is before she was seen in the garden.\n\nAnswer: (C) 5am to 6am",
+  "n_new_tokens": 281,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "B",
+  "correct_letter": "B",
+  "hint_suggested_letter": "D",
+  "hint_description": "Options reordered to place original (D) \u2014 '6am to 8am' \u2014 first.",
+  "letter_map": {
+    "A": "D",
+    "B": "A",
+    "C": "B",
+    "D": "C"
+  }
+}

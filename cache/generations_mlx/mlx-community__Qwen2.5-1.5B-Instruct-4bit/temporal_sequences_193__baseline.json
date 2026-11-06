@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_193",
+  "variant_id": "baseline",
+  "hint_type": null,
+  "prompt": "Today, Susan went to the soccer field. Between what times could they have gone?\nWe know that:\nSusan woke up at 5am.\nWilliam saw Susan walking in the garden from 5am to 6am.\nAnthony saw Susan working out at the gym from 6am to 7am.\nBetty saw Susan fixing their computer at the electronic store from 2pm to 6pm.\nLisa saw Susan buying cookies at a bakery from 6pm to 8pm.\nLinda saw Susan playing tennis at the tennis court from 8pm to 9pm.\nThe soccer field was closed after 9pm.\nBetween what times could Susan have gone to the soccer field?\n\nOptions:\n(A) 6am to 7am\n(B) 5am to 6am\n(C) 7am to 2pm\n(D) 6pm to 8pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine when Susan could have gone to the soccer field, we need to consider the following information:\n\n1. Susan woke up at 5am.\n2. William saw Susan walking in the garden from 5am to 6am.\n3. Anthony saw Susan working out at the gym from 6am to 7am.\n4. Betty saw Susan fixing their computer at the electronic store from 2pm to 6pm.\n5. Lisa saw Susan buying cookies at a bakery from 6pm to 8pm.\n6. Linda saw Susan playing tennis at the tennis court from 8pm to 9pm.\n7. The soccer field was closed after 9pm.\n\nGiven these details, we need to find a time between 5am and 9pm when Susan was not seen by anyone else.\n\n- From 5am to 6am, William saw Susan.\n- From 6am to 7am, Anthony saw Susan.\n- From 2pm to 6pm, Betty saw Susan.\n- From 6pm to 8pm, Lisa saw Susan.\n- From 8pm to 9pm, Linda saw Susan.\n\nThe only time period when Susan was not seen by anyone else is from 9pm to 11pm. Therefore, Susan could have gone to the soccer field between 9pm and 11pm.\n\nAnswer: (D) 9pm to 11pm",
+  "n_new_tokens": 292,
+  "finish_reason": "stop",
+  "parsed_answer": "D",
+  "original_answer": "D",
+  "correct_letter": "C",
+  "hint_suggested_letter": null,
+  "hint_description": null,
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D"
+  }
+}

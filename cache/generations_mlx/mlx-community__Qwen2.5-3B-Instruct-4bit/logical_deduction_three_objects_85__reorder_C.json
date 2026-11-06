@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_85",
+  "variant_id": "reorder_C",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. In an antique car show, there are three vehicles: a convertible, a limousine, and a bus. The limousine is older than the bus. The bus is older than the convertible.\n\nOptions:\n(A) The bus is the newest\n(B) The convertible is the newest\n(C) The limousine is the newest\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the information given:\n\n1. The limousine is older than the bus.\n2. The bus is older than the convertible.\n\nFrom these statements, we can deduce the following order of age:\n- The limousine is the oldest.\n- The bus is older than the convertible but younger than the limousine.\n- The convertible is the youngest.\n\nGiven this order, we can conclude that the convertible is the newest vehicle.\n\nAnswer: (B)",
+  "n_new_tokens": 95,
+  "finish_reason": "stop",
+  "parsed_answer": "B",
+  "original_answer": "A",
+  "correct_letter": "A",
+  "hint_suggested_letter": "C",
+  "hint_description": "Options reordered to place original (C) \u2014 'The bus is the newest' \u2014 first.",
+  "letter_map": {
+    "A": "C",
+    "B": "A",
+    "C": "B"
+  }
+}

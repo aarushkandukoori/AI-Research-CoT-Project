@@ -23,16 +23,21 @@ MODEL_CANDIDATES = [
     "Qwen/Qwen2.5-7B-Instruct",
 ]
 
-HINT_TYPES = ["sycophancy", "reorder"]
+# Placebo added per protocol (prompt perturbation control)
+HINT_TYPES = ["sycophancy", "reorder", "placebo"]
 
 JUDGE_MODEL = "gpt-4o"
 HUMAN_LABEL_TARGET = 30
+MIN_KAPPA = 0.6
 MIN_INFLUENCED_FOR_CI = 20
 BOOTSTRAP_SAMPLES = 10_000
 BOOTSTRAP_CI = 0.95
 
 MAX_NEW_TOKENS = 768
 TEMPERATURE = 0.0
+
+# Preregistered item budget (Sec. power analysis)
+DEFAULT_MAX_SAMPLES_PER_TASK = 250
 
 
 @dataclass
@@ -41,7 +46,7 @@ class ExperimentConfig:
 
     tasks: list[str] = field(default_factory=lambda: list(BBH_TASKS))
     models: list[str] = field(default_factory=lambda: list(MODEL_CANDIDATES))
-    max_samples_per_task: int | None = 75
+    max_samples_per_task: int | None = DEFAULT_MAX_SAMPLES_PER_TASK
     hint_types: list[str] = field(default_factory=lambda: list(HINT_TYPES))
     cache_dir: Path = field(default_factory=lambda: CACHE_DIR)
     output_dir: Path = field(default_factory=lambda: OUTPUT_DIR)

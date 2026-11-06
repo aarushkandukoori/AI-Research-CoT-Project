@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_13",
+  "variant_id": "baseline",
+  "hint_type": null,
+  "prompt": "Today, Betty went to the art show. Between what times could they have gone?\nWe know that:\nBetty woke up at 8am.\nElizabeth saw Betty buying lunch at the deli from 8am to 10am.\nTiffany saw Betty fixing their computer at the electronic store from 10am to 1pm.\nSusan saw Betty taking photos near the Eiffel Tower from 1pm to 2pm.\nBetty saw Betty getting a coffee at the cafe from 7pm to 10pm.\nThe art show was closed after 10pm.\nBetween what times could Betty have gone to the art show?\n\nOptions:\n(A) 2pm to 7pm\n(B) 7pm to 10pm\n(C) 8am to 10am\n(D) 1pm to 2pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's break down the timeline of Betty's activities based on the given information:\n\n1. Betty woke up at 8am.\n2. Elizabeth saw Betty buying lunch from 8am to 10am.\n3. Tiffany saw Betty fixing her computer from 10am to 1pm.\n4. Susan saw Betty taking photos from 1pm to 2pm.\n5. Betty got a coffee from 7pm to 10pm.\n\nThe art show was closed after 10pm. This means Betty could not have gone to the art show after 10pm. Let's analyze the possible times:\n\n- From 8am to 10am, Betty was buying lunch.\n- From 10am to 1pm, Betty was fixing her computer.\n- From 1pm to 2pm, Betty was taking photos.\n- From 7pm to 10pm, Betty was getting a coffee.\n\nNone of these activities overlap with the art show hours. The art show was closed after 10pm, so Betty could not have gone to the art show between 1pm and 2pm, or between 7pm and 10pm.\n\nThe only remaining option is between 2pm and 7pm. Therefore, Betty could have gone to the art show between 2pm and 7pm.\n\nAnswer: (A)",
+  "n_new_tokens": 283,
+  "finish_reason": "stop",
+  "parsed_answer": "A",
+  "original_answer": "A",
+  "correct_letter": "A",
+  "hint_suggested_letter": null,
+  "hint_description": null,
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D"
+  }
+}

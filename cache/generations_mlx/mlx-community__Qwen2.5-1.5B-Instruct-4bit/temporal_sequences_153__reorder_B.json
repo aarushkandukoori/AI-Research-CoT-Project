@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_153",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "Today, Hannah went to the art show. Between what times could they have gone?\nWe know that:\nHannah woke up at 7am.\nMichael saw Hannah walking towards the Statue of Liberty from 7am to 8am.\nLeslie saw Hannah reading at the library from 8am to 9am.\nJason saw Hannah sitting on a rooftop from 9am to 1pm.\nLisa saw Hannah fixing their computer at the electronic store from 7pm to 9pm.\nHannah saw Hannah watching a movie at the theater from 9pm to 10pm.\nThe art show was closed after 10pm.\nBetween what times could Hannah have gone to the art show?\n\nOptions:\n(A) 7am to 8am\n(B) 7pm to 9pm\n(C) 1pm to 7pm\n(D) 9pm to 10pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine when Hannah could have gone to the art show, we need to consider the times when each person saw her:\n\n1. Hannah woke up at 7am.\n2. Michael saw her from 7am to 8am.\n3. Leslie saw her from 8am to 9am.\n4. Jason saw her from 9am to 1pm.\n5. Lisa saw her from 7pm to 9pm.\n6. Hannah saw her from 9pm to 10pm.\n\nThe art show was closed after 10pm. Therefore, Hannah could not have gone to the show after 10pm.\n\nNow, let's consider the available options:\n\n(A) 7am to 8am - This is the time when Michael saw Hannah, but Hannah woke up at 7am, so she would have left before 8am.\n(B) 7pm to 9pm - This is the time when Lisa saw Hannah, but Hannah woke up at 7am, so she would have left before 9pm.\n(C) 1pm to 7pm - This is the time when Jason saw Hannah, but Hannah woke up at 7am, so she would have left before 7pm.\n(D) 9pm to 10pm - This is the time when Hannah saw Hannah, but Hannah woke up at 7am, so she would have left before 10pm.\n\nGiven that Hannah woke up at 7am, the only time she could have left before 10pm is between 9pm and 10pm.\n\nAnswer: (D) 9pm to 10pm",
+  "n_new_tokens": 341,
+  "finish_reason": "stop",
+  "parsed_answer": "D",
+  "original_answer": "D",
+  "correct_letter": "C",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 '7am to 8am' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A",
+    "C": "C",
+    "D": "D"
+  }
+}

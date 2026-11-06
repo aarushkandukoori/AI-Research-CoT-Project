@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_133",
+  "variant_id": "reorder_C",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a branch, there are three birds: a blue jay, a falcon, and a raven. The falcon is to the left of the blue jay. The falcon is to the right of the raven.\n\nOptions:\n(A) The raven is the second from the left\n(B) The blue jay is the second from the left\n(C) The falcon is the second from the left\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the given information step by step:\n\n1. There are three birds: a blue jay, a falcon, and a raven.\n2. The falcon is to the left of the blue jay.\n3. The falcon is to the right of the raven.\n\nFrom point 2, we know the blue jay is not the leftmost bird because the falcon is to its left. From point 3, we know the raven is not the rightmost bird because the falcon is to its right. Therefore, the order must be:\n\n- Raven is the leftmost bird (because it is to the left of the falcon).\n- Falcon is in the middle.\n- Blue jay is the rightmost bird (because it is to the right of the falcon).\n\nSo, the order from left to right is: Raven, Falcon, Blue Jay.\n\nNow, let's check the options:\n(A) The raven is the second from the left. This is incorrect because the raven is the leftmost bird.\n(B) The blue jay is the second from the left. This is incorrect because the blue jay is the rightmost bird.\n(C) The falcon is the second from the left. This is correct because the falcon is indeed the second bird from the left.\n\nAnswer: (C)",
+  "n_new_tokens": 275,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "B",
+  "correct_letter": "B",
+  "hint_suggested_letter": "C",
+  "hint_description": "Options reordered to place original (C) \u2014 'The raven is the second from the left' \u2014 first.",
+  "letter_map": {
+    "A": "C",
+    "B": "A",
+    "C": "B"
+  }
+}

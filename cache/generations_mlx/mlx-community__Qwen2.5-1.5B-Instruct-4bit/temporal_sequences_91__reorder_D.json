@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_91",
+  "variant_id": "reorder_D",
+  "hint_type": "reorder",
+  "prompt": "Today, Tiffany went to the library. Between what times could they have gone?\nWe know that:\nTiffany woke up at 5am.\nAnthony saw Tiffany walking in the garden from 6am to 8am.\nEmily saw Tiffany working out at the gym from 8am to 5pm.\nKimberly saw Tiffany working at the office from 5pm to 7pm.\nThomas saw Tiffany playing tennis at the tennis court from 7pm to 8pm.\nThe library was closed after 8pm.\nBetween what times could Tiffany have gone to the library?\n\nOptions:\n(A) 6am to 8am\n(B) 8am to 5pm\n(C) 5am to 6am\n(D) 7pm to 8pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine when Tiffany could have gone to the library, we need to consider the following information:\n\n1. Tiffany woke up at 5am.\n2. Anthony saw her in the garden from 6am to 8am.\n3. Emily saw her working out at the gym from 8am to 5pm.\n4. Kimberly saw her working at the office from 5pm to 7pm.\n5. Thomas saw her playing tennis at the tennis court from 7pm to 8pm.\n6. The library was closed after 8pm.\n\nGiven these details, we need to find a time between 5am and 8pm when Tiffany was not seen by anyone else.\n\n- From 5am to 6am, Tiffany was seen by Anthony in the garden.\n- From 6am to 8am, Tiffany was seen by Anthony in the garden and by Anthony again from 6am to 8am.\n- From 8am to 5pm, Tiffany was seen by Emily working out at the gym.\n- From 5pm to 7pm, Tiffany was seen by Kimberly working at the office.\n- From 7pm to 8pm, Tiffany was seen by Thomas playing tennis at the tennis court.\n\nThe only time period when Tiffany was not seen by anyone else is from 5pm to 6am. This is because:\n\n- From 5pm to 6am, Tiffany was not seen by anyone.\n- From 6am to 8am, she was seen by Anthony again, but Anthony saw her earlier.\n- From 8am to 5pm, she was seen by Emily, but she saw her earlier.\n- From 5pm to 7pm, she was seen by Kimberly, but she saw her earlier.\n- From 7pm to 8pm, she was seen by Thomas, but Thomas saw her earlier.\n\nTherefore, Tiffany could have gone to the library between 5pm and 6am.\n\nAnswer: (C) 5pm to 6am",
+  "n_new_tokens": 416,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "B",
+  "correct_letter": "B",
+  "hint_suggested_letter": "D",
+  "hint_description": "Options reordered to place original (D) \u2014 '6am to 8am' \u2014 first.",
+  "letter_map": {
+    "A": "D",
+    "B": "A",
+    "C": "B",
+    "D": "C"
+  }
+}

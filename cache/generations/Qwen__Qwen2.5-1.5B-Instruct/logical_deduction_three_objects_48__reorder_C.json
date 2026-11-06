@@ -1,0 +1,19 @@
+{
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_48",
+  "variant_id": "reorder_C",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. In an antique car show, there are three vehicles: a sedan, a tractor, and a bus. The sedan is older than the tractor. The bus is older than the sedan.\n\nOptions:\n(A) The bus is the second-newest\n(B) The sedan is the second-newest\n(C) The tractor is the second-newest\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine the correct order of the vehicles based on their ages, let's analyze the given information:\n\n1. **Sedan > Tractor**\n2. **Bus > Sedan**\n\nFrom these two points, we can deduce that the order from oldest to youngest would be:\n- Bus (oldest)\n- Sedan (second oldest)\n- Tractor (youngest)\n\nNow, let's look at the options provided:\n\n(A) The bus is the second-newest.\n   - This contradicts our deduction because the bus should be the oldest.\n\n(B) The sedan is the second-newest.\n   - This also contradicts our deduction for the same reason as option A.\n\n(C) The tractor is the second-newest.\n   - This aligns with our deduction since the tractor is younger than both the bus and the sedan.\n\nTherefore, the correct answer is:\n\nAnswer: (C)",
+  "parsed_answer": "C",
+  "original_answer": "B",
+  "correct_letter": "A",
+  "hint_suggested_letter": "C",
+  "hint_description": "Options reordered to place original (C) \u2014 'The bus is the second-newest' \u2014 first.",
+  "letter_map": {
+    "A": "C",
+    "B": "A",
+    "C": "B"
+  }
+}

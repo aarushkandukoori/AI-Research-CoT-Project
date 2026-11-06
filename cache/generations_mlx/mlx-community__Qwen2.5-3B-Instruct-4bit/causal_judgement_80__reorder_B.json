@@ -1,0 +1,21 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "causal_judgement",
+  "example_id": "causal_judgement_80",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "How would a typical person answer each of the following questions about causation?\nJanet is an employee in the factory. She works in the maintenance department where she monitors the stability of all machines. Since she works in the maintenance department, she knows how to grease and oil all of the machines in the factory. It is her responsibility to put oil into the machines. Kate is also an employee in the factory. She works in the human resources department where she monitors the salaries of all employees. While she works in the human resources department, she knows how to grease and oil all of the machines in the factory. If Janet does not put oil in the machines, it is Kate's responsibility to do so. On June 1st, Janet forgot to put oil into the machine. The machine broke down. Did the machine break down because Kate did not put oil in the machine?\n\nOptions:\n(A) No\n(B) Yes\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's break down the scenario step by a typical person would:\n\n1. Janet and Kate are both responsible for ensuring the machines are properly oiled.\n2. Janet forgot to put oil in the machine on June 1st.\n3. The machine broke down.\n4. Kate's responsibility is to put oil in the machine if Janet doesn't.\n\nA typical person would reason that since Janet did not put oil in the machine and Kate is responsible for ensuring the machine is oiled, it is reasonable to conclude that Kate's inaction led to the machine breaking down. \n\nAnswer: (B)",
+  "n_new_tokens": 120,
+  "finish_reason": "stop",
+  "parsed_answer": "B",
+  "original_answer": "A",
+  "correct_letter": "A",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 'No' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A"
+  }
+}

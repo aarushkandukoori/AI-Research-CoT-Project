@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_123",
+  "variant_id": "reorder_A",
+  "hint_type": "reorder",
+  "prompt": "Today, David went to the construction site. Between what times could they have gone?\nWe know that:\nDavid woke up at 7am.\nMichael saw David reading at the library from 7am to 9am.\nWilliam saw David waiting at the airport from 6pm to 8pm.\nLisa saw David waiting at the train station from 8pm to 10pm.\nThe construction site was closed after 10pm.\nBetween what times could David have gone to the construction site?\n\nOptions:\n(A) 7am to 9am\n(B) 9am to 6pm\n(C) 8pm to 10pm\n(D) 6pm to 8pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine when David could have gone to the construction site, we need to consider the following information:\n\n1. David woke up at 7am.\n2. David read at the library from 7am to 9am.\n3. David was at the airport from 6pm to 8pm.\n4. David was at the train station from 8pm to 10pm.\n5. The construction site was closed after 10pm.\n\nGiven these details, we can deduce the following:\n\n- David's reading period at the library was from 7am to 9am, which means he was not at the construction site during this time.\n- David's airport waiting period was from 6pm to 8pm, which means he was not at the construction site during this time either.\n- David's train station waiting period was from 8pm to 10pm, which means he was not at the construction site during this time either.\n\nSince the construction site was closed after 10pm, David could not have gone to the construction site between 10pm and 11pm. Therefore, the only time when David could have been at the construction site is between 6pm and 8pm.\n\nAnswer: (D) 6pm to 8pm",
+  "n_new_tokens": 265,
+  "finish_reason": "stop",
+  "parsed_answer": "D",
+  "original_answer": "D",
+  "correct_letter": "B",
+  "hint_suggested_letter": "A",
+  "hint_description": "Options reordered to place original (A) \u2014 '7am to 9am' \u2014 first.",
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D"
+  }
+}

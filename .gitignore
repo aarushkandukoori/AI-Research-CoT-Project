@@ -3,8 +3,19 @@ __pycache__/
 .env
 .venv/
 venv/
-cache/
-outputs/
+# Generated data: everything under cache/ and outputs/ stays local except the
+# released results of the November 2026 runs listed below.
+cache/*
+!cache/generations/
+!cache/generations_mlx/
+outputs/*
+!outputs/analysis/
+!outputs/judge_inputs/
+!outputs/judge_batches/
+!outputs/judge_raw/
+!outputs/judge_labels/
+!outputs/probes/
+outputs/analysis/summary_*_partial.json
 *.egg-info/
 .DS_Store
 .ipynb_checkpoints/

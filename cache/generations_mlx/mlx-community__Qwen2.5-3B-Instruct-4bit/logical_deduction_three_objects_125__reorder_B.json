@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_125",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a shelf, there are three books: a green book, a red book, and a blue book. The red book is the rightmost. The blue book is to the right of the green book.\n\nOptions:\n(A) The red book is the leftmost\n(B) The green book is the leftmost\n(C) The blue book is the leftmost\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the information given:\n\n1. The red book is the rightmost.\n2. The blue book is to the right of the green book.\n\nFrom the first statement, we know the red book is the rightmost position. This means the red book cannot be the leftmost or middle book. Therefore, the red book must be in the third position.\n\nFrom the second statement, the blue book is to the right of the green book. This means the green book must be to the left of the blue book. Given that the red book is already fixed in the third position, the green book must be in the second position, and the blue book must be in the first position.\n\nSo, the arrangement from left to right is: Blue, Green, Red.\n\nBased on this arrangement, we can conclude:\n- The red book is not the leftmost.\n- The green book is not the leftmost.\n- The blue book is the leftmost.\n\nAnswer: (C)",
+  "n_new_tokens": 198,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "C",
+  "correct_letter": "A",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 'The red book is the leftmost' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A",
+    "C": "C"
+  }
+}

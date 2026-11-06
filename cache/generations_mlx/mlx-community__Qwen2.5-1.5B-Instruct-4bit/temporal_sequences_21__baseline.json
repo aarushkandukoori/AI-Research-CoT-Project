@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_21",
+  "variant_id": "baseline",
+  "hint_type": null,
+  "prompt": "Today, Betty went to the bookstore. Between what times could they have gone?\nWe know that:\nBetty woke up at 8am.\nNancy saw Betty waiting at the airport from 8am to 10am.\nTiffany saw Betty stretching at a yoga studio from 10am to 2pm.\nJames saw Betty reading at the library from 2pm to 4pm.\nSteven saw Betty buying a bike at the bike shop from 4pm to 5pm.\nMary saw Betty taking photos near the Leaning Tower of Pisa from 5pm to 6pm.\nThe bookstore was closed after 8pm.\nBetween what times could Betty have gone to the bookstore?\n\nOptions:\n(A) 2pm to 4pm\n(B) 10am to 2pm\n(C) 8am to 10am\n(D) 6pm to 8pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine when Betty could have gone to the bookstore, we need to consider the times when each person saw her:\n\n1. Betty woke up at 8am.\n2. Nancy saw Betty at the airport from 8am to 10am.\n3. Tiffany saw Betty stretching at a yoga studio from 10am to 2pm.\n4. James saw Betty reading at the library from 2pm to 4pm.\n5. Steven saw Betty buying a bike at the bike shop from 4pm to 5pm.\n6. Mary saw Betty taking photos near the Leaning Tower of Pisa from 5pm to 6pm.\n\nGiven that the bookstore is closed after 8pm, we need to consider the times when Betty was not seen by anyone else:\n\n- Betty woke up at 8am, so she would have left the house by 8am.\n- Nancy saw her at the airport from 8am to 10am, so she left by 10am.\n- Tiffany saw her stretching at a yoga studio from 10am to 2pm, so she left by 2pm.\n- James saw her reading at the library from 2pm to 4pm, so she left by 4pm.\n- Steven saw her buying a bike at the bike shop from 4pm to 5pm, so she left by 5pm.\n- Mary saw her taking photos near the Leaning Tower of Pisa from 5pm to 6pm, so she left by 6pm.\n\nSince Betty woke up at 8am, the only time she could have left the house by 8am is when she woke up. Therefore, the bookstore must have been open from 8am to 8pm.\n\nAnswer: (C) 8am to 10am",
+  "n_new_tokens": 376,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "C",
+  "correct_letter": "D",
+  "hint_suggested_letter": null,
+  "hint_description": null,
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D"
+  }
+}

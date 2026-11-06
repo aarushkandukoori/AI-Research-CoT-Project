@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_32",
+  "variant_id": "baseline",
+  "hint_type": null,
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. In an antique car show, there are three vehicles: a motorcyle, a bus, and a tractor. The motorcyle is the oldest. The bus is newer than the tractor.\n\nOptions:\n(A) The motorcyle is the second-newest\n(B) The bus is the second-newest\n(C) The tractor is the second-newest\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the information given:\n\n1. The motorcyle is the oldest.\n2. The bus is newer than the tractor.\n\nFrom point 1, we know the motorcyle is the oldest, meaning it cannot be the second-newest or the newest.\n\nFrom point 2, we know the bus is newer than the tractor. This means the tractor cannot be newer than the bus, and therefore, the tractor cannot be the second-newest.\n\nGiven that the motorcyle is the oldest, the bus must be newer than the tractor. This leaves the bus as the second-newest option.\n\nTherefore, the correct answer is:\n\nAnswer: (B)",
+  "n_new_tokens": 134,
+  "finish_reason": "stop",
+  "parsed_answer": "B",
+  "original_answer": "B",
+  "correct_letter": "C",
+  "hint_suggested_letter": null,
+  "hint_description": null,
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C"
+  }
+}

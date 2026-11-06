@@ -1,0 +1,21 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "causal_judgement",
+  "example_id": "causal_judgement_29",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "How would a typical person answer each of the following questions about causation?\nWayne has a new high-tech watch that tracks his heart rate while he exercises. He must charge the device before he uses it this evening. The device will fully charge in one hour if it is both plugged in and on the charging pad. At 2:00 PM, the device is plugged in, and the device is on the charging pad. At that time, Wayne checks to see if the device is on the charging pad, and he sees that it is. So, he does not change the position of the device, and he leaves it on the charging pad. Because the device will fully charge in one hour if it is either plugged in or on the charging pad, the device is fully charged at 3:00 PM. Is the device fully charged because Wayne did not change the position of the device?\n\nOptions:\n(A) No\n(B) Yes\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's break down the scenario step by step:\n\n1. Wayne's watch needs to be charged to be used.\n2. The watch will fully charge in one hour if it is both plugged in and on the charging pad.\n3. At 2:00 PM, the watch is plugged in and on the charging pad.\n4. Wayne checks the position of the watch and sees it is on the charging pad.\n5. Wayne does not change the position of the watch and leaves it on the charging pad.\n6. The watch will fully charge in one hour if it is on the charging pad, regardless of its position.\n\nThe key point is that the watch will fully charge if it is on the charging pad, not necessarily because it is in a specific position. The position of the watch on the charging pad is what matters, not the exact spot on the pad.\n\nAnswer: (A) No",
+  "n_new_tokens": 181,
+  "finish_reason": "stop",
+  "parsed_answer": "A",
+  "original_answer": "B",
+  "correct_letter": "A",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 'No' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A"
+  }
+}

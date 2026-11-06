@@ -1,0 +1,21 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "causal_judgement",
+  "example_id": "causal_judgement_24",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "How would a typical person answer each of the following questions about causation?\nJanet is an employee in a factory. Since she works in the maintenance department, she knows how to grease and oil all of the machines in the factory. It is her responsibility to put oil into the machines. Kate is also an employee at the factory. While she works in the human resources department, she knows how to grease and oil all of the machines in the factory. If Janet does not put oil in the machines, it is not Kate's responsibility to do so. One day, Janet forgets to put oil in an important machine. Janet noticed that she did not put oil in the machine. Kate did not notice that Janet did not put oil in the machine, and Kate also did not put oil in the machine. The machine broke down a few days later. Did Janet not putting oil in the machine cause it to break down?\n\nOptions:\n(A) No\n(B) Yes\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's break down the scenario step by step:\n\n1. Janet and Kate are both responsible for greasing and oiling the machines in the factory.\n2. Janet is responsible for putting oil into the machines.\n3. Janet did not put oil into an important machine.\n4. Janet noticed this and informed Kate.\n5. Kate did not notice Janet's oversight and did not put oil into the machine.\n6. The machine broke down a few days later.\n\nTo determine if Janet's failure to put oil in the machine caused the machine to break down, we need to consider the sequence of events and the role of each person:\n\n- Janet's failure to put oil in the machine was the direct cause of the machine's malfunction.\n- Kate's inaction did not cause the breakdown because the machine broke down due to the lack of oil, not due to Kate's actions or inactions.\n\nTherefore, Janet's failure to put oil in the machine was the cause of the machine breaking down.\n\nAnswer: (B)",
+  "n_new_tokens": 203,
+  "finish_reason": "stop",
+  "parsed_answer": "B",
+  "original_answer": "A",
+  "correct_letter": "A",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 'No' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A"
+  }
+}

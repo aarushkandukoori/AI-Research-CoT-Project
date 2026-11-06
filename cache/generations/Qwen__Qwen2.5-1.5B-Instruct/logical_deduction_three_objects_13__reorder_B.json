@@ -1,0 +1,19 @@
+{
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_13",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. In an antique car show, there are three vehicles: a minivan, a bus, and a sedan. The minivan is newer than the sedan. The minivan is older than the bus.\n\nOptions:\n(A) The bus is the second-newest\n(B) The minivan is the second-newest\n(C) The sedan is the second-newest\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine the correct ranking of the vehicles based on their age, let's analyze the given information:\n\n1. **Minivan** is newer than the **sedan**.\n2. **Minivan** is older than the **bus**.\n\nFrom these two points, we can deduce that:\n- The minivan must be the newest because it is newer than both the sedan and the bus.\n- Since the minivan is older than the bus, the bus must be the oldest among the three.\n\nNow, considering the options provided:\n(A) The bus is the second-newest.\n(B) The minivan is the second-newest.\n(C) The sedan is the second-newest.\n\nGiven our deductions:\n- The minivan is the newest.\n- The bus is the oldest.\n- Therefore, the sedan must be the middle-aged vehicle.\n\nThus, the sedan is indeed the second-newest.\n\nAnswer: (C)",
+  "parsed_answer": "C",
+  "original_answer": "C",
+  "correct_letter": "A",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 'The bus is the second-newest' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A",
+    "C": "C"
+  }
+}

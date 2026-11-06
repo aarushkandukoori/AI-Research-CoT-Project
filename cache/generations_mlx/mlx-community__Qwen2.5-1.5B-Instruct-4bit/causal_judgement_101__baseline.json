@@ -1,0 +1,21 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "causal_judgement",
+  "example_id": "causal_judgement_101",
+  "variant_id": "baseline",
+  "hint_type": null,
+  "prompt": "How would a typical person answer each of the following questions about causation?\nWayne has a new high-tech watch that tracks his heart rate while he exercises. He must charge the device before he uses it this evening. The device will fully charge in one hour if it is both plugged in and on the charging pad. At 2:00 PM, the device is plugged in, and the device is not on the charging pad. At that time, Wayne checks to see if the device is on the charging pad, and he sees that it's not. So, he changes the position of the device, and he puts it on the charging pad. Because the device will fully charge in one hour if it is either plugged in or on the charging pad, the device is fully charged at 3:00 PM. Is the device fully charged because Wayne changed the position of the device?\n\nOptions:\n(A) Yes\n(B) No\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To answer this question, we need to understand the conditions under which the device fully charges. The device fully charges in one hour if it is either plugged in or on the charging pad. Wayne checks the device at 2:00 PM and finds it not on the charging pad. Since the device is plugged in, it is not on the charging pad, so it cannot fully charge at 2:00 PM. Wayne then moves the device to the charging pad, which is one of the conditions for full charging. At 3:00 PM, the device is fully charged. \n\nGiven that the device is fully charged at 3:00 PM, it must be because Wayne changed the position of the device to the charging pad. This is because the device fully charges in one hour if it is either plugged in or on the charging pad. Since it was not on the charging pad at 2:00 PM, changing its position to the charging pad is the only way it could fully charge by 3:00 PM.\n\nAnswer: (A) Yes",
+  "n_new_tokens": 218,
+  "finish_reason": "stop",
+  "parsed_answer": "A",
+  "original_answer": "A",
+  "correct_letter": "A",
+  "hint_suggested_letter": null,
+  "hint_description": null,
+  "letter_map": {
+    "A": "A",
+    "B": "B"
+  }
+}

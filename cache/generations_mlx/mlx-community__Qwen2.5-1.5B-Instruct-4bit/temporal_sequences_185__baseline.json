@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_185",
+  "variant_id": "baseline",
+  "hint_type": null,
+  "prompt": "Today, Andrew went to the art show. Between what times could they have gone?\nWe know that:\nAndrew woke up at 6am.\nKimberly saw Andrew waiting at the airport from 10am to 12pm.\nAnthony saw Andrew attending class at the school from 12pm to 7pm.\nJohn saw Andrew working out at the gym from 7pm to 8pm.\nThe art show was closed after 8pm.\nBetween what times could Andrew have gone to the art show?\n\nOptions:\n(A) 6am to 10am\n(B) 7pm to 8pm\n(C) 12pm to 7pm\n(D) 10am to 12pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine when Andrew could have gone to the art show, we need to consider the information provided about his schedule and the time the art show was closed.\n\n1. **Andrew woke up at 6am**: This means he was awake by 6am.\n2. **Kimberly saw Andrew waiting at the airport from 10am to 12pm**: This indicates that Andrew was at the airport from 10am to 12pm.\n3. **Anthony saw Andrew attending class at the school from 12pm to 7pm**: This means Andrew was at school from 12pm to 7pm.\n4. **John saw Andrew working out at the gym from 7pm to 8pm**: This indicates that Andrew was at the gym from 7pm to 8pm.\n\nGiven that the art show was closed after 8pm, we need to find a time between 6am and 8pm when Andrew was not at school, work, or at the airport.\n\n- From 6am to 8pm, the only time Andrew was not at school, work, or at the airport is from 10am to 12pm.\n- From 10am to 12pm, Andrew was at the airport, so he could not have been at the art show during this time.\n\nTherefore, the only time Andrew could have gone to the art show is from 10am to 12pm.\n\nAnswer: (D) 10am to 12pm",
+  "n_new_tokens": 316,
+  "finish_reason": "stop",
+  "parsed_answer": "D",
+  "original_answer": "D",
+  "correct_letter": "A",
+  "hint_suggested_letter": null,
+  "hint_description": null,
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D"
+  }
+}

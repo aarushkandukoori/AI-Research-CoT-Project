@@ -1,0 +1,21 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "causal_judgement",
+  "example_id": "causal_judgement_158",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "How would a typical person answer each of the following questions about causation?\nNed has a new motorboat. When Ned turns the key, the motorboat starts if either the gear is in neutral or the motor is in the lock position. Today, the gear is in neutral, and the motor is in the lock position. Ned checks the motor to see if it is in the lock position. He sees that it is in the lock position, and he does not change its position at all. Because the motorboat would start if either the gear is in neutral or the motor is in the lock position, the motorboat starts when Ned turns the key. Did the motorboat start because Ned did not change the position of the motor?\n\nOptions:\n(A) No\n(B) Yes\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's break down the scenario step by step:\n\n1. **Initial Condition**: The motorboat starts if either the gear is in neutral or the motor is in the lock position.\n2. **Current Condition**: The gear is in neutral, and the motor is in the lock position.\n3. **Action**: Ned checks the motor to see if it is in the lock position. He sees that it is in the lock position and does not change its position.\n4. **Observation**: The motor is still in the lock position, and Ned does not change its position.\n\nGiven this, we need to determine if the motorboat starts because Ned did not change the position of the motor.\n\n- **Key Point**: The motorboat starts because the motor is in the lock position, not because Ned did not change its position. The motor's position is already in the lock position, and this is the reason for the motorboat starting.\n\nTherefore, the motorboat starts independently of Ned's actions regarding the motor's position.\n\nAnswer: (A)",
+  "n_new_tokens": 209,
+  "finish_reason": "stop",
+  "parsed_answer": "A",
+  "original_answer": "B",
+  "correct_letter": "A",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 'No' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A"
+  }
+}

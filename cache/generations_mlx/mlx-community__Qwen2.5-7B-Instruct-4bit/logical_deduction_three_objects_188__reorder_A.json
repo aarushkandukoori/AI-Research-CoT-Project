@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_188",
+  "variant_id": "reorder_A",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a branch, there are three birds: a robin, an owl, and a hawk. The robin is to the right of the hawk. The owl is the leftmost.\n\nOptions:\n(A) The robin is the second from the left\n(B) The owl is the second from the left\n(C) The hawk is the second from the left\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's break down the information given:\n\n1. There are three birds: a robin, an owl, and a hawk.\n2. The owl is the leftmost bird.\n3. The robin is to the right of the hawk.\n\nGiven these points, we can deduce the order of the birds from left to right:\n\n- The owl is the leftmost bird.\n- The hawk must be to the left of the robin because the robin is to the right of the hawk.\n\nTherefore, the order must be: owl, hawk, robin.\n\nNow, let's match this order with the given options:\n\n(A) The robin is the second from the left. (False, the robin is the rightmost bird)\n(B) The owl is the second from the left. (False, the owl is the leftmost bird)\n(C) The hawk is the second from the left. (True, the order is owl, hawk, robin)\n\nAnswer: (C)",
+  "n_new_tokens": 193,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "C",
+  "correct_letter": "C",
+  "hint_suggested_letter": "A",
+  "hint_description": "Options reordered to place original (A) \u2014 'The robin is the second from the left' \u2014 first.",
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C"
+  }
+}

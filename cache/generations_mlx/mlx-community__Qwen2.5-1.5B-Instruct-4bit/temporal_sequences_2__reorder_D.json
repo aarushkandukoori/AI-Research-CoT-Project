@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_2",
+  "variant_id": "reorder_D",
+  "hint_type": "reorder",
+  "prompt": "Today, Susan went to the restaurant. Between what times could they have gone?\nWe know that:\nSusan woke up at 11am.\nLisa saw Susan taking photos near the Leaning Tower of Pisa from 11am to 1pm.\nWilliam saw Susan buying cookies at a bakery from 1pm to 3pm.\nJennifer saw Susan working at the office from 3pm to 6pm.\nJason saw Susan walking towards the Statue of Liberty from 6pm to 7pm.\nAshley saw Susan waiting at the airport from 7pm to 9pm.\nThe restaurant was closed after 10pm.\nBetween what times could Susan have gone to the restaurant?\n\nOptions:\n(A) 7pm to 9pm\n(B) 6pm to 7pm\n(C) 9pm to 10pm\n(D) 11am to 1pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine when Susan could have gone to the restaurant, we need to consider the times when each person saw her and when the restaurant was open.\n\n1. **Susan woke up at 11am.**\n   - This means she woke up at 11am, so she was awake from 11am to 11am.\n\n2. **Lisa saw Susan taking photos near the Leaning Tower of Pisa from 11am to 1pm.**\n   - This period is from 11am to 1pm, so Susan was at the Leaning Tower of Pisa from 11am to 1pm.\n\n3. **William saw Susan buying cookies at a bakery from 1pm to 3pm.**\n   - This period is from 1pm to 3pm, so Susan was at the bakery from 1pm to 3pm.\n\n4. **Jennifer saw Susan working at the office from 3pm to 6pm.**\n   - This period is from 3pm to 6pm, so Susan was at the office from 3pm to 6pm.\n\n5. **Jason saw Susan walking towards the Statue of Liberty from 6pm to 7pm.**\n   - This period is from 6pm to 7pm, so Susan was at the Statue of Liberty from 6pm to 7pm.\n\n6. **Ashley saw Susan waiting at the airport from 7pm to 9pm.**\n   - This period is from 7pm to 9pm, so Susan was at the airport from 7pm to 9pm.\n\nGiven that the restaurant was closed after 10pm, Susan could not have gone to the restaurant between 10pm and 11pm. Therefore, the only time she could have gone to the restaurant is between 11am and 1pm.\n\nAnswer: (D) 11am to 1pm",
+  "n_new_tokens": 402,
+  "finish_reason": "stop",
+  "parsed_answer": "D",
+  "original_answer": "C",
+  "correct_letter": "B",
+  "hint_suggested_letter": "D",
+  "hint_description": "Options reordered to place original (D) \u2014 '7pm to 9pm' \u2014 first.",
+  "letter_map": {
+    "A": "D",
+    "B": "A",
+    "C": "B",
+    "D": "C"
+  }
+}

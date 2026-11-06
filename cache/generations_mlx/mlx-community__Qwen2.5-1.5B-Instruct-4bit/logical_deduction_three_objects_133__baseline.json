@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_133",
+  "variant_id": "baseline",
+  "hint_type": null,
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a branch, there are three birds: a blue jay, a falcon, and a raven. The falcon is to the left of the blue jay. The falcon is to the right of the raven.\n\nOptions:\n(A) The blue jay is the second from the left\n(B) The falcon is the second from the left\n(C) The raven is the second from the left\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To solve this problem, we need to carefully analyze the given information about the arrangement of the birds on the branch:\n\n1. The falcon is to the left of the blue jay.\n2. The falcon is to the right of the raven.\n\nLet's break it down step by step:\n\n- The falcon is to the left of the blue jay, so the order is: **Falcon, Blue Jay**.\n- The falcon is to the right of the raven, so the order is: **Raven, Falcon, Blue Jay**.\n\nNow, we need to determine the position of the raven in the sequence. Since the falcon is to the right of the raven, the raven must be to the left of the falcon. Therefore, the sequence must be:\n\n**Raven, Falcon, Blue Jay**\n\nThis means that the raven is the second from the left.\n\nAnswer: (C) The raven is the second from the left.",
+  "n_new_tokens": 202,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "C",
+  "correct_letter": "B",
+  "hint_suggested_letter": null,
+  "hint_description": null,
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C"
+  }
+}

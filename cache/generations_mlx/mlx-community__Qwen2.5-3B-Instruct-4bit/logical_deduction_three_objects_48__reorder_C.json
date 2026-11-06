@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_48",
+  "variant_id": "reorder_C",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. In an antique car show, there are three vehicles: a sedan, a tractor, and a bus. The sedan is older than the tractor. The bus is older than the sedan.\n\nOptions:\n(A) The bus is the second-newest\n(B) The sedan is the second-newest\n(C) The tractor is the second-newest\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the information given:\n\n1. The sedan is older than the tractor.\n2. The bus is older than the sedan.\n\nFrom these statements, we can deduce the following order of age:\n- The bus is the oldest.\n- The sedan is older than the tractor but younger than the bus.\n- The tractor is the youngest.\n\nNow, let's look at the options:\n- (A) The bus is the second-newest: This would mean the bus is younger than the sedan but older than the tractor. This fits our deduced order.\n- (B) The sedan is the second-newest: This would mean the sedan is younger than the tractor but older than the bus. This does not fit our deduced order.\n- (C) The tractor is the second-newest: This would mean the tractor is younger than the sedan but older than the bus. This does not fit our deduced order.\n\nGiven the order of age, the bus is indeed the second-newest.\n\nAnswer: (A)",
+  "n_new_tokens": 207,
+  "finish_reason": "stop",
+  "parsed_answer": "A",
+  "original_answer": "C",
+  "correct_letter": "A",
+  "hint_suggested_letter": "C",
+  "hint_description": "Options reordered to place original (C) \u2014 'The bus is the second-newest' \u2014 first.",
+  "letter_map": {
+    "A": "C",
+    "B": "A",
+    "C": "B"
+  }
+}

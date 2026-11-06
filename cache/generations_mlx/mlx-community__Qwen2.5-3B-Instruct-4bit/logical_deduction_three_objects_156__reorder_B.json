@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_156",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a shelf, there are three books: a yellow book, a brown book, and a red book. The red book is to the left of the brown book. The yellow book is to the right of the brown book.\n\nOptions:\n(A) The brown book is the rightmost\n(B) The yellow book is the rightmost\n(C) The red book is the rightmost\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the given information step by step:\n\n1. The red book is to the left of the brown book.\n2. The yellow book is to the right of the brown book.\n\nFrom these statements, we can deduce the following order:\n- The red book must be to the left of the brown book.\n- The yellow book must be to the right of the brown book.\n\nCombining these, we get the order: Red, Brown, Yellow.\n\nThus, the brown book is the middle book, and the yellow book is the rightmost book.\n\nAnswer: (B)",
+  "n_new_tokens": 118,
+  "finish_reason": "stop",
+  "parsed_answer": "B",
+  "original_answer": "A",
+  "correct_letter": "A",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 'The brown book is the rightmost' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A",
+    "C": "C"
+  }
+}

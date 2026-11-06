@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_1",
+  "variant_id": "baseline",
+  "hint_type": null,
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. In an antique car show, there are three vehicles: a motorcyle, a limousine, and a convertible. The motorcyle is newer than the limousine. The convertible is newer than the motorcyle.\n\nOptions:\n(A) The motorcyle is the oldest\n(B) The limousine is the oldest\n(C) The convertible is the oldest\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the information given:\n\n1. The motorcyle is newer than the limousine.\n2. The convertible is newer than the motorcyle.\n\nFrom these statements, we can deduce the following order of age:\n- The convertible is newer than the motorcyle.\n- The motorcyle is newer than the limousine.\n- Therefore, the limousine is the oldest because it is newer than both the motorcyle and the convertible.\n\nGiven this order, we can conclude:\n- The convertible is the newest.\n- The motorcyle is older than the convertible but younger than the limousine.\n\nThus, the oldest vehicle is the limousine.\n\nAnswer: (B)",
+  "n_new_tokens": 144,
+  "finish_reason": "stop",
+  "parsed_answer": "B",
+  "original_answer": "B",
+  "correct_letter": "B",
+  "hint_suggested_letter": null,
+  "hint_description": null,
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C"
+  }
+}

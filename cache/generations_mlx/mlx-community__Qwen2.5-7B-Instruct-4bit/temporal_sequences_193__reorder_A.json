@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_193",
+  "variant_id": "reorder_A",
+  "hint_type": "reorder",
+  "prompt": "Today, Susan went to the soccer field. Between what times could they have gone?\nWe know that:\nSusan woke up at 5am.\nWilliam saw Susan walking in the garden from 5am to 6am.\nAnthony saw Susan working out at the gym from 6am to 7am.\nBetty saw Susan fixing their computer at the electronic store from 2pm to 6pm.\nLisa saw Susan buying cookies at a bakery from 6pm to 8pm.\nLinda saw Susan playing tennis at the tennis court from 8pm to 9pm.\nThe soccer field was closed after 9pm.\nBetween what times could Susan have gone to the soccer field?\n\nOptions:\n(A) 6am to 7am\n(B) 5am to 6am\n(C) 7am to 2pm\n(D) 6pm to 8pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the timeline of Susan's activities:\n\n1. Susan woke up at 5am.\n2. William saw Susan walking in the garden from 5am to 6am.\n3. Anthony saw Susan working out at the gym from 6am to 7am.\n4. Betty saw Susan at the electronic store from 2pm to 6pm.\n5. Lisa saw Susan buying cookies at a bakery from 6pm to 8pm.\n6. Linda saw Susan playing tennis at the tennis court from 8pm to 9pm.\n7. The soccer field was closed after 9pm.\n\nSusan's activities are confined to the following times:\n- 5am to 7am: Walking in the garden and working out at the gym.\n- 2pm to 9pm: At the electronic store, buying cookies, and playing tennis.\n\nThe soccer field was closed after 9pm, so Susan could not have gone there after that time. The only time slot not occupied by any of her activities is between 7am and 2pm.\n\nAnswer: (C) 7am to 2pm",
+  "n_new_tokens": 231,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "C",
+  "correct_letter": "C",
+  "hint_suggested_letter": "A",
+  "hint_description": "Options reordered to place original (A) \u2014 '6am to 7am' \u2014 first.",
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D"
+  }
+}

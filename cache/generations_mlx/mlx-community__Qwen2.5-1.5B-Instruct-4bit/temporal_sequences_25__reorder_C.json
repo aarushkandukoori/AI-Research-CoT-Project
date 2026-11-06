@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_25",
+  "variant_id": "reorder_C",
+  "hint_type": "reorder",
+  "prompt": "Today, Sean went to the basketball court. Between what times could they have gone?\nWe know that:\nSean woke up at 5am.\nJames saw Sean watching a movie at the theater from 5am to 6am.\nDavid saw Sean buying cookies at a bakery from 6am to 7am.\nSarah saw Sean working out at the gym from 7am to 9am.\nWilliam saw Sean attending class at the school from 11am to 2pm.\nRichard saw Sean taking photos near the Leaning Tower of Pisa from 2pm to 4pm.\nThe basketball court was closed after 4pm.\nBetween what times could Sean have gone to the basketball court?\n\nOptions:\n(A) 6am to 7am\n(B) 9am to 11am\n(C) 2pm to 4pm\n(D) 11am to 2pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine when Sean could have gone to the basketball court, we need to consider the following information:\n\n1. Sean woke up at 5am.\n2. James saw Sean watching a movie at the theater from 5am to 6am.\n3. David saw Sean buying cookies at a bakery from 6am to 7am.\n4. Sarah saw Sean working out at the gym from 7am to 9am.\n5. William saw Sean attending class at the school from 11am to 2pm.\n6. Richard saw Sean taking photos near the Leaning Tower of Pisa from 2pm to 4pm.\n7. The basketball court was closed after 4pm.\n\nGiven these details, we need to find a time between 5am and 4pm when Sean was not seen by anyone else.\n\n- From 5am to 6am, James saw Sean.\n- From 6am to 7am, David saw Sean.\n- From 7am to 9am, Sarah saw Sean.\n- From 11am to 2pm, William saw Sean.\n- From 2pm to 4pm, Richard saw Sean.\n\nThe only time Sean was not seen by anyone else is from 4pm to 5pm. Therefore, Sean could have gone to the basketball court between 4pm and 5pm.\n\nAnswer: (C) 2pm to 4pm",
+  "n_new_tokens": 293,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "B",
+  "correct_letter": "A",
+  "hint_suggested_letter": "C",
+  "hint_description": "Options reordered to place original (C) \u2014 '6am to 7am' \u2014 first.",
+  "letter_map": {
+    "A": "C",
+    "B": "A",
+    "C": "B",
+    "D": "D"
+  }
+}

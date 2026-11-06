@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_162",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. In a golf tournament, there were three golfers: Ana, Amy, and Eli. Eli finished second. Eli finished below Amy.\n\nOptions:\n(A) Amy finished second\n(B) Ana finished second\n(C) Eli finished second\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's break down the information given:\n\n1. Eli finished second.\n2. Eli finished below Amy.\n\nFrom the first statement, we know Eli's position is second. The second statement, \"Eli finished below Amy,\" means Amy finished ahead of Eli. Since Eli is second, Amy must have finished first.\n\nThis leaves us with Ana. Since there are only three golfers and we know the positions of Amy and Eli, Ana must have finished third.\n\nNow, let's look at the options:\n\n(A) Amy finished second - This is incorrect because Amy finished first.\n(B) Ana finished second - This is incorrect because Eli finished second.\n(C) Eli finished second - This is correct based on the information given.\n\nAnswer: (C)",
+  "n_new_tokens": 149,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "C",
+  "correct_letter": "C",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 'Amy finished second' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A",
+    "C": "C"
+  }
+}

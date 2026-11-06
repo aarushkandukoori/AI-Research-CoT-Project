@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_93",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "Today, Nancy went to the bookstore. Between what times could they have gone?\nWe know that:\nNancy woke up at 8am.\nJennifer saw Nancy buying cookies at a bakery from 8am to 9am.\nWilliam saw Nancy taking photos near the Eiffel Tower from 9am to 12pm.\nMary saw Nancy playing tennis at the tennis court from 12pm to 2pm.\nThe bookstore was closed after 9pm.\nBetween what times could Nancy have gone to the bookstore?\n\nOptions:\n(A) 8am to 9am\n(B) 12pm to 2pm\n(C) 2pm to 9pm\n(D) 9am to 12pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine when Nancy could have gone to the bookstore, we need to consider the following information:\n\n1. Nancy woke up at 8am.\n2. Jennifer saw Nancy buying cookies from 8am to 9am.\n3. William saw Nancy taking photos from 9am to 12pm.\n4. Mary saw Nancy playing tennis from 12pm to 2pm.\n5. The bookstore was closed after 9pm.\n\nGiven these details, we need to find a time between 8am and 9am when Nancy could have gone to the bookstore without conflicting with any other activities.\n\n- From 8am to 9am, Nancy could have gone to the bookstore.\n- From 9am to 12pm, Nancy could have gone to the bookstore.\n- From 12pm to 2pm, Nancy could have gone to the bookstore.\n\nHowever, the bookstore is closed after 9pm, so the only time period between 8am and 9am when Nancy could have gone to the bookstore is:\n\nAnswer: (A) 8am to 9am",
+  "n_new_tokens": 225,
+  "finish_reason": "stop",
+  "parsed_answer": "A",
+  "original_answer": "B",
+  "correct_letter": "C",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 '8am to 9am' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A",
+    "C": "C",
+    "D": "D"
+  }
+}

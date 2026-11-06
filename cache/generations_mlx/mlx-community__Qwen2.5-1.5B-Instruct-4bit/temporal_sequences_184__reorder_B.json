@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_184",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "Today, Sarah went to the gas station. Between what times could they have gone?\nWe know that:\nSarah woke up at 7am.\nKimberly saw Sarah sitting on a rooftop from 7am to 9am.\nMark saw Sarah buying a bike at the bike shop from 11am to 2pm.\nJohn saw Sarah buying cookies at a bakery from 2pm to 3pm.\nWilliam saw Sarah fixing their computer at the electronic store from 3pm to 4pm.\nThe gas station was closed after 4pm.\nBetween what times could Sarah have gone to the gas station?\n\nOptions:\n(A) 2pm to 3pm\n(B) 11am to 2pm\n(C) 9am to 11am\n(D) 3pm to 4pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine when Sarah could have gone to the gas station, we need to consider the times when she was not seen by anyone else and when the gas station was open.\n\n1. **Sarah woke up at 7am**: This is the start of the day, so she would have been awake before 7am.\n2. **Kimberly saw her at 7am to 9am**: This means she was with Sarah from 7am to 9am.\n3. **Mark saw her at 11am to 2pm**: This means she was with Sarah from 11am to 2pm.\n4. **John saw her at 2pm to 3pm**: This means she was with Sarah from 2pm to 3pm.\n5. **William saw her at 3pm to 4pm**: This means she was with Sarah from 3pm to 4pm.\n\nGiven that the gas station was closed after 4pm, Sarah could not have gone to the gas station between 4pm and 5pm. Therefore, the only time she could have gone to the gas station is between 3pm and 4pm.\n\nAnswer: (D) 3pm to 4pm",
+  "n_new_tokens": 253,
+  "finish_reason": "stop",
+  "parsed_answer": "D",
+  "original_answer": "D",
+  "correct_letter": "C",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 '2pm to 3pm' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A",
+    "C": "C",
+    "D": "D"
+  }
+}

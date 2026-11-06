@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_37",
+  "variant_id": "reorder_A",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a branch, there are three birds: a blue jay, a quail, and a falcon. The falcon is to the right of the blue jay. The blue jay is to the right of the quail.\n\nOptions:\n(A) The blue jay is the rightmost\n(B) The quail is the rightmost\n(C) The falcon is the rightmost\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's break down the information given:\n\n1. There are three birds on a branch: a blue jay, a quail, and a falcon.\n2. The falcon is to the right of the blue jay.\n3. The blue jay is to the right of the quail.\n\nFrom point 2, we know the order is: Blue Jay (B) is to the left of the Falcon (F).\nFrom point 3, we know the order is: Quail (Q) is to the left of the Blue Jay (B).\n\nCombining these, we get the order: Quail (Q) is to the left of the Blue Jay (B), and the Blue Jay (B) is to the left of the Falcon (F).\n\nSo, the order from left to right is: Quail, Blue Jay, Falcon.\n\nTherefore, the Falcon is the rightmost bird.\n\nAnswer: (C)",
+  "n_new_tokens": 190,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "C",
+  "correct_letter": "C",
+  "hint_suggested_letter": "A",
+  "hint_description": "Options reordered to place original (A) \u2014 'The blue jay is the rightmost' \u2014 first.",
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C"
+  }
+}

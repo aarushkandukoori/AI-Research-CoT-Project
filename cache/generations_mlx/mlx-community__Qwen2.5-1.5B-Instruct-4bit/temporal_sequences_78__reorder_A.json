@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_78",
+  "variant_id": "reorder_A",
+  "hint_type": "reorder",
+  "prompt": "Today, Sarah went to the art show. Between what times could they have gone?\nWe know that:\nSarah woke up at 11am.\nLisa saw Sarah working at the office from 11am to 2pm.\nHannah saw Sarah reading at the library from 2pm to 4pm.\nElizabeth saw Sarah fixing their computer at the electronic store from 4pm to 7pm.\nThe art show was closed after 9pm.\nBetween what times could Sarah have gone to the art show?\n\nOptions:\n(A) 11am to 2pm\n(B) 7pm to 9pm\n(C) 2pm to 4pm\n(D) 4pm to 7pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine when Sarah could have gone to the art show, we need to consider the times when she was available and the times when the art show was open.\n\n1. **Sarah's Availability:**\n   - Sarah woke up at 11am.\n   - Sarah worked at the office from 11am to 2pm.\n   - Sarah read at the library from 2pm to 4pm.\n   - Sarah fixed their computer at the electronic store from 4pm to 7pm.\n\n2. **Art Show Availability:**\n   - The art show was closed after 9pm.\n\n3. **Possible Times:**\n   - From 11am to 2pm, Sarah was working at the office.\n   - From 2pm to 4pm, Sarah was reading at the library.\n   - From 4pm to 7pm, Sarah was fixing their computer at the electronic store.\n\n4. **Intersection of Times:**\n   - The art show is closed after 9pm, so Sarah cannot go to the art show between 9pm and 11pm.\n   - The art show is open from 11am to 9pm, so Sarah could go to the art show between 11am and 9pm.\n\n5. **Available Times:**\n   - From 11am to 2pm, Sarah was working at the office.\n   - From 2pm to 4pm, Sarah was reading at the library.\n   - From 4pm to 7pm, Sarah was fixing their computer at the electronic store.\n\nGiven these considerations, the only time Sarah could have gone to the art show is between 4pm and 7pm.\n\nAnswer: (D) 4pm to 7pm",
+  "n_new_tokens": 363,
+  "finish_reason": "stop",
+  "parsed_answer": "D",
+  "original_answer": "D",
+  "correct_letter": "B",
+  "hint_suggested_letter": "A",
+  "hint_description": "Options reordered to place original (A) \u2014 '11am to 2pm' \u2014 first.",
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D"
+  }
+}

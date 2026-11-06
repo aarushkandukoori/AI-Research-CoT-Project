@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_247",
+  "variant_id": "reorder_C",
+  "hint_type": "reorder",
+  "prompt": "Today, Nancy went to the movies. Between what times could they have gone?\nWe know that:\nNancy woke up at 8am.\nRichard saw Nancy fixing their computer at the electronic store from 8am to 12pm.\nMark saw Nancy stretching at a yoga studio from 12pm to 2pm.\nNancy saw Nancy working out at the gym from 2pm to 5pm.\nWilliam saw Nancy getting a coffee at the cafe from 5pm to 6pm.\nSteven saw Nancy walking in the garden from 7pm to 9pm.\nThe movies was closed after 9pm.\nBetween what times could Nancy have gone to the movies?\n\nOptions:\n(A) 5pm to 6pm\n(B) 6pm to 7pm\n(C) 2pm to 5pm\n(D) 7pm to 9pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the timeline of Nancy's activities:\n\n1. Nancy woke up at 8am.\n2. From 8am to 12pm, Nancy was at the electronic store fixing their computer.\n3. From 12pm to 2pm, Nancy was at the yoga studio stretching.\n4. From 2pm to 5pm, Nancy was at the gym working out.\n5. From 5pm to 6pm, Nancy was getting a coffee at the cafe.\n6. From 6pm to 7pm, we have no information about Nancy's activities.\n7. From 7pm to 9pm, Nancy was walking in the garden.\n8. The movies closed at 9pm.\n\nGiven these activities, the only time slot where Nancy could have gone to the movies is between 6pm and 7pm, as she was not engaged in any other activities during this time.\n\nAnswer: (B) 6pm to 7pm",
+  "n_new_tokens": 200,
+  "finish_reason": "stop",
+  "parsed_answer": "B",
+  "original_answer": "A",
+  "correct_letter": "A",
+  "hint_suggested_letter": "C",
+  "hint_description": "Options reordered to place original (C) \u2014 '5pm to 6pm' \u2014 first.",
+  "letter_map": {
+    "A": "C",
+    "B": "A",
+    "C": "B",
+    "D": "D"
+  }
+}

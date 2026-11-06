@@ -1,0 +1,21 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "causal_judgement",
+  "example_id": "causal_judgement_95",
+  "variant_id": "reorder_A",
+  "hint_type": "reorder",
+  "prompt": "How would a typical person answer each of the following questions about causation?\nLauren and Jane work for the same company. They each need to use a computer for work sometimes. Unfortunately, the computer isn't very powerful. If two people are logged on at the same time, it usually crashes. So the company decided to institute an official policy. It declared that Jane would be the only one permitted to use the computer in the mornings and that Lauren would be the only one permitted to use the computer in the afternoons. As expected, Jane logged on the computer the next day at 9:00 am. But Lauren decided to disobey the official policy. She also logged on at 9:00 am. The computer crashed immediately. Did Jane cause the computer to crash?\n\nOptions:\n(A) Yes\n(B) No\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's break down the scenario step by step:\n\n1. **Initial Condition**: The computer crashes when two people are logged on at the same time.\n2. **Policy Implementation**: The company policy restricts one person to log on in the mornings and another in the afternoons.\n3. **Jane's Action**: Jane follows the policy and logs on at 9:00 am.\n4. **Lauren's Action**: Lauren, despite the policy, logs on at 9:00 am, causing the computer to crash.\n\nFrom this sequence, we can infer that Lauren's action directly caused the computer to crash. The policy was in place to prevent this exact scenario, but Lauren's disobedience to the policy led to the crash.\n\nAnswer: (A)",
+  "n_new_tokens": 156,
+  "finish_reason": "stop",
+  "parsed_answer": "A",
+  "original_answer": "A",
+  "correct_letter": "B",
+  "hint_suggested_letter": "A",
+  "hint_description": "Options reordered to place original (A) \u2014 'Yes' \u2014 first.",
+  "letter_map": {
+    "A": "A",
+    "B": "B"
+  }
+}

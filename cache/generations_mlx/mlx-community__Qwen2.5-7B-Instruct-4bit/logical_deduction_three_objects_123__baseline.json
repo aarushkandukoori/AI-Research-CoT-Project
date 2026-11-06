@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_123",
+  "variant_id": "baseline",
+  "hint_type": null,
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a branch, there are three birds: an owl, a crow, and a cardinal. The crow is to the left of the owl. The owl is the second from the left.\n\nOptions:\n(A) The owl is the leftmost\n(B) The crow is the leftmost\n(C) The cardinal is the leftmost\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's break down the information given:\n\n1. There are three birds on a branch: an owl, a crow, and a cardinal.\n2. The crow is to the left of the owl.\n3. The owl is the second from the left.\n\nFrom point 3, we know the owl is the second bird from the left. This means the owl is in the middle position. Since the crow is to the left of the owl, the crow must be in the first position. Therefore, the cardinal must be in the third position.\n\nSo, the arrangement from left to right is: Crow, Owl, Cardinal.\n\nNow, let's match this with the given options:\n(A) The owl is the leftmost - This is incorrect because the owl is in the middle.\n(B) The crow is the leftmost - This is correct because the crow is in the first position.\n(C) The cardinal is the leftmost - This is incorrect because the cardinal is in the third position.\n\nAnswer: (B)",
+  "n_new_tokens": 203,
+  "finish_reason": "stop",
+  "parsed_answer": "B",
+  "original_answer": "B",
+  "correct_letter": "B",
+  "hint_suggested_letter": null,
+  "hint_description": null,
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C"
+  }
+}

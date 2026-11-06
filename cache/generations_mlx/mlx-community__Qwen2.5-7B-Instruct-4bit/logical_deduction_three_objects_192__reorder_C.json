@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_192",
+  "variant_id": "reorder_C",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. A fruit stand sells three fruits: watermelons, apples, and mangoes. The apples are less expensive than the mangoes. The mangoes are less expensive than the watermelons.\n\nOptions:\n(A) The mangoes are the most expensive\n(B) The watermelons are the most expensive\n(C) The apples are the most expensive\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's break down the information given:\n\n1. The apples are less expensive than the mangoes.\n2. The mangoes are less expensive than the watermelons.\n\nFrom these statements, we can establish the following order of price from least expensive to most expensive:\n- Apples are the least expensive.\n- Mangoes are more expensive than apples but less expensive than watermelons.\n- Watermelons are the most expensive.\n\nGiven the options:\n(A) The mangoes are the most expensive.\n(B) The watermelons are the most expensive.\n(C) The apples are the most expensive.\n\nThe correct order of price is: Apples < Mangoes < Watermelons. Therefore, the watermelons are the most expensive.\n\nAnswer: (B)",
+  "n_new_tokens": 153,
+  "finish_reason": "stop",
+  "parsed_answer": "B",
+  "original_answer": "A",
+  "correct_letter": "A",
+  "hint_suggested_letter": "C",
+  "hint_description": "Options reordered to place original (C) \u2014 'The mangoes are the most expensive' \u2014 first.",
+  "letter_map": {
+    "A": "C",
+    "B": "A",
+    "C": "B"
+  }
+}

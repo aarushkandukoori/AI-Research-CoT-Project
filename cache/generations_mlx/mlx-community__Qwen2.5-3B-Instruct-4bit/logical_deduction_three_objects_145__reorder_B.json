@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_145",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. In a golf tournament, there were three golfers: Amy, Ada, and Joe. Joe finished below Ada. Amy finished above Ada.\n\nOptions:\n(A) Ada finished last\n(B) Amy finished last\n(C) Joe finished last\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the information given:\n\n1. Joe finished below Ada.\n2. Amy finished above Ada.\n\nFrom the first statement, we know that Ada finished above Joe. This means Ada finished before Joe in the ranking.\n\nFrom the second statement, we know that Amy finished above Ada. This means Amy finished above Ada, and therefore above Joe as well.\n\nCombining these two pieces of information, we can deduce the following order:\n- Amy finished first\n- Ada finished second\n- Joe finished third\n\nTherefore, Ada did not finish last. This eliminates option (A).\n\nSince Amy finished first and Ada finished second, Amy did not finish last. This eliminates option (B).\n\nGiven the order Amy - Ada - Joe, Joe must have finished last.\n\nAnswer: (C)",
+  "n_new_tokens": 157,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "C",
+  "correct_letter": "C",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 'Ada finished last' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A",
+    "C": "C"
+  }
+}

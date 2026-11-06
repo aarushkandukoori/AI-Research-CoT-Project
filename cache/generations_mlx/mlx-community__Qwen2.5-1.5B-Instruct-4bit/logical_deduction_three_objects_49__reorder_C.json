@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_49",
+  "variant_id": "reorder_C",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a shelf, there are three books: a green book, a brown book, and an orange book. The brown book is to the left of the orange book. The green book is to the left of the brown book.\n\nOptions:\n(A) The orange book is the second from the left\n(B) The green book is the second from the left\n(C) The brown book is the second from the left\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To solve this problem, we need to determine the position of each book on the shelf based on the given information:\n\n1. The brown book is to the left of the orange book.\n2. The green book is to the left of the brown book.\n\nLet's break it down step by step:\n\n1. **Position of the orange book**: Since the brown book is to the left of the orange book, the orange book must be to the right of the brown book.\n2. **Position of the green book**: The green book is to the left of the brown book. This means the green book is to the left of the orange book.\n\nNow, let's visualize the arrangement:\n\n- The green book is to the left of the brown book.\n- The brown book is to the left of the orange book.\n\nGiven these conditions, the order from left to right would be:\n\n1. **Green book** (leftmost)\n2. **Brown book**\n3. **Orange book**\n\nTherefore, the green book is the second from the left.\n\nAnswer: (B) The green book is the second from the left.",
+  "n_new_tokens": 226,
+  "finish_reason": "stop",
+  "parsed_answer": "B",
+  "original_answer": "A",
+  "correct_letter": "B",
+  "hint_suggested_letter": "C",
+  "hint_description": "Options reordered to place original (C) \u2014 'The orange book is the second from the left' \u2014 first.",
+  "letter_map": {
+    "A": "C",
+    "B": "A",
+    "C": "B"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_16",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "Today, Jessica went to the basketball court. Between what times could they have gone?\nWe know that:\nJessica woke up at 5am.\nMichael saw Jessica buying clothes at the mall from 5am to 6am.\nSteven saw Jessica buying a bike at the bike shop from 6am to 7am.\nSean saw Jessica waiting at the train station from 7am to 2pm.\nElizabeth saw Jessica taking photos near the Eiffel Tower from 2pm to 6pm.\nSarah saw Jessica walking towards the Statue of Liberty from 6pm to 9pm.\nThe basketball court was closed after 10pm.\nBetween what times could Jessica have gone to the basketball court?\n\nOptions:\n(A) 5am to 6am\n(B) 6pm to 9pm\n(C) 9pm to 10pm\n(D) 2pm to 6pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine when Jessica could have gone to the basketball court, we need to consider the following information:\n\n1. Jessica woke up at 5am.\n2. Jessica saw Michael at the mall from 5am to 6am.\n3. Jessica saw Steven at the bike shop from 6am to 7am.\n4. Jessica saw Sean at the train station from 7am to 2pm.\n5. Jessica saw Elizabeth at the Eiffel Tower from 2pm to 6pm.\n6. Jessica saw Sarah walking towards the Statue of Liberty from 6pm to 9pm.\n7. The basketball court was closed after 10pm.\n\nGiven these details, we need to find a time between 5am and 10pm when Jessica was not seen by anyone else.\n\n- From 5am to 6am, Jessica saw Michael.\n- From 6am to 7am, Jessica saw Steven.\n- From 7am to 2pm, Jessica saw Sean.\n- From 2pm to 6pm, Jessica saw Elizabeth.\n- From 6pm to 9pm, Jessica saw Sarah.\n\nThe only time period left where Jessica was not seen by anyone else is from 10pm to 11pm. Therefore, Jessica could have gone to the basketball court between 10pm and 11pm.\n\nAnswer: (C) 10pm to 11pm",
+  "n_new_tokens": 294,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "C",
+  "correct_letter": "C",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 '5am to 6am' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A",
+    "C": "C",
+    "D": "D"
+  }
+}

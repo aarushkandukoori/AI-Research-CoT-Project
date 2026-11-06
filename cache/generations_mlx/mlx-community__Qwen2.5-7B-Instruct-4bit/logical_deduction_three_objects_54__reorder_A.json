@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_54",
+  "variant_id": "reorder_A",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a branch, there are three birds: a blue jay, a cardinal, and a quail. The cardinal is to the right of the quail. The quail is to the right of the blue jay.\n\nOptions:\n(A) The blue jay is the rightmost\n(B) The cardinal is the rightmost\n(C) The quail is the rightmost\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's break down the information given:\n\n1. There are three birds: a blue jay, a cardinal, and a quail.\n2. The cardinal is to the right of the quail.\n3. The quail is to the right of the blue jay.\n\nFrom point 3, we know the order must start with the blue jay, as it is to the left of the quail. So, the blue jay is the leftmost bird.\n\nFrom point 2, since the quail is to the right of the blue jay and the cardinal is to the right of the quail, the order must be: blue jay, quail, cardinal.\n\nTherefore, the blue jay is the leftmost, the quail is in the middle, and the cardinal is the rightmost.\n\nAnswer: (B) The cardinal is the rightmost.",
+  "n_new_tokens": 179,
+  "finish_reason": "stop",
+  "parsed_answer": "B",
+  "original_answer": "B",
+  "correct_letter": "B",
+  "hint_suggested_letter": "A",
+  "hint_description": "Options reordered to place original (A) \u2014 'The blue jay is the rightmost' \u2014 first.",
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C"
+  }
+}

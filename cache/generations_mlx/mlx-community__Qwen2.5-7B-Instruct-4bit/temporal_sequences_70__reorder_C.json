@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_70",
+  "variant_id": "reorder_C",
+  "hint_type": "reorder",
+  "prompt": "Today, Susan went to the amusement park. Between what times could they have gone?\nWe know that:\nSusan woke up at 5am.\nAnthony saw Susan waiting at the train station from 5am to 8am.\nJames saw Susan watching a movie at the theater from 11am to 5pm.\nMary saw Susan sitting on a rooftop from 5pm to 9pm.\nThe amusement park was closed after 9pm.\nBetween what times could Susan have gone to the amusement park?\n\nOptions:\n(A) 5pm to 9pm\n(B) 8am to 11am\n(C) 5am to 8am\n(D) 11am to 5pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's break down the timeline based on the given information:\n\n1. Susan woke up at 5am.\n2. Anthony saw Susan from 5am to 8am, which means she was at the train station during this time.\n3. James saw Susan watching a movie from 11am to 5pm.\n4. Mary saw Susan sitting on a rooftop from 5pm to 9pm.\n5. The amusement park was closed after 9pm.\n\nSusan must have gone to the amusement park between the times when she was not seen at the train station, watching the movie, or sitting on the rooftop. The only time slots available are:\n\n- After 8am (when she left the train station) until 11am (when she started watching the movie).\n- After 5pm (when she left the rooftop) until 9pm (when the park closed).\n\nThe only time slot that fits within these constraints is between 8am and 11am.\n\nAnswer: (B) 8am to 11am",
+  "n_new_tokens": 215,
+  "finish_reason": "stop",
+  "parsed_answer": "B",
+  "original_answer": "A",
+  "correct_letter": "A",
+  "hint_suggested_letter": "C",
+  "hint_description": "Options reordered to place original (C) \u2014 '5pm to 9pm' \u2014 first.",
+  "letter_map": {
+    "A": "C",
+    "B": "A",
+    "C": "B",
+    "D": "D"
+  }
+}

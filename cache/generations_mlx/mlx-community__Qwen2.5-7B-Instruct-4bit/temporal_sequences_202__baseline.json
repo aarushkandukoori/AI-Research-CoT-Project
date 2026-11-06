@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_202",
+  "variant_id": "baseline",
+  "hint_type": null,
+  "prompt": "Today, Kimberly went to the construction site. Between what times could they have gone?\nWe know that:\nKimberly woke up at 6am.\nHannah saw Kimberly buying cookies at a bakery from 7am to 8am.\nThomas saw Kimberly fixing their computer at the electronic store from 8am to 10am.\nJohn saw Kimberly buying a phone at the electronics store from 10am to 11am.\nDavid saw Kimberly playing tennis at the tennis court from 11am to 2pm.\nMark saw Kimberly watching a movie at the theater from 2pm to 3pm.\nThe construction site was closed after 3pm.\nBetween what times could Kimberly have gone to the construction site?\n\nOptions:\n(A) 6am to 7am\n(B) 8am to 10am\n(C) 10am to 11am\n(D) 11am to 2pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the timeline of Kimberly's activities:\n\n1. Kimberly woke up at 6am.\n2. From 7am to 8am, she was buying cookies at a bakery.\n3. From 8am to 10am, she was fixing her computer at an electronic store.\n4. From 10am to 11am, she was buying a phone at the same store.\n5. From 11am to 2pm, she was playing tennis.\n6. From 2pm to 3pm, she was watching a movie at the theater.\n7. The construction site was closed after 3pm.\n\nGiven these activities, we can see that Kimberly was occupied from 6am to 3pm. The construction site visit must have occurred outside of these times. The only time slot not covered by her activities is:\n\n(A) 6am to 7am\n(B) 8am to 10am (already occupied by the electronic store activities)\n(C) 10am to 11am (already occupied by buying a phone)\n(D) 11am to 2pm (already occupied by playing tennis)\n\nThe only unoccupied time slot is (A) 6am to 7am.\n\nAnswer: (A)",
+  "n_new_tokens": 264,
+  "finish_reason": "stop",
+  "parsed_answer": "A",
+  "original_answer": "A",
+  "correct_letter": "A",
+  "hint_suggested_letter": null,
+  "hint_description": null,
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D"
+  }
+}

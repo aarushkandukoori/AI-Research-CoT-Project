@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_132",
+  "variant_id": "reorder_A",
+  "hint_type": "reorder",
+  "prompt": "Today, Samantha went to the market. Between what times could they have gone?\nWe know that:\nSamantha woke up at 5am.\nSarah saw Samantha working at the office from 5am to 11am.\nAshley saw Samantha buying a phone at the electronics store from 11am to 1pm.\nLeslie saw Samantha fixing their computer at the electronic store from 5pm to 8pm.\nThe market was closed after 8pm.\nBetween what times could Samantha have gone to the market?\n\nOptions:\n(A) 5am to 11am\n(B) 5pm to 8pm\n(C) 11am to 1pm\n(D) 1pm to 5pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's break down the timeline of Samantha's activities:\n\n1. Samantha woke up at 5am.\n2. From 5am to 11am, she was working at the office.\n3. From 11am to 1pm, she was buying a phone at the electronics store.\n4. From 5pm to 8pm, she was fixing her computer at the electronic store.\n5. The market was closed after 8pm.\n\nGiven these activities, we can see that Samantha was occupied from 5am to 1pm and from 5pm to 8pm. The only time slot not covered by these activities is between 1pm and 5pm.\n\nTherefore, the only time Samantha could have gone to the market is between 1pm to 5pm.\n\nAnswer: (D)",
+  "n_new_tokens": 169,
+  "finish_reason": "stop",
+  "parsed_answer": "D",
+  "original_answer": "D",
+  "correct_letter": "D",
+  "hint_suggested_letter": "A",
+  "hint_description": "Options reordered to place original (A) \u2014 '5am to 11am' \u2014 first.",
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_213",
+  "variant_id": "baseline",
+  "hint_type": null,
+  "prompt": "Today, Elizabeth went to the art studio. Between what times could they have gone?\nWe know that:\nElizabeth woke up at 6am.\nSean saw Elizabeth buying lunch at the deli from 6am to 8am.\nLisa saw Elizabeth working at the office from 8am to 9am.\nDavid saw Elizabeth stretching at a yoga studio from 12pm to 1pm.\nSamantha saw Elizabeth walking towards the Statue of Liberty from 1pm to 5pm.\nThe art studio was closed after 5pm.\nBetween what times could Elizabeth have gone to the art studio?\n\nOptions:\n(A) 9am to 12pm\n(B) 8am to 9am\n(C) 6am to 8am\n(D) 12pm to 1pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's break down Elizabeth's schedule:\n\n1. She woke up at 6am.\n2. Sean saw her from 6am to 8am at the deli.\n3. Lisa saw her from 8am to 9am at the office.\n4. David saw her from 12pm to 1pm at the yoga studio.\n5. Samantha saw her from 1pm to 5pm walking towards the Statue of Liberty.\n6. The art studio was closed after 5pm.\n\nGiven these points, we can deduce the following:\n\n- From 6am to 8am, Elizabeth was at the deli.\n- From 8am to 9am, she was at the office.\n- From 12pm to 1pm, she was at the yoga studio.\n- From 1pm to 5pm, she was walking towards the Statue of Liberty.\n\nThe only time slot not accounted for is between 1pm and 5pm. Since the art studio was closed after 5pm, the only possible time Elizabeth could have gone to the art studio is between 12pm and 1pm, when she was at the yoga studio.\n\nAnswer: (D)",
+  "n_new_tokens": 249,
+  "finish_reason": "stop",
+  "parsed_answer": "D",
+  "original_answer": "D",
+  "correct_letter": "A",
+  "hint_suggested_letter": null,
+  "hint_description": null,
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D"
+  }
+}

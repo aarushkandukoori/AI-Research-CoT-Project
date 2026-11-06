@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_46",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. A fruit stand sells three fruits: oranges, watermelons, and pears. The oranges are the second-most expensive. The pears are more expensive than the watermelons.\n\nOptions:\n(A) The watermelons are the most expensive\n(B) The oranges are the most expensive\n(C) The pears are the most expensive\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's break down the information given:\n\n1. The oranges are the second-most expensive.\n2. The pears are more expensive than the watermelons.\n\nFrom point 1, we know the order of price for oranges must be: something more expensive than oranges, then oranges, and something less expensive than oranges.\n\nFrom point 2, we know the order of price for pears and watermelons must be: pears are more expensive than watermelons.\n\nCombining these, we can deduce the following order of price from most expensive to least expensive:\n1. Most expensive: something (not specified, but not pears or watermelons)\n2. Second-most expensive: oranges\n3. Least expensive: watermelons\n\nSince the pears are more expensive than the watermelons, pears must be the most expensive, as the oranges are already the second-most expensive.\n\nAnswer: (C)",
+  "n_new_tokens": 187,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "C",
+  "correct_letter": "C",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 'The watermelons are the most expensive' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A",
+    "C": "C"
+  }
+}

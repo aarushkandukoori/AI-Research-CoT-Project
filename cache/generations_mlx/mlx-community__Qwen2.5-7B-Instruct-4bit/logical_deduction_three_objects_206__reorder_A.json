@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_206",
+  "variant_id": "reorder_A",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a shelf, there are three books: a white book, a green book, and an orange book. The green book is to the right of the white book. The orange book is the rightmost.\n\nOptions:\n(A) The white book is the rightmost\n(B) The green book is the rightmost\n(C) The orange book is the rightmost\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's break down the information given:\n\n1. There are three books: a white book, a green book, and an orange book.\n2. The green book is to the right of the white book.\n3. The orange book is the rightmost.\n\nGiven the third point, we know the order must be: white book, green book, orange book. This is because the orange book is the rightmost, and the green book must be to the right of the white book.\n\nNow, let's evaluate the options:\n\n(A) The white book is the rightmost. This is incorrect because the orange book is the rightmost.\n(B) The green book is the rightmost. This is incorrect because the orange book is the rightmost.\n(C) The orange book is the rightmost. This is correct based on the given information.\n\nAnswer: (C)",
+  "n_new_tokens": 174,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "C",
+  "correct_letter": "C",
+  "hint_suggested_letter": "A",
+  "hint_description": "Options reordered to place original (A) \u2014 'The white book is the rightmost' \u2014 first.",
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C"
+  }
+}

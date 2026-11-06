@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_66",
+  "variant_id": "reorder_A",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. In an antique car show, there are three vehicles: a tractor, a station wagon, and a limousine. The tractor is newer than the limousine. The station wagon is the newest.\n\nOptions:\n(A) The tractor is the oldest\n(B) The station wagon is the oldest\n(C) The limousine is the oldest\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the information given:\n\n1. The tractor is newer than the limousine.\n2. The station wagon is the newest.\n\nFrom the second statement, we know that the station wagon is the newest vehicle. Since the station wagon is newer than the limousine, the limousine must be older than the station wagon. Given that the tractor is newer than the limousine, the tractor must be older than both the limousine and the station wagon.\n\nTherefore, the oldest vehicle is the tractor.\n\nAnswer: (A)",
+  "n_new_tokens": 110,
+  "finish_reason": "stop",
+  "parsed_answer": "A",
+  "original_answer": "A",
+  "correct_letter": "C",
+  "hint_suggested_letter": "A",
+  "hint_description": "Options reordered to place original (A) \u2014 'The tractor is the oldest' \u2014 first.",
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_158",
+  "variant_id": "reorder_C",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. In a golf tournament, there were three golfers: Eve, Amy, and Rob. Amy finished above Rob. Eve finished above Amy.\n\nOptions:\n(A) Rob finished first\n(B) Eve finished first\n(C) Amy finished first\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the information given:\n\n1. Amy finished above Rob.\n2. Eve finished above Amy.\n\nFrom the first statement, we know:\n- Amy finished above Rob, which means Amy's position is higher than Rob's.\n\nFrom the second statement, we know:\n- Eve finished above Amy, which means Eve's position is higher than Amy's.\n\nCombining these two pieces of information:\n- Since Eve finished above Amy, and Amy finished above Rob, it means Eve must be in the highest position, Amy in the middle, and Rob in the lowest position.\n\nTherefore, the order from first to third is:\nEve, Amy, Rob\n\nAnswer: (B)",
+  "n_new_tokens": 136,
+  "finish_reason": "stop",
+  "parsed_answer": "B",
+  "original_answer": "A",
+  "correct_letter": "A",
+  "hint_suggested_letter": "C",
+  "hint_description": "Options reordered to place original (C) \u2014 'Rob finished first' \u2014 first.",
+  "letter_map": {
+    "A": "C",
+    "B": "A",
+    "C": "B"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_191",
+  "variant_id": "baseline",
+  "hint_type": null,
+  "prompt": "Today, Anthony went to the basketball court. Between what times could they have gone?\nWe know that:\nAnthony woke up at 5am.\nSarah saw Anthony buying clothes at the mall from 5am to 7am.\nTiffany saw Anthony buying lunch at the deli from 7am to 12pm.\nSean saw Anthony watching a movie at the theater from 12pm to 2pm.\nEmily saw Anthony buying a phone at the electronics store from 2pm to 4pm.\nThe basketball court was closed after 9pm.\nBetween what times could Anthony have gone to the basketball court?\n\nOptions:\n(A) 5am to 7am\n(B) 12pm to 2pm\n(C) 4pm to 9pm\n(D) 7am to 12pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine when Anthony could have gone to the basketball court, we need to consider the following information:\n\n1. Anthony woke up at 5am.\n2. Anthony saw Sarah at the mall from 5am to 7am.\n3. Anthony saw Tiffany at the deli from 7am to 12pm.\n4. Anthony saw Sean at the theater from 12pm to 2pm.\n5. Anthony saw Emily at the electronics store from 2pm to 4pm.\n6. The basketball court was closed after 9pm.\n\nGiven these details, we need to find a time between 5am and 9pm when Anthony was not seen by anyone else.\n\n- From 5am to 7am, Anthony saw Sarah.\n- From 7am to 12pm, Anthony saw Tiffany.\n- From 12pm to 2pm, Anthony saw Sean.\n- From 2pm to 4pm, Anthony saw Emily.\n\nThe only time period left where Anthony was not seen by anyone else is from 4pm to 9pm.\n\nAnswer: (C) 4pm to 9pm",
+  "n_new_tokens": 234,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "C",
+  "correct_letter": "C",
+  "hint_suggested_letter": null,
+  "hint_description": null,
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D"
+  }
+}

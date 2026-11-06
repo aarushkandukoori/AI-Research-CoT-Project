@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_237",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "Today, Ashley went to the orchestra hall. Between what times could they have gone?\nWe know that:\nAshley woke up at 5am.\nSusan saw Ashley waiting at the airport from 5am to 6am.\nThomas saw Ashley taking photos near the Leaning Tower of Pisa from 7am to 9am.\nMark saw Ashley watching a movie at the theater from 9am to 1pm.\nSarah saw Ashley walking in the garden from 1pm to 4pm.\nNancy saw Ashley working out at the gym from 4pm to 9pm.\nThe orchestra hall was closed after 9pm.\nBetween what times could Ashley have gone to the orchestra hall?\n\nOptions:\n(A) 1pm to 4pm\n(B) 6am to 7am\n(C) 7am to 9am\n(D) 4pm to 9pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine the time range Ashley could have gone to the orchestra hall, we need to consider the following information:\n\n1. **Ashley woke up at 5am**.\n2. **Susan saw Ashley at the airport from 5am to 6am**.\n3. **Thomas saw Ashley near the Leaning Tower of Pisa from 7am to 9am**.\n4. **Mark saw Ashley watching a movie at the theater from 9am to 1pm**.\n5. **Sarah saw Ashley walking in the garden from 1pm to 4pm**.\n6. **Nancy saw Ashley working out at the gym from 4pm to 9pm**.\n7. **The orchestra hall was closed after 9pm**.\n\nGiven these details, we need to find a time when Ashley was not seen by anyone else and the orchestra hall was open.\n\n- **Susan saw Ashley at the airport from 5am to 6am**.\n- **Thomas saw Ashley near the Leaning Tower of Pisa from 7am to 9am**.\n- **Sarah saw Ashley walking in the garden from 1pm to 4pm**.\n- **Nancy saw Ashley working out at the gym from 4pm to 9pm**.\n\nThe only time period where Ashley was not seen by anyone else is **from 1pm to 4pm**. During this time, the orchestra hall was closed, so Ashley could have gone to the orchestra hall during this period.\n\nAnswer: (D) 4pm to 9pm",
+  "n_new_tokens": 321,
+  "finish_reason": "stop",
+  "parsed_answer": "D",
+  "original_answer": "D",
+  "correct_letter": "A",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 '1pm to 4pm' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A",
+    "C": "C",
+    "D": "D"
+  }
+}

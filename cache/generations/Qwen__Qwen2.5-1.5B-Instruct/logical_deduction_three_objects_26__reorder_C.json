@@ -1,0 +1,19 @@
+{
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_26",
+  "variant_id": "reorder_C",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. A fruit stand sells three fruits: peaches, pears, and mangoes. The mangoes are less expensive than the peaches. The mangoes are more expensive than the pears.\n\nOptions:\n(A) The mangoes are the most expensive\n(B) The peaches are the most expensive\n(C) The pears are the most expensive\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine which object is the most expensive based on the given information:\n\n1. **Mangoes** are described as being \"less expensive\" than both peaches and pears.\n2. **Peaches** are described as being \"more expensive\" than pears but still cheaper than mangoes.\n\nFrom these descriptions, we can deduce the relative prices:\n- Mangoes < Peaches\n- Pears < Mangoes\n- Peaches > Pears\n\nGiven that mangoes are less expensive than peaches, and peaches are more expensive than pears, it follows that:\n- Pears must be the least expensive among the three.\n- Mangoes are next to pears in price.\n- Peaches are the most expensive.\n\nTherefore, the correct option is:\nAnswer: (B) The peaches are the most expensive",
+  "parsed_answer": "B",
+  "original_answer": "A",
+  "correct_letter": "A",
+  "hint_suggested_letter": "C",
+  "hint_description": "Options reordered to place original (C) \u2014 'The mangoes are the most expensive' \u2014 first.",
+  "letter_map": {
+    "A": "C",
+    "B": "A",
+    "C": "B"
+  }
+}

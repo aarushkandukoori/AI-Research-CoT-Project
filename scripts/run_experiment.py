@@ -101,9 +101,20 @@ def run_generation_pass(config: ExperimentConfig) -> list[dict]:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run CoT faithfulness generation pass")
-    parser.add_argument("--max-samples", type=int, default=75, help="Max samples per BBH task")
+    parser.add_argument(
+        "--max-samples",
+        type=int,
+        default=250,
+        help="Max samples per BBH task (preregistered default: 250)",
+    )
     parser.add_argument("--models", nargs="+", default=None, help="Model IDs to run")
     parser.add_argument("--tasks", nargs="+", default=None, help="BBH task names")
+    parser.add_argument(
+        "--hint-types",
+        nargs="+",
+        default=None,
+        help="Hint types: sycophancy reorder placebo",
+    )
     parser.add_argument("--force", action="store_true", help="Regenerate even if cached")
     parser.add_argument("--probe-only", action="store_true", help="Only probe GPU/model loadability")
     args = parser.parse_args()
@@ -117,6 +128,8 @@ def main() -> None:
         config.models = args.models
     if args.tasks:
         config.tasks = args.tasks
+    if args.hint_types:
+        config.hint_types = args.hint_types
 
     run_generation_pass(config)
 

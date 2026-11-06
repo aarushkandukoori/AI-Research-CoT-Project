@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_246",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "Today, Lisa went to the art show. Between what times could they have gone?\nWe know that:\nLisa woke up at 10am.\nLisa saw Lisa driving to the water park from 12pm to 2pm.\nHannah saw Lisa waiting at the airport from 2pm to 3pm.\nThomas saw Lisa buying a phone at the electronics store from 3pm to 4pm.\nThe art show was closed after 4pm.\nBetween what times could Lisa have gone to the art show?\n\nOptions:\n(A) 12pm to 2pm\n(B) 3pm to 4pm\n(C) 10am to 12pm\n(D) 2pm to 3pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's break down the timeline based on the given information:\n\n1. Lisa woke up at 10am.\n2. Lisa was seen driving to the water park from 12pm to 2pm.\n3. Hannah saw Lisa waiting at the airport from 2pm to 3pm.\n4. Thomas saw Lisa buying a phone at the electronics store from 3pm to 4pm.\n5. The art show was closed after 4pm.\n\nFrom the timeline, we can see that Lisa was seen at the water park from 12pm to 2pm. She was then at the airport from 2pm to 3pm and at the electronics store from 3pm to 4pm. The art show was closed after 4pm, meaning Lisa could not have gone to the art show after 4pm.\n\nTherefore, Lisa's possible times for the art show must be between the times she was not seen at the water park, airport, or electronics store. The only time period that fits this criterion is between 12pm to 2pm.\n\nAnswer: (A)",
+  "n_new_tokens": 226,
+  "finish_reason": "stop",
+  "parsed_answer": "A",
+  "original_answer": "B",
+  "correct_letter": "C",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 '12pm to 2pm' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A",
+    "C": "C",
+    "D": "D"
+  }
+}

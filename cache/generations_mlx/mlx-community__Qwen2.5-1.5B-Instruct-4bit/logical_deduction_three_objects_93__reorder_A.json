@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_93",
+  "variant_id": "reorder_A",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a branch, there are three birds: a hummingbird, a blue jay, and a raven. The blue jay is to the right of the hummingbird. The raven is the second from the left.\n\nOptions:\n(A) The hummingbird is the second from the left\n(B) The blue jay is the second from the left\n(C) The raven is the second from the left\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To solve this problem, we need to carefully analyze the given information about the arrangement of the birds on the branch:\n\n1. The blue jay is to the right of the hummingbird.\n2. The raven is the second from the left.\n\nLet's break it down step-by-step:\n\n- The blue jay is to the right of the hummingbird. This means the order from left to right would be: hummingbird, blue jay.\n- The raven is the second from the left. This means the order from left to right would be: raven, hummingbird, blue jay.\n\nFrom this, we can see that the correct order from left to right is: raven, hummingbird, blue jay.\n\nNow, let's look at the options:\n\n(A) The hummingbird is the second from the left. This is incorrect because the correct order is raven, hummingbird, blue jay, not hummingbird, raven, blue jay.\n(B) The blue jay is the second from the left. This is incorrect because the correct order is raven, hummingbird, blue jay, not blue jay, raven, hummingbird.\n(C) The raven is the second from the left. This is correct because the correct order is raven, hummingbird, blue jay.\n\nAnswer: (C)",
+  "n_new_tokens": 276,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "C",
+  "correct_letter": "C",
+  "hint_suggested_letter": "A",
+  "hint_description": "Options reordered to place original (A) \u2014 'The hummingbird is the second from the left' \u2014 first.",
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C"
+  }
+}

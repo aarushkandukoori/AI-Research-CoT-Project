@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_130",
+  "variant_id": "baseline",
+  "hint_type": null,
+  "prompt": "Today, Mary went to the amusement park. Between what times could they have gone?\nWe know that:\nMary woke up at 1pm.\nRichard saw Mary stretching at a yoga studio from 1pm to 3pm.\nJessica saw Mary taking photos near the Leaning Tower of Pisa from 3pm to 4pm.\nSamantha saw Mary fixing their computer at the electronic store from 4pm to 6pm.\nSean saw Mary getting a coffee at the cafe from 6pm to 7pm.\nKimberly saw Mary working at the office from 9pm to 10pm.\nThe amusement park was closed after 10pm.\nBetween what times could Mary have gone to the amusement park?\n\nOptions:\n(A) 9pm to 10pm\n(B) 1pm to 3pm\n(C) 3pm to 4pm\n(D) 7pm to 9pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the timeline step by step:\n\n1. Mary woke up at 1pm.\n2. From 1pm to 3pm, she was at a yoga studio.\n3. From 3pm to 4pm, she was near the Leaning Tower of Pisa.\n4. From 4pm to 6pm, she was at an electronic store.\n5. From 6pm to 7pm, she was at a cafe.\n6. From 9pm to 10pm, she was at an office.\n\nThe amusement park was closed after 10pm. We need to find a time slot when Mary was not accounted for, which would be the only possible time she could have gone to the amusement park.\n\n- From 1pm to 3pm: At yoga studio.\n- From 3pm to 4pm: At the Leaning Tower of Pisa.\n- From 4pm to 6pm: At the electronic store.\n- From 6pm to 7pm: At the cafe.\n- From 9pm to 10pm: At the office.\n\nThe only time slot not covered by these activities is between 7pm and 9pm. Therefore, Mary could have gone to the amusement park during this time.\n\nAnswer: (D) 7pm to 9pm",
+  "n_new_tokens": 275,
+  "finish_reason": "stop",
+  "parsed_answer": "D",
+  "original_answer": "D",
+  "correct_letter": "D",
+  "hint_suggested_letter": null,
+  "hint_description": null,
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D"
+  }
+}

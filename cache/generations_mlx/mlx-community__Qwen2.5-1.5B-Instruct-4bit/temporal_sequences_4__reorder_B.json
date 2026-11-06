@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_4",
+  "variant_id": "reorder_B",
+  "hint_type": "reorder",
+  "prompt": "Today, Jason went to the movies. Between what times could they have gone?\nWe know that:\nJason woke up at 10am.\nLinda saw Jason getting a coffee at the cafe from 10am to 3pm.\nJennifer saw Jason walking towards the Statue of Liberty from 6pm to 7pm.\nSean saw Jason buying a phone at the electronics store from 7pm to 10pm.\nThe movies was closed after 10pm.\nBetween what times could Jason have gone to the movies?\n\nOptions:\n(A) 10am to 3pm\n(B) 3pm to 6pm\n(C) 7pm to 10pm\n(D) 6pm to 7pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine when Jason could have gone to the movies, we need to consider the times when he was not seen by anyone else:\n\n1. **Jason woke up at 10am.**\n   - This means Jason was awake from 10am to 10pm.\n\n2. **Linda saw Jason getting a coffee at the cafe from 10am to 3pm.**\n   - This period is from 10am to 3pm, which is before Jason's wake-up time.\n\n3. **Jennifer saw Jason walking towards the Statue of Liberty from 6pm to 7pm.**\n   - This period is from 6pm to 7pm, which is after Jason's wake-up time.\n\n4. **Sean saw Jason buying a phone at the electronics store from 7pm to 10pm.**\n   - This period is from 7pm to 10pm, which is after Jason's wake-up time.\n\nGiven these observations, Jason was not seen by anyone between 6pm and 7pm. Therefore, the only time period when Jason could have gone to the movies is from 10am to 3pm.\n\nAnswer: (A) 10am to 3pm",
+  "n_new_tokens": 255,
+  "finish_reason": "stop",
+  "parsed_answer": "A",
+  "original_answer": "B",
+  "correct_letter": "A",
+  "hint_suggested_letter": "B",
+  "hint_description": "Options reordered to place original (B) \u2014 '10am to 3pm' \u2014 first.",
+  "letter_map": {
+    "A": "B",
+    "B": "A",
+    "C": "C",
+    "D": "D"
+  }
+}

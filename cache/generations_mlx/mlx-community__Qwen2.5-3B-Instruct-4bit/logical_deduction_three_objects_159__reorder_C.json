@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_159",
+  "variant_id": "reorder_C",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a branch, there are three birds: a cardinal, a hawk, and a hummingbird. The hummingbird is to the right of the hawk. The cardinal is to the left of the hawk.\n\nOptions:\n(A) The hummingbird is the second from the left\n(B) The cardinal is the second from the left\n(C) The hawk is the second from the left\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the information given:\n\n1. The hummingbird is to the right of the hawk.\n2. The cardinal is to the left of the hawk.\n\nFrom these statements, we can deduce the following order:\n- Since the cardinal is to the left of the hawk, the order from left to right must be: Cardinal, Hawk, Hummingbird.\n\nSo, the correct order is: Cardinal (left), Hawk (middle), Hummingbird (right).\n\nNow, let's evaluate the options:\n- Option (A) states that the hummingbird is the second from the left. This would mean the order is: Hummingbird (left), Cardinal (middle), Hawk (right). This contradicts our derived order.\n- Option (B) states that the cardinal is the second from the left. This matches our derived order.\n- Option (C) states that the hawk is the second from the left. This contradicts our derived order.\n\nTherefore, the correct answer is:\n\nAnswer: (B)",
+  "n_new_tokens": 204,
+  "finish_reason": "stop",
+  "parsed_answer": "B",
+  "original_answer": "A",
+  "correct_letter": "B",
+  "hint_suggested_letter": "C",
+  "hint_description": "Options reordered to place original (C) \u2014 'The hummingbird is the second from the left' \u2014 first.",
+  "letter_map": {
+    "A": "C",
+    "B": "A",
+    "C": "B"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_163",
+  "variant_id": "baseline",
+  "hint_type": null,
+  "prompt": "Today, Jennifer went to the art show. Between what times could they have gone?\nWe know that:\nJennifer woke up at 8am.\nLisa saw Jennifer buying clothes at the mall from 8am to 9am.\nSteven saw Jennifer walking towards the Statue of Liberty from 9am to 10am.\nSarah saw Jennifer sitting on a rooftop from 10am to 2pm.\nLinda saw Jennifer taking photos near the Leaning Tower of Pisa from 4pm to 6pm.\nAndrew saw Jennifer working out at the gym from 6pm to 8pm.\nThe art show was closed after 8pm.\nBetween what times could Jennifer have gone to the art show?\n\nOptions:\n(A) 2pm to 4pm\n(B) 8am to 9am\n(C) 9am to 10am\n(D) 6pm to 8pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine when Jennifer could have gone to the art show, we need to consider the times when each person saw her and the times when the art show was open.\n\n1. **Lisa saw Jennifer at the mall from 8am to 9am**: This means Jennifer was at the mall from 8am to 9am.\n2. **Steven saw Jennifer walking towards the Statue of Liberty from 9am to 10am**: This means Jennifer was at the Statue of Liberty from 9am to 10am.\n3. **Sarah saw Jennifer sitting on a rooftop from 10am to 2pm**: This means Jennifer was at the rooftop from 10am to 2pm.\n4. **Linda saw Jennifer taking photos near the Leaning Tower of Pisa from 4pm to 6pm**: This means Jennifer was at the Leaning Tower of Pisa from 4pm to 6pm.\n5. **Andrew saw Jennifer working out at the gym from 6pm to 8pm**: This means Jennifer was at the gym from 6pm to 8pm.\n\nGiven that the art show was closed after 8pm, Jennifer could not have gone to the art show between 8pm and 8am. Therefore, the only time she could have gone to the art show is between 9am and 10am.\n\nAnswer: (C) 9am to 10am",
+  "n_new_tokens": 295,
+  "finish_reason": "stop",
+  "parsed_answer": "C",
+  "original_answer": "C",
+  "correct_letter": "A",
+  "hint_suggested_letter": null,
+  "hint_description": null,
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D"
+  }
+}

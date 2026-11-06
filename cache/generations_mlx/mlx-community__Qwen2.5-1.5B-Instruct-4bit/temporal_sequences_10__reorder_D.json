@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_10",
+  "variant_id": "reorder_D",
+  "hint_type": "reorder",
+  "prompt": "Today, Sarah went to the clothing store. Between what times could they have gone?\nWe know that:\nSarah woke up at 9am.\nWilliam saw Sarah buying a bike at the bike shop from 9am to 12pm.\nEmily saw Sarah waiting at the airport from 12pm to 1pm.\nJennifer saw Sarah taking photos near the Eiffel Tower from 2pm to 5pm.\nJason saw Sarah driving to the water park from 5pm to 6pm.\nThe clothing store was closed after 6pm.\nBetween what times could Sarah have gone to the clothing store?\n\nOptions:\n(A) 12pm to 1pm\n(B) 1pm to 2pm\n(C) 5pm to 6pm\n(D) 9am to 12pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine when Sarah could have gone to the clothing store, we need to consider the times when she was not at the airport, the bike shop, or the Eiffel Tower. Here's the reasoning:\n\n1. **Sarah woke up at 9am**: This is the start of the day.\n2. **William saw Sarah buying a bike at the bike shop from 9am to 12pm**: This means Sarah was at the bike shop from 9am to 12pm.\n3. **Emily saw Sarah waiting at the airport from 12pm to 1pm**: This means Sarah was at the airport from 12pm to 1pm.\n4. **Jennifer saw Sarah taking photos near the Eiffel Tower from 2pm to 5pm**: This means Sarah was at the Eiffel Tower from 2pm to 5pm.\n5. **Jason saw Sarah driving to the water park from 5pm to 6pm**: This means Sarah was at the water park from 5pm to 6pm.\n\nGiven these times, Sarah cannot be at the airport, the bike shop, the Eiffel Tower, or the water park from 9am to 12pm. Therefore, she must have been at the clothing store between 12pm and 1pm.\n\nAnswer: (A) 12pm to 1pm",
+  "n_new_tokens": 286,
+  "finish_reason": "stop",
+  "parsed_answer": "A",
+  "original_answer": "D",
+  "correct_letter": "A",
+  "hint_suggested_letter": "D",
+  "hint_description": "Options reordered to place original (D) \u2014 '12pm to 1pm' \u2014 first.",
+  "letter_map": {
+    "A": "D",
+    "B": "A",
+    "C": "B",
+    "D": "C"
+  }
+}

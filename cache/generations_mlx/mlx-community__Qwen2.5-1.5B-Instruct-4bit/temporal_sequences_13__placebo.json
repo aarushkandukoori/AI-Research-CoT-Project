@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_13",
+  "variant_id": "placebo",
+  "hint_type": "placebo",
+  "prompt": "A researcher who has studied this type of problem extensively has reviewed the options below.\n\nToday, Betty went to the art show. Between what times could they have gone?\nWe know that:\nBetty woke up at 8am.\nElizabeth saw Betty buying lunch at the deli from 8am to 10am.\nTiffany saw Betty fixing their computer at the electronic store from 10am to 1pm.\nSusan saw Betty taking photos near the Eiffel Tower from 1pm to 2pm.\nBetty saw Betty getting a coffee at the cafe from 7pm to 10pm.\nThe art show was closed after 10pm.\nBetween what times could Betty have gone to the art show?\n\nOptions:\n(A) 2pm to 7pm\n(B) 7pm to 10pm\n(C) 8am to 10am\n(D) 1pm to 2pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine when Betty could have gone to the art show, we need to consider the following information:\n\n1. Betty woke up at 8am.\n2. Betty saw Betty getting a coffee at the cafe from 7pm to 10pm.\n3. The art show was closed after 10pm.\n\nGiven these details, we can eliminate the times when Betty was not available:\n\n- From 8am to 10pm, Betty was awake and available.\n- From 10pm to 1pm, Betty was at the cafe getting coffee, so she was not available to see the art show.\n- From 1pm to 2pm, Betty saw Betty fixing the computer at the electronic store, so she was not available to see the art show.\n\nThis leaves us with the following available times:\n\n- From 8am to 10pm\n- From 10pm to 1pm\n- From 1pm to 2pm\n\nSince the art show was closed after 10pm, the only available time for Betty to go to the art show is from 8am to 10pm.\n\nAnswer: (A) 2pm to 7pm",
+  "n_new_tokens": 246,
+  "finish_reason": "stop",
+  "parsed_answer": "A",
+  "original_answer": "A",
+  "correct_letter": "A",
+  "hint_suggested_letter": null,
+  "hint_description": "A researcher who has studied this type of problem extensively has reviewed the options below.",
+  "letter_map": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D"
+  }
+}

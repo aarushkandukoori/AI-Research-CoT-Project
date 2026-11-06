@@ -1,0 +1,23 @@
+{
+  "model_id": "mlx-community/Qwen2.5-1.5B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "temporal_sequences",
+  "example_id": "temporal_sequences_196",
+  "variant_id": "reorder_D",
+  "hint_type": "reorder",
+  "prompt": "Today, Emily went to the basketball court. Between what times could they have gone?\nWe know that:\nEmily woke up at 12pm.\nJohn saw Emily playing tennis at the tennis court from 12pm to 2pm.\nSean saw Emily waiting at the airport from 2pm to 3pm.\nSamantha saw Emily buying clothes at the mall from 6pm to 8pm.\nAnthony saw Emily taking photos near the Leaning Tower of Pisa from 8pm to 9pm.\nSarah saw Emily working out at the gym from 9pm to 10pm.\nThe basketball court was closed after 10pm.\nBetween what times could Emily have gone to the basketball court?\n\nOptions:\n(A) 2pm to 3pm\n(B) 3pm to 6pm\n(C) 12pm to 2pm\n(D) 6pm to 8pm\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "To determine when Emily could have gone to the basketball court, we need to consider the following information:\n\n1. Emily woke up at 12pm.\n2. The basketball court was closed after 10pm.\n3. The other activities mentioned (tennis, airport, mall, airport, Leaning Tower of Pisa, gym) are scheduled between specific times.\n\nGiven that the basketball court is closed after 10pm, Emily cannot have gone to the basketball court between 10pm and 11pm. This leaves us with the following time slots:\n\n- 12pm to 11pm\n- 11pm to 10pm\n\nSince the basketball court is closed after 10pm, the only time slot left for Emily to go to the basketball court is between 11pm and 10pm.\n\nNow, let's consider the activities:\n\n- John saw Emily playing tennis from 12pm to 2pm.\n- Sean saw Emily waiting at the airport from 2pm to 3pm.\n- Samantha saw Emily buying clothes at the mall from 6pm to 8pm.\n- Anthony saw Emily taking photos near the Leaning Tower of Pisa from 8pm to 9pm.\n\nNone of these activities overlap with the time between 11pm and 10pm. Therefore, the only time slot left for Emily to go to the basketball court is between 11pm and 10pm.\n\nAnswer: (B) 11pm to 10pm",
+  "n_new_tokens": 317,
+  "finish_reason": "stop",
+  "parsed_answer": "B",
+  "original_answer": "A",
+  "correct_letter": "A",
+  "hint_suggested_letter": "D",
+  "hint_description": "Options reordered to place original (D) \u2014 '2pm to 3pm' \u2014 first.",
+  "letter_map": {
+    "A": "D",
+    "B": "A",
+    "C": "B",
+    "D": "C"
+  }
+}

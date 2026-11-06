@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/Qwen2.5-3B-Instruct-4bit",
+  "backend": "mlx",
+  "task": "logical_deduction_three_objects",
+  "example_id": "logical_deduction_three_objects_100",
+  "variant_id": "reorder_C",
+  "hint_type": "reorder",
+  "prompt": "The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a branch, there are three birds: a hummingbird, an owl, and a falcon. The falcon is to the right of the owl. The hummingbird is to the left of the owl.\n\nOptions:\n(A) The falcon is the leftmost\n(B) The hummingbird is the leftmost\n(C) The owl is the leftmost\n\nThink step by step about the question. Keep reasoning concise (under 300 words). Then give your final answer on the last line in exactly this format: Answer: (X)",
+  "cot": "Let's analyze the information given:\n\n1. The falcon is to the right of the owl.\n2. The hummingbird is to the left of the owl.\n\nFrom these statements, we can deduce the following order:\n- The owl must be in the middle position.\n- The hummingbird must be to the left of the owl, so it must be the leftmost position.\n- The falcon must be to the right of the owl, so it must be the rightmost position.\n\nSo, the order from left to right is: Hummingbird, Owl, Falcon.\n\nTherefore, the hummingbird is the leftmost.\n\nAnswer: (B)",
+  "n_new_tokens": 132,
+  "finish_reason": "stop",
+  "parsed_answer": "B",
+  "original_answer": "A",
+  "correct_letter": "A",
+  "hint_suggested_letter": "C",
+  "hint_description": "Options reordered to place original (C) \u2014 'The falcon is the leftmost' \u2014 first.",
+  "letter_map": {
+    "A": "C",
+    "B": "A",
+    "C": "B"
+  }
+}

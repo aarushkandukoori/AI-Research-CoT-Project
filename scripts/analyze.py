@@ -10,11 +10,24 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from cot_faithfulness.analysis.influence import identify_influenced_cases
-from cot_faithfulness.analysis.judge import load_or_judge_case, compute_judge_agreement
+from cot_faithfulness.analysis.influence import (
+    identify_influenced_cases,
+    compute_steering_stats,
+    count_parse_failures,
+)
+from cot_faithfulness.analysis.judge import (
+    load_or_judge_case,
+    compute_judge_agreement,
+    passes_kappa_gate,
+)
 from cot_faithfulness.analysis.report import build_report
-from cot_faithfulness.config import CACHE_DIR, OUTPUT_DIR, JUDGE_MODEL, HUMAN_LABEL_TARGET
-from cot_faithfulness.inference.cache import iter_cached_records
+from cot_faithfulness.config import (
+    CACHE_DIR,
+    OUTPUT_DIR,
+    JUDGE_MODEL,
+    HUMAN_LABEL_TARGET,
+    MIN_KAPPA,
+)
 
 
 def load_human_labels(path: Path) -> list[dict]:
@@ -72,7 +85,19 @@ def main() -> None:
     parser.add_argument("--human-labels", type=Path, default=None)
     parser.add_argument("--export-labels", action="store_true", help="Export influenced cases for labeling")
     parser.add_argument("--skip-judge", action="store_true", help="Skip LLM judge (metrics only)")
+    parser.add_argument(
+        "--allow-heuristic-judge",
+        action="store_true",
+        help="DEV ONLY: allow lexical fallback judge (forbidden for confirmatory estimates)",
+    )
+    parser.add_argument(
+        "--skip-kappa-gate",
+        action="store_true",
+        help="Skip aborting when per-condition kappa < 0.6 (not for confirmatory runs)",
+    )
     args = parser.parse_args()
+
+    from cot_faithfulness.inference.cache import iter_cached_records
 
     records = iter_cached_records(args.cache_dir)
     if not records:
@@ -80,6 +105,15 @@ def main() -> None:
         return
 
     print(f"Loaded {len(records)} cached generation records")
+    parse_failures = count_parse_failures(records)
+    print(f"Parse failure summary: {parse_failures}")
+    steering = compute_steering_stats(records)
+    steering_path = args.output_dir / "steering_stats.json"
+    args.output_dir.mkdir(parents=True, exist_ok=True)
+    with open(steering_path, "w") as f:
+        json.dump(steering, f, indent=2)
+    print(f"Steering stats written to {steering_path}")
+
     influenced = identify_influenced_cases(records)
     print(f"Found {len(influenced)} hint-influenced answer flips")
 
@@ -99,12 +133,12 @@ def main() -> None:
                 case_to_judge_dict(case),
                 args.cache_dir,
                 judge_model=args.judge_model,
+                use_heuristic_fallback=args.allow_heuristic_judge,
             )
             judge_results.append(result)
 
     judge_validation = None
     if labeled and judge_results:
-        # Match human labels to judge results
         judge_for_validation = []
         human_map = {(h["example_id"], h["hint_type"], h["model_id"]): h for h in labeled}
         for jr in judge_results:
@@ -112,11 +146,22 @@ def main() -> None:
             if key in human_map:
                 judge_for_validation.append(jr)
         judge_validation = compute_judge_agreement(labeled, judge_for_validation)
-        print(f"Judge-human agreement: {judge_validation.get('exact_agreement_rate', 'N/A')} (n={judge_validation.get('n', 0)})")
+        print(
+            f"Judge-human exact agreement: {judge_validation.get('exact_agreement_rate', 'N/A')} "
+            f"kappa={judge_validation.get('kappa')} "
+            f"by_condition={judge_validation.get('kappa_by_condition')} "
+            f"(n={judge_validation.get('n', 0)})"
+        )
 
         val_path = args.output_dir / "judge_validation.json"
         with open(val_path, "w") as f:
             json.dump(judge_validation, f, indent=2)
+
+        ok, msg = passes_kappa_gate(judge_validation, MIN_KAPPA)
+        print(msg)
+        if not ok and not args.skip_kappa_gate and not args.skip_judge:
+            print("ABORT: revise rubric / relabel before reporting faithfulness estimates.")
+            raise SystemExit(2)
 
     # Load device probe if available
     probe_path = args.output_dir / "device_probe.json"
@@ -140,6 +185,7 @@ def main() -> None:
         judge_validation=judge_validation,
         config=config,
         output_dir=args.output_dir,
+        steering_stats=steering,
     )
 
     print(f"\nReport written to {args.output_dir / 'REPORT.md'}")
