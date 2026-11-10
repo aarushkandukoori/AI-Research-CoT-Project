@@ -92,6 +92,8 @@ def paired_diff(rows: list[dict], key1: str, key2: str, frac_idx: int) -> dict:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", required=True)
+    parser.add_argument("--g2", default=str(OUTPUT_DIR / "analysis" / "g2_agreement.json"),
+                        help="gate G2 result from scripts/g2_agreement.py (skipped if the file is absent)")
     args = parser.parse_args()
     out = Path(args.out).expanduser()
     out.mkdir(parents=True, exist_ok=True)
@@ -291,6 +293,21 @@ def main() -> None:
         m.add(f"JudgeOnly{WORD[size]}", str(a["judge_only"]))
     if agreement:
         m.add("NTiebreak", str(agreement.get("n_tiebreak", 0)))
+
+    # ---- Gate G2: judge vs human labels (scripts/g2_agreement.py) ----
+    # These macros and tab_g2.tex exist only once every drawn case has a human label and
+    # g2_agreement.py has scored them. Until then no G2 number is written, so the paper
+    # cannot print a made-up value.
+    g2_path = Path(args.g2).expanduser()
+    if g2_path.exists():
+        from g2_agreement import paper_macros, paper_table
+        g2 = json.load(open(g2_path))
+        if g2.get("complete"):
+            for name, value in paper_macros(g2):
+                m.add(name, value)
+            (out / "tab_g2.tex").write_text(paper_table(g2))
+        else:
+            print(f"skipped G2: {g2_path} does not cover every drawn case")
 
     # ---- Backend check (1.5B fp16 July run vs MLX 4-bit) ----
     bc = summary["models"].get("1.5B", {}).get("backend_check")
