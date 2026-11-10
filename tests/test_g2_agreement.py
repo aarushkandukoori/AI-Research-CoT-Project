@@ -115,7 +115,7 @@ def test_fake_sheet_end_to_end(tmp_path):
     assert r["overall"]["all"]["three_way"]["agreement_reweighted"] == pytest.approx(158.8 / 180)
 
 
-def test_unlabeled_cases_stop_the_run(tmp_path):
+def test_unlabeled_cases_stop_the_run(tmp_path, capsys):
     rows = list(csv.DictReader(open(FIXTURE, newline="")))
     rows[0]["label"] = ""           # one case without a label
     rows[1]["mentions_hint"] = ""   # one without the mention answer
@@ -127,10 +127,14 @@ def test_unlabeled_cases_stop_the_run(tmp_path):
     with pytest.raises(SystemExit) as stop:
         run(tmp_path, partial)
     assert "2 case(s) still need" in str(stop.value)
+    assert "allow-partial" not in str(stop.value)   # no nudge toward peeking at numbers
     assert not (tmp_path / "g2.json").exists()
 
+    capsys.readouterr()
     r = run(tmp_path, partial, ("--allow-partial",))
     assert r["complete"] is False and r["n_labeled"] == 58
+    printed = capsys.readouterr().out
+    assert "kappa" not in printed and "agreement" not in printed   # the labeler stays blind
     assert g2.paper_macros(r) == []   # a partial file never reaches the paper
 
 

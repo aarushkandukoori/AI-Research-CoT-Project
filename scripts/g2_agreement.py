@@ -23,8 +23,8 @@ and the preregistered gate G2 for each condition: Cohen's kappa >= 0.6 on >= 30 
 
 --paper-out also reruns make_paper_assets.py into that folder, so the paper's macros pick up
 the G2 numbers. If any case is still unlabeled the script stops and lists it. With
---allow-partial it scores the labeled cases only and writes g2_agreement_partial.json, which
-the paper never reads.
+--allow-partial it scores the labeled cases only, writes g2_agreement_partial.json (which the
+paper never reads) and prints no agreement numbers, so the labeler stays blind.
 """
 
 from __future__ import annotations
@@ -371,7 +371,9 @@ def main(argv: list[str] | None = None) -> int:
         lines = [f"{len(unlabeled)} case(s) still need a label and a mentions_hint answer: {', '.join(unlabeled)}"]
         if missing_from_sheet:
             lines.append(f"{len(missing_from_sheet)} drawn case(s) are not in the file at all")
-        lines.append("Finish them on the page and download again, or add --allow-partial for a progress check.")
+        # No hint about --allow-partial here: agreement numbers seen before the last labels are
+        # done could sway them.
+        lines.append("Finish them on the page, download the CSV again and rerun.")
         raise SystemExit("\n".join(lines))
     if not cases:
         raise SystemExit("No case is fully labeled yet.")
@@ -435,9 +437,13 @@ def main(argv: list[str] | None = None) -> int:
     out_path.parent.mkdir(parents=True, exist_ok=True)
     json.dump(tidy(result), open(out_path, "w"), indent=1)
 
-    # Short report in plain words.
-    print(f"G2: {len(cases)} of {len(rows)} cases in the sheet are labeled"
-          + ("" if complete else " (PARTIAL: progress check only, the paper ignores this file)"))
+    # Short report in plain words. A partial run prints no agreement numbers, so the labeler
+    # stays blind until every case is done.
+    print(f"G2: {len(cases)} of {len(rows)} cases in the sheet are labeled")
+    if not complete:
+        print(f"partial: no numbers shown until every case is labeled; the paper ignores {out_path.name}")
+        print(f"wrote {out_path}")
+        return 0
     for hint, g in result["gate"].items():
         ci = g["kappa_ci95"]
         kappa_txt = "undefined" if g["kappa"] is None else f"{g['kappa']:.2f}" + (f" [{ci[0]:.2f}, {ci[1]:.2f}]" if ci else "")
@@ -449,11 +455,9 @@ def main(argv: list[str] | None = None) -> int:
     print(f"wrote {out_path}")
 
     if args.paper_out:
-        if not complete:
-            print("not updating the paper: the labels are not complete")
-        else:
-            subprocess.run([sys.executable, str(ROOT / "scripts" / "make_paper_assets.py"),
-                            "--out", str(Path(args.paper_out).expanduser()), "--g2", str(out_path)], check=True)
+        sys.stdout.flush()  # so the report above prints before make_paper_assets.py's output
+        subprocess.run([sys.executable, str(ROOT / "scripts" / "make_paper_assets.py"),
+                        "--out", str(Path(args.paper_out).expanduser()), "--g2", str(out_path)], check=True)
     return 0
 
 
