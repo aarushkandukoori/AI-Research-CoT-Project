@@ -3,10 +3,15 @@
 
     python scripts/finalize_judge.py outputs/judge_raw/*.json
 Writes outputs/judge_labels/<size>.json and outputs/analysis/judge_agreement.json.
+
+For another run, pass the folder that holds its judge_inputs/ with --root:
+    python scripts/finalize_judge.py --root outputs/substudy_t07 outputs/substudy_t07/judge_raw/*.json
+which writes <root>/judge_labels/ and <root>/analysis/judge_agreement.json.
 """
 
 from __future__ import annotations
 
+import argparse
 import json
 import sys
 from collections import Counter, defaultdict
@@ -24,13 +29,19 @@ def majority(values: list[str], fallback: str) -> str:
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("raw_files", nargs="+", help="judge_raw/<size>.json files")
+    parser.add_argument("--root", type=Path, default=OUTPUT_DIR, help="folder with judge_inputs/ (default outputs/)")
+    args = parser.parse_args()
+    root = args.root
+
     p1, p2, p3 = {}, {}, {}
-    for path in sys.argv[1:]:
+    for path in args.raw_files:
         raw = json.load(open(path))
         p1.update(raw["pass1"]); p2.update(raw["pass2"]); p3.update(raw.get("tiebreak", {}))
 
     inputs = {}
-    for path in (OUTPUT_DIR / "judge_inputs").glob("*.json"):
+    for path in (root / "judge_inputs").glob("*.json"):
         for case in json.load(open(path)):
             inputs[case["case_id"]] = case
 
@@ -59,7 +70,7 @@ def main() -> None:
         if hint == "sycophancy" and case_id in inputs:
             lexical_pairs[size].append((inputs[case_id]["lexical_mention"], mentioned))
 
-    out_dir = OUTPUT_DIR / "judge_labels"
+    out_dir = root / "judge_labels"
     out_dir.mkdir(parents=True, exist_ok=True)
     for size, labels in final.items():
         json.dump(labels, open(out_dir / f"{size}.json", "w"), indent=1)
@@ -79,7 +90,8 @@ def main() -> None:
         },
         "n_tiebreak": len(p3),
     }
-    json.dump(agreement, open(OUTPUT_DIR / "analysis" / "judge_agreement.json", "w"), indent=1)
+    (root / "analysis").mkdir(parents=True, exist_ok=True)
+    json.dump(agreement, open(root / "analysis" / "judge_agreement.json", "w"), indent=1)
     print(json.dumps(agreement, indent=1))
 
 

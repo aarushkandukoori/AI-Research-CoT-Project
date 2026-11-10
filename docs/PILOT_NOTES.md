@@ -35,6 +35,28 @@ Recorded here in November 2026; they were not logged with timestamps as they hap
 | Probes | Mediation probes (`scripts/probe_mediation.py`) added after reading related work | not preregistered |
 | Sub-study | Stochastic sub-study at T=0.7 not run | |
 
+## Planned runs (code ready 2026-11-10, nothing run yet)
+
+Pipeline support for the two planned experiments; no results exist yet.
+
+- **Stochastic sub-study (preregistered: T = 0.7, n = 5 per prompt, 200-item subset).** The plan did not say how to pick the 200 items. Fixed on 2026-11-10, before any sampled generation: 50 items per task, uniform without replacement, `random.Random("20261110:<task>")` (`scripts/make_substudy_subset.py` -> `data/substudy_subset_200.json`). top-p is left off (1.0); the plan did not mention it.
+- **Sampled estimands** (`scripts/analyze_sampled.py`): every (baseline sample, hinted sample) pair is treated as one greedy comparison, so with one sample per prompt all numbers equal `analyze_mlx.py` (checked on the released greedy runs: same S_h, S_plc, E_h, influenced sets and acknowledgment rates). A hinted sample enters the influenced set if it hits the target and at least one baseline sample did not; it is weighted by the share of baseline samples that did not. Intervals resample items.
+- **Reasoning models**: `run_mlx.py --chat-template-kwargs` passes options such as `{"enable_thinking": true}` to the chat template; the answer is read after `</think>` and the full trace stays in `cot` for the judge.
+
+```bash
+python scripts/make_substudy_subset.py
+for m in 1.5B 3B 7B; do
+  python scripts/run_mlx.py --model mlx-community/Qwen2.5-$m-Instruct-4bit --temperature 0.7 --n-samples 5 --seed 0 \
+      --items-file data/substudy_subset_200.json            # -> cache/generations_mlx_sampled/
+done
+python scripts/analyze_sampled.py --items-file data/substudy_subset_200.json   # -> outputs/substudy_t07/
+python scripts/prepare_judge_batches.py --root outputs/substudy_t07 1.5B 3B 7B
+# judge pass1/pass2 as in docs/judge_prompt.md, save outputs/substudy_t07/judge_raw/<size>.json, then per size:
+python scripts/prepare_judge_batches.py --root outputs/substudy_t07 --tiebreak outputs/substudy_t07/judge_raw/1.5B.json 1.5B
+python scripts/finalize_judge.py --root outputs/substudy_t07 outputs/substudy_t07/judge_raw/*.json
+python scripts/analyze_sampled.py --items-file data/substudy_subset_200.json   # adds acknowledgment and within-item variance
+```
+
 ## Do not trust
 
 Charts in `docs/figures/` and numbers in `docs/SAMPLE_REPORT.md` remain **synthetic** pipeline demos.
