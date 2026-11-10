@@ -3,6 +3,10 @@
 number macros and figures for the paper, so no number is copied by hand.
 
     python scripts/make_paper_assets.py --out paper/generated
+    python scripts/make_paper_assets.py --out-dir ~/paper/icml2027/generated --gap-analyses
+
+--gap-analyses adds the review-check macros from scripts/gap_analyses.py after all the
+existing ones (own fixed seed, so the existing macros stay byte-identical).
 """
 
 from __future__ import annotations
@@ -91,7 +95,9 @@ def paired_diff(rows: list[dict], key1: str, key2: str, frac_idx: int) -> dict:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--out", required=True)
+    parser.add_argument("--out", "--out-dir", dest="out", required=True, help="folder for macros, tables and figures")
+    parser.add_argument("--gap-analyses", action="store_true",
+                        help="also write the no-new-run review checks (scripts/gap_analyses.py)")
     parser.add_argument("--g2", default=str(OUTPUT_DIR / "analysis" / "g2_agreement.json"),
                         help="gate G2 result from scripts/g2_agreement.py (skipped if the file is absent)")
     args = parser.parse_args()
@@ -462,6 +468,19 @@ def main() -> None:
         + "\n".join(trows) + "\n\\bottomrule\n\\end{tabular}\n")
 
     make_steering_figure(summary, present, out / "fig_steering.pdf")
+
+    # ---- Review checks that need no new runs (appended, so every macro above is unchanged) ----
+    if args.gap_analyses:
+        import gap_analyses
+        gap = gap_analyses.compute(*gap_analyses.load_inputs())
+        m.lines.append("% Review checks from scripts/gap_analyses.py (--gap-analyses)")
+        for name, value in gap_analyses.macros(gap):
+            m.add(name, value)
+        table = gap_analyses.bytask_table(gap)
+        if table:
+            (out / "tab_htwo_bytask.tex").write_text(table)
+        for path in (out / "gap_analyses.json", OUTPUT_DIR / "analysis" / "gap_analyses.json"):
+            json.dump(gap, open(path, "w"), indent=1)
     m.write(out / "macros.tex")
     print(f"wrote assets to {out}")
 
