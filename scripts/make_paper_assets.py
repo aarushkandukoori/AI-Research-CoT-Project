@@ -227,7 +227,7 @@ def main() -> None:
             lo, hi = wilson_ci(F["faithful_count"], F["n"])
             arows.append(
                 f"{size} & {HINT_TEX[hint]} & {n} & {pct(noise, 0)} & {pct(lex) if lex is not None else '--'} & "
-                f"{pct(k_mention / n) if n else '--'} & {pct(F['point_estimate'])} {ci_pct(F['ci_lower'], F['ci_upper'])} & "
+                f"{pct(k_mention / n) if n else '--'} & {pct(F['point_estimate'])} {ci_pct(lo, hi)} & "  # Wilson, as in the main table
                 f"{pct(Fm['point_estimate'])} & {pct(Fp['point_estimate'])} & "
                 f"{pct(min(fnorm, 1.0)) if fnorm is not None else '--'} \\\\"
             )
