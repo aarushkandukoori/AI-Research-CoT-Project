@@ -108,3 +108,31 @@ def test_prompt_seeds_are_fixed_and_distinct():
     assert a == run_vllm.prompt_seed(0, "causal_judgement_3", "baseline")
     assert a != run_vllm.prompt_seed(0, "causal_judgement_3", "placebo")
     assert a != run_vllm.prompt_seed(1, "causal_judgement_3", "baseline")
+
+
+def run_main(monkeypatch, argv):
+    monkeypatch.setattr(sys, "argv", ["run_vllm.py", "--backend", "hf", "--model", "org/FAKE", *argv])
+    run_vllm.main()
+
+
+def test_refuses_to_resume_with_other_seed_or_sample_count(tmp_path, monkeypatch):
+    import json
+
+    import pytest
+
+    out = tmp_path / "org__FAKE"
+    out.mkdir()
+    base = {"backend": "hf", "dtype": "bfloat16", "temperature": 0.7, "top_p": 1.0, "max_tokens": 768,
+            "chat_template_kwargs": {}, "seed": 0, "n_samples": 5}
+    for change in ({"seed": 1}, {"n_samples": 3}, {"top_p": 0.95}):
+        json.dump({**base, **change}, open(out / "run_config.json", "w"))
+        with pytest.raises(SystemExit, match="other settings"):
+            run_main(monkeypatch, ["--temperature", "0.7", "--n-samples", "5", "--max-tokens", "768",
+                                   "--out-root", str(tmp_path)])
+
+
+def test_refuses_the_released_greedy_folder(monkeypatch):
+    import pytest
+
+    with pytest.raises(SystemExit):
+        run_main(monkeypatch, ["--out-root", str(run_vllm.GREEDY_ROOT)])

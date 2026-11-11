@@ -21,7 +21,13 @@ How the generation matches run_mlx.py:
     (tokenizer.apply_chat_template with --chat-template-kwargs), tokenized with
     add_special_tokens=False and handed to vLLM as token ids, so vLLM cannot add
     a second BOS token.
-  * Generation stops at the same end tokens (generation_config.json + tokenizer).
+  * End tokens are collected by the same rule as mlx-lm (generation_config.json,
+    else config.json, plus the tokenizer's). The ids can differ from the Mac runs:
+    the mlx-community 4-bit Qwen repos ship no generation_config.json, so MLX stopped
+    only at <|im_end|> (151645), while the original Qwen repos list <|im_end|> and
+    <|endoftext|> (151643), and vLLM stops at the generation_config ids in any case.
+    No released greedy MLX record contains <|endoftext|>, so this should not bite.
+    The ids used are stored in each record ("decoding" -> "stop_token_ids").
     The end token is dropped and the rest is decoded with the same tokenizer call.
   * No top-k, min-p or repetition penalty: the model's generation_config.json
     sampling defaults are switched off (generation_config="vllm").
@@ -52,7 +58,9 @@ from cot_faithfulness.prompts.builder import build_all_variants
 
 HINT_TYPES = ["sycophancy", "reorder", "placebo"]
 # Settings that must match before we resume into an existing run folder.
-CHECKED_KEYS = ["backend", "dtype", "temperature", "top_p", "max_tokens", "chat_template_kwargs"]
+CHECKED_KEYS = ["backend", "dtype", "temperature", "top_p", "max_tokens", "chat_template_kwargs", "seed",
+                "n_samples"]
+GREEDY_ROOT = CACHE_DIR / "generations_mlx"  # the released greedy MLX runs; never written to from here
 SEED_RULE = "prompt seed = int(sha256('<seed>:<example_id>:<variant_id>')[:8], 16); sample k uses prompt seed + k"
 
 
@@ -191,10 +199,13 @@ def main() -> None:
     template_kwargs = args.chat_template_kwargs or {}
     if args.n_samples < 1 or (args.n_samples > 1 and not sampled):
         parser.error("--n-samples > 1 needs --temperature > 0")
+    if args.out_root.resolve() == GREEDY_ROOT.resolve():
+        parser.error("cache/generations_mlx holds the released greedy runs; pick another --out-root")
     out_dir = args.out_root / args.model.replace("/", "__")
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    # Settings stored in every record and in run_config.json, checked before resuming.
+    # Settings stored in every record and in run_config.json, checked before resuming
+    # (run_config.json is written once the end tokens are known, just before generating).
     decoding = {
         "temperature": args.temperature,
         "top_p": args.top_p,
@@ -204,7 +215,8 @@ def main() -> None:
         "chat_template_kwargs": template_kwargs,
         "backend": args.backend,
         "dtype": args.dtype,
-        "seed_rule": SEED_RULE if sampled else None,
+        # hf (smoke tests only) seeds torch with the prompt seed and draws all samples in one call
+        "seed_rule": (SEED_RULE if args.backend == "vllm" else "torch.manual_seed(prompt seed)") if sampled else None,
         "transformers_version": version("transformers"),
         "torch_version": version("torch"),
     }
@@ -215,8 +227,6 @@ def main() -> None:
         old = json.load(open(config_path))
         if any(old.get(k) != decoding[k] for k in CHECKED_KEYS):
             sys.exit(f"{out_dir} was made with other settings ({config_path}); use another --out-root")
-    else:
-        json.dump(decoding, open(config_path, "w"), indent=2)
 
     examples = load_all_tasks(BBH_TASKS, args.max_samples)
     if args.items_file:
@@ -246,6 +256,9 @@ def main() -> None:
 
     tokenizer = AutoTokenizer.from_pretrained(args.model)
     stop_ids = stop_token_ids(args.model, tokenizer)
+    decoding["stop_token_ids"] = stop_ids
+    if not config_path.exists():
+        json.dump(decoding, open(config_path, "w"), indent=2)
     prompt_ids, opens_think, seeds = [], [], []
     for ex, variant, _ in jobs:
         messages = [{"role": "user", "content": variant.prompt}]
