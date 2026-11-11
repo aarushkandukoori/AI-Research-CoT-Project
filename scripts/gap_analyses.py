@@ -12,6 +12,10 @@
    A robustness check next to the preregistered pooled z-test, not a replacement.
 5. Minimum detectable difference for H2 at the achieved denominators.
 6. Reordering excess switch-to-target: bootstrap interval and p-value per size.
+7. Review fixes (2026-11-10): resisted items restricted to the influenced set's base (baseline
+   parsed and not the target, hinted answer parsed), the targets the hint itself makes the top
+   option (top under arm A, not under arm C), follow rates given a pre-reasoning lead, Wilson
+   intervals for the acknowledgment rates, chance accuracy, and letter frequencies for reordering.
 
 Item-level data are rebuilt from the greedy generation cache (read only) and checked
 against outputs/analysis/summary.json before anything is computed, so the two cannot drift.
@@ -117,6 +121,9 @@ def probe_readout(rows: list[dict], rng: np.random.Generator) -> dict:
         lo, hi = boot_mean(pa - pc, rng)
         out[label] = {
             "argmax_A": int(sum(top(r[ARM_A][i]) == r["target"] for r in rows)),
+            # top under the hint and not without it: the leads the hint itself creates
+            "argmax_A_not_C": int(sum(top(r[ARM_A][i]) == r["target"] and top(r[ARM_C][i]) != r["target"]
+                                      for r in rows)),
             "argmax_C": int(sum(top(r[ARM_C][i]) == r["target"] for r in rows)),
             "mean_A": float(pa.mean()), "mean_C": float(pc.mean()),
             "diff": float((pa - pc).mean()), "diff_ci": [lo, hi],
@@ -148,6 +155,37 @@ def reference_pool(complete: dict) -> int:
         syc = conds["sycophancy"]
         n += parse_answer_v2(syc["cot"], sorted(syc["letter_map"])) != syc["hint_suggested_letter"]
     return n
+
+
+def matched_pool_ids(complete: dict) -> set[str]:
+    """Resisted items on the influenced set's base: baseline parsed and not the target, hinted
+    answer parsed and not the target. The influenced set is the same base with hinted == target."""
+    ids = set()
+    for ex_id, conds in complete.items():
+        a0, ah = conds["baseline"]["answer_v2"], conds["sycophancy"]["answer_v2"]
+        tau = conds["sycophancy"]["hint_suggested_letter"]
+        if a0 is not None and ah is not None and a0 != tau and ah != tau:
+            ids.add(ex_id)
+    return ids
+
+
+def is_matched(x: dict) -> bool:
+    return x["baseline_answer"] is not None and x["baseline_answer"] != x["target"] and x["hinted_answer"] is not None
+
+
+def follow_given_lead(n_infl: int, infl_lead: int, k: int, n: int, pool: int) -> dict:
+    """P(hinted answer = target | target leads at f = 0 under arm A), and given no lead, on the
+    base where the baseline is parsed and off the target. Followed counts are complete; resisted
+    counts are the sample share k/n scaled to the matched pool. Both rates are monotone in the
+    share, so the Wilson interval of k/n maps to an interval for each rate."""
+    lo, hi = wilson_ci(k, n)
+    fl, fn = infl_lead, n_infl - infl_lead
+    lead = lambda q: fl / (fl + q * pool) if fl + q * pool else float("nan")
+    nolead = lambda q: fn / (fn + (1 - q) * pool) if fn + (1 - q) * pool else float("nan")
+    q = k / n
+    return {"lead": lead(q), "lead_ci": [lead(hi), lead(lo)],
+            "nolead": nolead(q), "nolead_ci": [nolead(lo), nolead(hi)],
+            "overall": n_infl / (n_infl + pool), "resisted_lead_est": [q * pool, lo * pool, hi * pool]}
 
 
 # ---------------------------------------------------------------- 3. eta and F_norm
@@ -309,24 +347,69 @@ def compute(summary: dict, labels: dict, probes: dict, complete_by_size: dict) -
                 "probe_baseline_at_target": len(ps["baseline_at_target"]),
                 "probe_reference": len(ps["reference"]),
             })
-            # 1. probe readout
+            # 1. probe readout. The drawn sample is read first with the original generator so the
+            # influenced-item intervals below keep their draws; the paper uses the matched subset.
             ref = ps["reference"]
             pool = reference_pool(complete)
             rng = np.random.default_rng(SEED)
-            r["probe_reference"] = probe_readout(ref, rng)
+            r["probe_reference_drawn"] = probe_readout(ref, rng)
+            r["probe_reference_drawn"].update(pool=pool)
+            r["probe_influenced"] = probe_readout(ps["influenced"], rng)
+            mpool = matched_pool_ids(complete)
+            matched = [x for x in ref if is_matched(x)]
+            if not {x["example_id"] for x in matched} <= mpool:
+                raise SystemExit(f"{size}: matched resisted sample not inside the matched pool")
+            r["probe_reference"] = probe_readout(matched, np.random.default_rng(SEED + 1))
             r["probe_reference"].update(
-                pool=pool,
+                drawn=len(ref), pool=pool, matched_pool=len(mpool),
                 hinted_unparsed=sum(x["hinted_answer"] is None for x in ref),
                 baseline_at_target=sum(x["baseline_answer"] == x["target"] for x in ref),
+                # exclusive reasons a drawn item is left out of the matched subset
+                excl_baseline_unparsed=sum(x["baseline_answer"] is None for x in ref),
+                excl_baseline_at_target=sum(x["baseline_answer"] is not None and x["baseline_answer"] == x["target"]
+                                            for x in ref),
+                excl_hinted_unparsed=sum(x["baseline_answer"] is not None and x["baseline_answer"] != x["target"]
+                                         and x["hinted_answer"] is None for x in ref),
             )
             k = r["probe_reference"]["f0"]["argmax_A"]
-            lo, hi = wilson_ci(k, len(ref))
+            lo, hi = wilson_ci(k, len(matched))
             r["probe_reference"]["f0"]["argmax_A_share_wilson"] = [lo, hi]
-            r["probe_reference"]["f0"]["argmax_A_pool_estimate"] = [k / len(ref) * pool, lo * pool, hi * pool]
-            r["probe_influenced"] = probe_readout(ps["influenced"], rng)
+            r["probe_reference"]["f0"]["argmax_A_pool_estimate"] = [k / len(matched) * len(mpool),
+                                                                    lo * len(mpool), hi * len(mpool)]
+            r["follow_given_lead"] = follow_given_lead(len(ps["influenced"]),
+                                                       r["probe_influenced"]["f0"]["argmax_A"],
+                                                       k, len(matched), len(mpool))
 
         # 3. eta and F_norm
         r["eta_fnorm"] = boot_eta_fnorm(rows["sycophancy"], faithful_ids[size], np.random.default_rng(SEED))
+        # Wilson intervals for the acknowledgment rates (percentile intervals fail at 3/206), and
+        # an F_norm range from the ends of the Wilson interval for F and the bootstrap interval for eta
+        r["ack_wilson"] = {}
+        for h in ("sycophancy", "reorder"):
+            cell = [v for kk, v in lab.items() if kk.startswith(f"{size}|{h}|")]
+            kf = sum(v["classification"] == "FAITHFUL" for v in cell)
+            r["ack_wilson"][h] = {"k": kf, "n": len(cell), "ci": list(wilson_ci(kf, len(cell))) if cell else None}
+        wl, wh = r["ack_wilson"]["sycophancy"]["ci"]
+        el, eh = r["eta_fnorm"]["eta_ci"]
+        r["fnorm_range"] = [min(1.0, wl / (1 - el)) if el < 1 else None, min(1.0, wh / (1 - eh)) if eh < 1 else 1.0]
+        # mention field vs reliance label (relies_on_hint cases not labeled FAITHFUL)
+        syc_lab = [v for kk, v in lab.items() if kk.startswith(f"{size}|sycophancy|")]
+        r["relies_not_faithful"] = sum(v["mention_type"] == "relies_on_hint" and v["classification"] != "FAITHFUL"
+                                       for v in syc_lab)
+        # chance accuracy and letter frequencies (reordering question)
+        base = [c["baseline"] for c in complete.values()]
+        parsed = [b["answer_v2"] for b in base if b["answer_v2"] is not None]
+        ordr = [c for c in complete.values() if c["reorder"]["hint_suggested_letter"] != "A"
+                and None not in (c["baseline"]["answer_v2"], c["reorder"]["answer_v2"], c["placebo"]["answer_v2"])]
+        tau_o = lambda c: c["reorder"]["hint_suggested_letter"]
+        r["letters"] = {
+            "chance_acc": float(np.mean([1 / len(b["letter_map"]) for b in base])),
+            "baseline_A_share": sum(a == "A" for a in parsed) / len(parsed), "baseline_parsed": len(parsed),
+            "gold_A_share": sum(b["correct_letter"] == "A" for b in base) / len(base),
+            "reorder_items": len(ordr),
+            "moved_pick_before": sum(c["baseline"]["answer_v2"] == tau_o(c) for c in ordr) / len(ordr),
+            "moved_pick_after": sum(c["reorder"]["answer_v2"] == tau_o(c) for c in ordr) / len(ordr),
+        }
         # 6. reordering excess (and sycophancy for reference)
         r["excess"] = {h: boot_excess(rows[h], np.random.default_rng(SEED)) for h in ("sycophancy", "reorder")}
 
@@ -356,9 +439,22 @@ def compute(summary: dict, labels: dict, probes: dict, complete_by_size: dict) -
     return res
 
 
+def same_across_sizes(res: dict, get) -> str:
+    """A size-neutral macro value; stop if the sizes disagree, so the text cannot go stale."""
+    vals = {str(get(r)) for r in res["sizes"].values()}
+    if len(vals) != 1:
+        raise SystemExit(f"size-neutral macro differs across sizes: {vals}")
+    return vals.pop()
+
+
 def macros(res: dict) -> list[tuple[str, str]]:
     out = []
     add = lambda n, v: out.append((n, v))
+    add("SetComplete", same_across_sizes(res, lambda r: r["sets"]["complete_items"]))
+    if all("probe_reference" in r for r in res["sizes"].values()):
+        add("RefDrawN", same_across_sizes(res, lambda r: r["probe_reference"]["drawn"]))
+    add("ChanceAcc", same_across_sizes(res, lambda r: pct(r["letters"]["chance_acc"])))
+    add("GoldLetterAPct", same_across_sizes(res, lambda r: pct(r["letters"]["gold_A_share"])))
     for size, r in res["sizes"].items():
         w = WORD[size]
         st = r["sets"]
@@ -394,6 +490,31 @@ def macros(res: dict) -> list[tuple[str, str]]:
             est, elo, ehi = ref["f0"]["argmax_A_pool_estimate"]
             add(f"RefLeadEst{w}", f"{est:.0f}")
             add(f"RefLeadEstCI{w}", f"[{elo:.0f}, {ehi:.0f}]")
+            add(f"RefPoolMatched{w}", str(ref["matched_pool"]))
+            add(f"RefExclBaseUnparsed{w}", str(ref["excl_baseline_unparsed"]))
+            add(f"RefExclBaseAtTarget{w}", str(ref["excl_baseline_at_target"]))
+            add(f"RefExclHintedUnparsed{w}", str(ref["excl_hinted_unparsed"]))
+            for src, pre in ((ref, "Ref"), (inf, "Infl")):
+                kn = src["f0"]["argmax_A_not_C"]
+                add(f"{pre}LeadNew{w}", str(kn))
+                add(f"{pre}LeadNewPct{w}", pct(kn / src["n"], 0))
+            fg = r["follow_given_lead"]
+            add(f"FollowGivenLead{w}", pct(fg["lead"], 0))
+            add(f"FollowGivenLeadCI{w}", f"[{pct(fg['lead_ci'][0], 0)}, {pct(fg['lead_ci'][1], 0)}]")
+            add(f"FollowGivenNoLead{w}", pct(fg["nolead"], 0))
+            add(f"FollowGivenNoLeadCI{w}", f"[{pct(fg['nolead_ci'][0], 0)}, {pct(fg['nolead_ci'][1], 0)}]")
+            add(f"FollowOverall{w}", pct(fg["overall"], 0))
+        for h, tag in (("sycophancy", "Syc"), ("reorder", "Ord")):
+            aw = r["ack_wilson"][h]
+            if aw["ci"]:
+                add(f"FWilsonCI{tag}{w}", ci_pct(*aw["ci"]))
+        fr = r["fnorm_range"]
+        add(f"FnormRangeSyc{w}", "--" if fr[0] is None else ci_pct(*fr))
+        add(f"ReliesNotFaithfulSyc{w}", str(r["relies_not_faithful"]))
+        lt = r["letters"]
+        add(f"BaseLetterAPct{w}", pct(lt["baseline_A_share"]))
+        add(f"MovedPickBefore{w}", pct(lt["moved_pick_before"]))
+        add(f"MovedPickAfter{w}", pct(lt["moved_pick_after"]))
         ef = r["eta_fnorm"]
         add(f"NoiseShareCISyc{w}", ci_pct(*ef["eta_ci"], 0))
         add(f"FnormCISyc{w}", ci_pct(*ef["fnorm_ci"]))

@@ -36,6 +36,9 @@ ARMS = {
     "D_plc_prompt_hint_cot": "D",
 }
 RNG = np.random.default_rng(7)
+# Figures: Times-like serif embedded as TrueType (pdf.fonttype 42), never Type 3; text at 8 pt or more.
+FIG_RC = {"font.family": "serif", "font.serif": ["Times New Roman", "Times", "DejaVu Serif"], "font.size": 8,
+          "pdf.fonttype": 42, "ps.fonttype": 42, "axes.spines.top": False, "axes.spines.right": False}
 
 
 def pct(x: float | None, digits: int = 1) -> str:
@@ -154,6 +157,7 @@ def main() -> None:
             s = st[hint]
             tag = f"{HINT_WORD[hint]}{WORD[size]}"
             m.add(f"Acc{tag}", pct(s["acc_hinted"]))
+            m.add(f"AccBase{tag}", pct(s["acc_baseline"]))  # differs between hints: reordering drops identity items
             m.add(f"Flip{tag}", pct(s["destabilization"]))
             m.add(f"Switch{tag}", pct(s["switch_to_target"]))
             m.add(f"SwitchPlc{tag}", pct(s["placebo_switch_to_dummy"]))
@@ -407,6 +411,9 @@ def main() -> None:
         m.add(f"LastQuarterShare{w}", pct((nie["mean"] - nie_3q["mean"]) / nie["mean"], 0))
         mass_at = lambda i: np.mean([r[k][i]["letter_mass"] for r in rows_all for k in ARMS])
         m.add(f"LetterMassFinal{w}", pct(mass_at(-1))); m.add(f"LetterMassQuarter{w}", pct(mass_at(1)))
+        # Arm D against arm B: at f = 1 with its interval, and the largest gap in the means over all cuts
+        m.add(f"BminusD{w}", pct(bd["mean"])); m.add(f"BminusDCI{w}", ci_pct(bd["lo"], bd["hi"]))
+        m.add(f"BDMaxGap{w}", pct(max(abs(b - d) for b, d in zip(ps["B"]["mean"], ps["D"]["mean"]))))
         m.add(f"ReadoutA{w}", pct(read_a)); m.add(f"ReadoutC{w}", pct(read_c)); m.add(f"LetterMass{w}", pct(mass))
         probe_summary[size] = {"n": len(infl), "n_all": len(rows_all), "n_resisted": len(resisted),
                                "A": A1, "B": B1, "C": C1, "D": D1, "nde": nde, "nie": nie, "pre": pre,
@@ -490,7 +497,7 @@ def make_probe_figure(curves: dict, path: Path) -> None:
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
 
-    plt.rcParams.update({"font.family": "serif", "font.size": 8, "axes.spines.top": False, "axes.spines.right": False})
+    plt.rcParams.update(FIG_RC)
     colors = {"A": "#2a78d6", "B": "#eb6834", "D": "#1baf7a", "C": "#52514e"}
     names = {"A": "A: hint prompt + hinted CoT", "B": "B: no hint + hinted CoT",
              "D": "D: placebo + hinted CoT", "C": "C: no hint + baseline CoT"}
@@ -512,7 +519,7 @@ def make_probe_figure(curves: dict, path: Path) -> None:
         ax.grid(axis="y", color="#e6e5e0", lw=0.6)
     axes[0].set_ylabel("P(hint target), %")
     handles, labels_ = axes[0].get_legend_handles_labels()
-    fig.legend(handles, labels_, loc="lower center", ncol=4, frameon=False, fontsize=7, bbox_to_anchor=(0.5, -0.04))
+    fig.legend(handles, labels_, loc="lower center", ncol=4, frameon=False, fontsize=8, bbox_to_anchor=(0.5, -0.04))
     fig.tight_layout(rect=(0, 0.1, 1, 1))
     fig.savefig(path, bbox_inches="tight")
     plt.close(fig)
@@ -523,9 +530,9 @@ def make_steering_figure(summary: dict, sizes: list[str], path: Path) -> None:
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
 
-    plt.rcParams.update({"font.family": "serif", "font.size": 8, "axes.spines.top": False, "axes.spines.right": False})
+    plt.rcParams.update(FIG_RC)
     colors = {"sycophancy": "#2a78d6", "reorder": "#eb6834", "placebo": "#8a8984"}
-    fig, ax = plt.subplots(figsize=(3.3, 2.0))
+    fig, ax = plt.subplots(figsize=(3.6, 2.4))
     width = 0.26
     max_v = 0.0
     for i, size in enumerate(sizes):
@@ -538,7 +545,7 @@ def make_steering_figure(summary: dict, sizes: list[str], path: Path) -> None:
             ax.bar(i + (j - 1) * width, 100 * v, width - 0.03, color=colors[name],
                    label={"sycophancy": "sycophancy hint", "reorder": "reordering hint",
                           "placebo": "placebo (dummy target)"}[name] if i == 0 else None)
-            ax.text(i + (j - 1) * width, 100 * v + 1, f"{100 * v:.0f}", ha="center", va="bottom", fontsize=6.5, color="#333333")
+            ax.text(i + (j - 1) * width, 100 * v + 1, f"{100 * v:.0f}", ha="center", va="bottom", fontsize=8, color="#333333")
     ax.set_xticks(range(len(sizes)))
     ax.set_xticklabels(sizes)
     ax.set_xlabel("Qwen2.5 Instruct model size")
@@ -546,7 +553,7 @@ def make_steering_figure(summary: dict, sizes: list[str], path: Path) -> None:
     ax.grid(axis="y", color="#e6e5e0", lw=0.6)
     ax.set_axisbelow(True)
     ax.set_ylim(0, 100 * max_v * 1.12 + 2)
-    ax.legend(frameon=False, fontsize=6.5, loc="lower center", ncol=3, bbox_to_anchor=(0.5, 1.0))
+    ax.legend(frameon=False, fontsize=8, loc="lower center", ncol=2, bbox_to_anchor=(0.5, 1.0))
     fig.tight_layout()
     fig.savefig(path, bbox_inches="tight")
     plt.close(fig)
