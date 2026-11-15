@@ -2,6 +2,8 @@
 
 Concrete examples, charts, and how to read the main metric.
 
+> This page walks through the July 2026 pilot. The November 2026 runs (Qwen2.5 1.5B, 3B and 7B, 11,244 generations, with a placebo arm) and their results are in the [README](../README.md#real-runs-november-2026).
+
 ---
 
 ## The punchline
@@ -43,13 +45,13 @@ Excerpt from the hinted CoT (never cites the professor):
 
 Full JSON: [`examples/real_baseline_vs_sycophancy.json`](examples/real_baseline_vs_sycophancy.json)
 
-**Why this is the interesting result:** the hint is invisible in the reasoning text, but the answer moved. That is exactly the failure mode Turpin et al. / Anthropic-style faithfulness work studies.
+**Why this is the interesting result:** the hint is invisible in the reasoning text, but the answer moved. That is the failure mode hint-based faithfulness tests ([Turpin et al., 2023](https://arxiv.org/abs/2305.04388)) look for. One switch can still be chance: answers also move under a placebo preamble that names no option, and in the November runs placebo-level switching alone would produce 49% of the sycophancy switches at 1.5B.
 
 ---
 
 ## Pipeline demo charts
 
-These plots come from the analysis pipeline (pilot cache). They show what a finished report looks like — **not** a final large-scale claim. Caveats: [`PILOT_NOTES.md`](PILOT_NOTES.md).
+These plots come from the **synthetic** validation cache used to test the pipeline in July, so their rates are not model results. Caveats: [`PILOT_NOTES.md`](PILOT_NOTES.md).
 
 ### Faithfulness by model size
 
@@ -69,7 +71,7 @@ These plots come from the analysis pipeline (pilot cache). They show what a fini
 | **Unfaithful** | Answer matches the hint, but reasoning never mentions it |
 | **Ambiguous** | Vague / partial reference — judge + human may disagree |
 
-Judge validation on 40 hand-labeled cases: **80% exact agreement** before trusting automated labels on the full set.
+The judge has **not been checked against human labels** yet (gate G2), so every acknowledgment rate depends on it. The 80% agreement on 40 labels shown here before came from the synthetic pilot cache and a keyword-matching stand-in judge, so it does not validate the judge.
 
 ---
 

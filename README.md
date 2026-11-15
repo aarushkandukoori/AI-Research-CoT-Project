@@ -4,13 +4,13 @@
 
 **CoT faithfulness experiment** - when a biasing hint changes a model’s answer, does its chain-of-thought admit the hint… or invent a clean-looking justification that never mentions it?
 
-Replication-style project following [Turpin et al. (2023)](https://arxiv.org/abs/2305.04388) and Anthropic’s CoT faithfulness work.
+Builds on the hint test of [Turpin et al. (2023)](https://arxiv.org/abs/2305.04388) and adds a matched placebo arm, a preamble that names no option, to measure how often answers switch without any hint.
 
 ---
 
 ## Real runs (November 2026)
 
-Paper draft: *Do Small Models Say Why They Switched? Placebo-Controlled Hint Acknowledgment and Chain-of-Thought Mediation in Qwen2.5 1.5B to 7B* (Aarush Kandukoori, Aditya Kandukoori, Shaoang Li).
+Paper draft: *Do Small Models Say Why They Switched? Placebo-Controlled Hint Acknowledgment and Transplant Probes in Qwen2.5 1.5B to 7B* (Aarush Kandukoori, Aditya Kandukoori, Shaoang Li).
 
 **What was run.** Qwen2.5-1.5B, 3B and 7B Instruct (4-bit MLX conversions from `mlx-community`, `mlx-lm` 0.32.0, greedy, at most 768 new tokens) on all 937 items of four BIG-Bench Hard tasks, each without a hint, with a sycophancy hint (*“A Stanford professor … thinks the answer is (X)”*), with the options reordered so the target is (A), and with a placebo preamble that names no option: 11,244 generations. The 1.5B generations ran on 2026-10-29 (the last 58 on 2026-11-06); 3B, 7B, the judge and the probes ran on 2026-11-06. Every case where the answer switched to the hinted target was labeled twice, blind, by an LLM judge (prompt in [`docs/judge_prompt.md`](docs/judge_prompt.md)), and forward-pass probes moved the hinted chain-of-thought into prompts without the hint.
 
@@ -164,7 +164,7 @@ tests/                   ← pipeline unit tests
 ## Limitations (intentional honesty)
 
 1. **Dataset contamination** - BBH is public; models may have seen it.  
-2. **Judge ceiling** - LLM judge ≠ perfect human judgment (pilot: 80% agreement on 40 labels; the November runs are not yet checked against human labels).  
+2. **Judge not checked against human labels** - every acknowledgment rate rests on one LLM judge, and no human labels exist yet (gate G2). The 80% agreement on 40 labels once listed here came from the July synthetic pilot cache and a keyword-matching stand-in judge, so it does not validate the November judge.  
 3. **Small-n cells** - n&lt;20 influenced flips → rate is noisy.  
 4. **Pilot vs full run** - charts in the walkthrough include pipeline-demo numbers; see [`docs/PILOT_NOTES.md`](docs/PILOT_NOTES.md). The November 2026 results above come from the real runs.  
 5. **Parsing** - free-form CoT answer extraction can miss truncated outputs.

@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles.css?v=9" />
+  <link rel="stylesheet" href="./styles.css?v=10" />
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
@@ -56,8 +56,8 @@
             <span class="line"><span class="word">they</span> <span class="word accent">think?</span></span>
           </h1>
           <p class="hero-sub reveal">
-            An interactive replication of CoT faithfulness research — testing whether
-            written reasoning admits the real reason for an answer, or invents a clean-looking story after the fact.
+            An interactive demo of hint-based CoT faithfulness tests: does written reasoning admit
+            the real reason for an answer, or tell a clean-looking story after the fact?
           </p>
           <div class="hero-cta reveal">
             <a class="btn primary" href="#lab">Enter the lab</a>
@@ -224,7 +224,7 @@
         <article class="concept-card reveal" data-tilt>
           <div class="card-num">02</div>
           <h3>Answer flips</h3>
-          <p>Compared to baseline CoT, the model switches to the hinted choice.</p>
+          <p>Compared to baseline CoT, the model switches to the hinted choice. A placebo preamble that names no option shows how often answers switch anyway.</p>
         </article>
         <article class="concept-card reveal" data-tilt>
           <div class="card-num">03</div>
@@ -318,7 +318,7 @@
               <span class="answer-pill wrong">Answer (B)</span>
             </header>
             <p class="compare-copy" id="hinted-copy"></p>
-            <p class="callout">Never mentions the professor. Looks like pure logic. That’s unfaithful CoT.</p>
+            <p class="callout">Never mentions the professor and reads like pure logic. One switch can still be chance: in the November runs, placebo-level switching alone would produce 49% of the 1.5B sycophancy switches.</p>
           </article>
         </div>
         <div class="scrub-labels"><span>Baseline</span><span>Hinted</span></div>
@@ -353,27 +353,28 @@
     <section class="section metrics" id="metrics">
       <div class="section-head">
         <h2 class="reveal">Metrics explorer</h2>
-        <p class="reveal">Faithfulness rate with bootstrap uncertainty. Drag to explore model size. Cells with n&lt;20 are flagged as noisy.</p>
+        <p class="reveal">November 2026 runs: the share of sycophancy switches whose CoT gives the hint as a reason, with 95% CIs. Drag to change model size.</p>
       </div>
 
       <div class="metrics-shell reveal">
         <div class="metric-controls">
           <label>
             Model size
-            <input type="range" id="model-slider" min="0" max="1" step="1" value="0" />
-            <div class="slider-labels"><span>1.5B</span><span>7B</span></div>
+            <input type="range" id="model-slider" min="0" max="2" step="1" value="0" />
+            <div class="slider-labels"><span>1.5B</span><span>3B</span><span>7B</span></div>
           </label>
           <div class="metric-readout">
-            <div class="big-num" id="metric-rate">40%</div>
-            <div class="ci" id="metric-ci">95% CI [23%, 57%]</div>
-            <div class="n" id="metric-n">n = 35 influenced flips</div>
+            <div class="big-num" id="metric-rate">10.7%</div>
+            <div class="ci" id="metric-ci">95% CI [6.7%, 14.7%]</div>
+            <div class="n" id="metric-n">n = 224 sycophancy switches</div>
           </div>
         </div>
         <div class="chart" id="bar-chart" aria-hidden="true">
           <div class="bar-track"><div class="bar" id="bar-15" data-label="1.5B"></div></div>
+          <div class="bar-track"><div class="bar" id="bar-3" data-label="3B"></div></div>
           <div class="bar-track"><div class="bar" id="bar-7" data-label="7B"></div></div>
         </div>
-        <p class="metric-caveat">Pipeline-demo figures from the analysis cache — see project docs for caveats. Not a final large-scale claim.</p>
+        <p class="metric-caveat">Qwen2.5 Instruct, 937 BIG-Bench Hard items, greedy decoding. Labels come from an LLM judge that has not been checked against human labels yet. Bar length is the rate out of 100%.</p>
       </div>
     </section>
 
@@ -395,8 +396,8 @@
 
     <!-- CLOSING -->
     <section class="section closing">
-      <h2 class="reveal">Built as a small-scale research replication</h2>
-      <p class="reveal">Methodology inspired by Turpin et al. and Anthropic’s CoT faithfulness work — with honest limitations on contamination, judge reliability, and sample size.</p>
+      <h2 class="reveal">Open code and data</h2>
+      <p class="reveal">Builds on the hint test of Turpin et al. (2023) and adds a placebo arm. Every generation, judge label and probe output is in the repository, and the README lists the limits on contamination, judge reliability and sample size.</p>
       <div class="closing-links reveal">
         <a class="btn primary" href="https://github.com/aarushkandukoori/AI-Research-CoT-Project" target="_blank" rel="noopener">Open GitHub repository</a>
         <a class="btn ghost" href="https://arxiv.org/abs/2305.04388" target="_blank" rel="noopener">Turpin et al. paper</a>
@@ -414,6 +415,6 @@
     </p>
   </footer>
 
-  <script src="./app.js?v=9" type="module"></script>
+  <script src="./app.js?v=10" type="module"></script>
 </body>
 </html>

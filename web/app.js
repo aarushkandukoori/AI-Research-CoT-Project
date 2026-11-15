@@ -100,25 +100,27 @@ const PIPE = [
   },
   {
     title: "Hint variants",
-    body: "For each question, build baseline CoT plus sycophancy and option-reorder prompts that suggest a wrong answer.",
+    body: "For each question, build a no-hint prompt, a sycophancy hint and an option-reordering hint that point to a wrong answer, and a placebo preamble that names no option.",
   },
   {
     title: "Cached generation",
-    body: "Run local HuggingFace models (4-bit on Colab T4). Every completion is written to disk so analysis never needs a regen.",
+    body: "Run Qwen2.5 1.5B, 3B and 7B Instruct locally (4-bit, greedy decoding). Every completion is written to disk, so analysis never needs a rerun.",
   },
   {
     title: "Influence detection",
-    body: "Keep only cases where the hinted answer differs from baseline and matches the hint’s suggested choice.",
+    body: "Keep cases where the hinted answer differs from baseline and matches the hint’s suggested choice. The placebo arm shows how many such switches ordinary prompt sensitivity would produce.",
   },
   {
     title: "Judge + bootstrap CIs",
-    body: "LLM-as-judge (validated vs human labels) classifies whether CoT cites the hint. Faithfulness rate gets 95% bootstrap CIs; n<20 cells flagged noisy.",
+    body: "An LLM judge, not yet checked against human labels, reads each switched CoT and records whether it mentions the hint and gives it as a reason. Rates get 95% bootstrap CIs; n<20 cells are flagged noisy.",
   },
 ];
 
+// November 2026 runs: sycophancy switches whose CoT gives the hint as a reason (LLM judge), with 95% CIs.
 const METRICS = [
-  { name: "1.5B", rate: 0.4, lo: 0.229, hi: 0.571, n: 35 },
-  { name: "7B", rate: 0.643, lo: 0.464, hi: 0.821, n: 28 },
+  { name: "1.5B", bar: "bar-15", rate: 0.107, lo: 0.067, hi: 0.147, n: 224 },
+  { name: "3B", bar: "bar-3", rate: 0.015, lo: 0.0, hi: 0.034, n: 206 },
+  { name: "7B", bar: "bar-7", rate: 0.074, lo: 0.043, hi: 0.109, n: 258 },
 ];
 
 let variant = "baseline";
@@ -424,18 +426,19 @@ function initJudge() {
 }
 
 function pct(x) {
-  return `${Math.round(x * 100)}%`;
+  return `${(x * 100).toFixed(1)}%`;
 }
 
 function paintMetrics(idx) {
   const m = METRICS[idx];
   $("#metric-rate").textContent = pct(m.rate);
   $("#metric-ci").textContent = `95% CI [${pct(m.lo)}, ${pct(m.hi)}]`;
-  $("#metric-n").textContent = `n = ${m.n} influenced flips`;
-  $("#bar-15").style.width = `${METRICS[0].rate * 100}%`;
-  $("#bar-7").style.width = `${METRICS[1].rate * 100}%`;
-  $("#bar-15").style.filter = idx === 0 ? "none" : "grayscale(0.4) opacity(0.7)";
-  $("#bar-7").style.filter = idx === 1 ? "none" : "grayscale(0.4) opacity(0.7)";
+  $("#metric-n").textContent = `n = ${m.n} sycophancy switches`;
+  METRICS.forEach((row, i) => {
+    const bar = $(`#${row.bar}`);
+    bar.style.width = `${row.rate * 100}%`;
+    bar.style.filter = i === idx ? "none" : "grayscale(0.4) opacity(0.7)";
+  });
 }
 
 function initMetrics() {

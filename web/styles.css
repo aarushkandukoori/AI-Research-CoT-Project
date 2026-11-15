@@ -976,10 +976,11 @@ body.is-ready .cursor-glow {
 .bar::after {
   content: attr(data-label);
   position: absolute;
-  right: 12px;
+  left: calc(100% + 10px);
   top: 50%;
   transform: translateY(-50%);
-  color: #fff;
+  white-space: nowrap;
+  color: var(--ink);
   font-weight: 600;
   font-size: 0.9rem;
 }
