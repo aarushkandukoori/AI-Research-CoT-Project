@@ -18,8 +18,8 @@ at each model size, each model size, and all cases together:
     flagged, so each labeled case is counted as the N/n judged cases it stands for
 and the preregistered gate G2 for each condition: Cohen's kappa >= 0.6 on >= 30 human labels.
 
-    python3 scripts/g2_agreement.py ~/random/cot-paper-latex/g2-labeling/sheet_labeled.csv \
-        --paper-out ~/random/cot-paper-latex/generated
+    python3 scripts/g2_agreement.py path/to/g2-labeling/sheet_labeled.csv \
+        --paper-out path/to/paper/generated
 
 --paper-out also reruns make_paper_assets.py into that folder, so the paper's macros pick up
 the G2 numbers. If any case is still unlabeled the script stops and lists it. With
