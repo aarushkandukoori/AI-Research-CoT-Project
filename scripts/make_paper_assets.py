@@ -3,6 +3,10 @@
 number macros and figures for the paper, so no number is copied by hand.
 
     python scripts/make_paper_assets.py --out paper/generated
+    python scripts/make_paper_assets.py --out-dir ~/paper/icml2027/generated --gap-analyses
+
+--gap-analyses adds the review-check macros from scripts/gap_analyses.py after all the
+existing ones (own fixed seed, so the existing macros stay byte-identical).
 """
 
 from __future__ import annotations
@@ -32,6 +36,9 @@ ARMS = {
     "D_plc_prompt_hint_cot": "D",
 }
 RNG = np.random.default_rng(7)
+# Figures: Times-like serif embedded as TrueType (pdf.fonttype 42), never Type 3; text at 8 pt or more.
+FIG_RC = {"font.family": "serif", "font.serif": ["Times New Roman", "Times", "DejaVu Serif"], "font.size": 8,
+          "pdf.fonttype": 42, "ps.fonttype": 42, "axes.spines.top": False, "axes.spines.right": False}
 
 
 def pct(x: float | None, digits: int = 1) -> str:
@@ -91,7 +98,13 @@ def paired_diff(rows: list[dict], key1: str, key2: str, frac_idx: int) -> dict:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--out", required=True)
+    parser.add_argument("--out", "--out-dir", dest="out", required=True, help="folder for macros, tables and figures")
+    parser.add_argument("--gap-analyses", action="store_true",
+                        help="also write the no-new-run review checks (scripts/gap_analyses.py)")
+    parser.add_argument("--g2", default=str(OUTPUT_DIR / "analysis" / "g2_agreement.json"),
+                        help="gate G2 result from scripts/g2_agreement.py (skipped if the file is absent)")
+    parser.add_argument("--auroc", action="store_true",
+                        help="also write the switch-prediction AUROC macros and table (scripts/auroc_switch.py)")
     args = parser.parse_args()
     out = Path(args.out).expanduser()
     out.mkdir(parents=True, exist_ok=True)
@@ -146,6 +159,7 @@ def main() -> None:
             s = st[hint]
             tag = f"{HINT_WORD[hint]}{WORD[size]}"
             m.add(f"Acc{tag}", pct(s["acc_hinted"]))
+            m.add(f"AccBase{tag}", pct(s["acc_baseline"]))  # differs between hints: reordering drops identity items
             m.add(f"Flip{tag}", pct(s["destabilization"]))
             m.add(f"Switch{tag}", pct(s["switch_to_target"]))
             m.add(f"SwitchPlc{tag}", pct(s["placebo_switch_to_dummy"]))
@@ -215,7 +229,7 @@ def main() -> None:
             lo, hi = wilson_ci(F["faithful_count"], F["n"])
             arows.append(
                 f"{size} & {HINT_TEX[hint]} & {n} & {pct(noise, 0)} & {pct(lex) if lex is not None else '--'} & "
-                f"{pct(k_mention / n) if n else '--'} & {pct(F['point_estimate'])} {ci_pct(F['ci_lower'], F['ci_upper'])} & "
+                f"{pct(k_mention / n) if n else '--'} & {pct(F['point_estimate'])} {ci_pct(lo, hi)} & "  # Wilson, as in the main table
                 f"{pct(Fm['point_estimate'])} & {pct(Fp['point_estimate'])} & "
                 f"{pct(min(fnorm, 1.0)) if fnorm is not None else '--'} \\\\"
             )
@@ -291,6 +305,21 @@ def main() -> None:
         m.add(f"JudgeOnly{WORD[size]}", str(a["judge_only"]))
     if agreement:
         m.add("NTiebreak", str(agreement.get("n_tiebreak", 0)))
+
+    # ---- Gate G2: judge vs human labels (scripts/g2_agreement.py) ----
+    # These macros and tab_g2.tex exist only once every drawn case has a human label and
+    # g2_agreement.py has scored them. Until then no G2 number is written, so the paper
+    # cannot print a made-up value.
+    g2_path = Path(args.g2).expanduser()
+    if g2_path.exists():
+        from g2_agreement import paper_macros, paper_table
+        g2 = json.load(open(g2_path))
+        if g2.get("complete"):
+            for name, value in paper_macros(g2):
+                m.add(name, value)
+            (out / "tab_g2.tex").write_text(paper_table(g2))
+        else:
+            print(f"skipped G2: {g2_path} does not cover every drawn case")
 
     # ---- Backend check (1.5B fp16 July run vs MLX 4-bit) ----
     bc = summary["models"].get("1.5B", {}).get("backend_check")
@@ -384,6 +413,9 @@ def main() -> None:
         m.add(f"LastQuarterShare{w}", pct((nie["mean"] - nie_3q["mean"]) / nie["mean"], 0))
         mass_at = lambda i: np.mean([r[k][i]["letter_mass"] for r in rows_all for k in ARMS])
         m.add(f"LetterMassFinal{w}", pct(mass_at(-1))); m.add(f"LetterMassQuarter{w}", pct(mass_at(1)))
+        # Arm D against arm B: at f = 1 with its interval, and the largest gap in the means over all cuts
+        m.add(f"BminusD{w}", pct(bd["mean"])); m.add(f"BminusDCI{w}", ci_pct(bd["lo"], bd["hi"]))
+        m.add(f"BDMaxGap{w}", pct(max(abs(b - d) for b, d in zip(ps["B"]["mean"], ps["D"]["mean"]))))
         m.add(f"ReadoutA{w}", pct(read_a)); m.add(f"ReadoutC{w}", pct(read_c)); m.add(f"LetterMass{w}", pct(mass))
         probe_summary[size] = {"n": len(infl), "n_all": len(rows_all), "n_resisted": len(resisted),
                                "A": A1, "B": B1, "C": C1, "D": D1, "nde": nde, "nie": nie, "pre": pre,
@@ -445,8 +477,129 @@ def main() -> None:
         + "\n".join(trows) + "\n\\bottomrule\n\\end{tabular}\n")
 
     make_steering_figure(summary, present, out / "fig_steering.pdf")
+
+    # ---- Review checks that need no new runs (appended, so every macro above is unchanged) ----
+    if args.gap_analyses:
+        import gap_analyses
+        gap = gap_analyses.compute(*gap_analyses.load_inputs())
+        m.lines.append("% Review checks from scripts/gap_analyses.py (--gap-analyses)")
+        for name, value in gap_analyses.macros(gap):
+            m.add(name, value)
+        table = gap_analyses.bytask_table(gap)
+        if table:
+            (out / "tab_htwo_bytask.tex").write_text(table)
+        for path in (out / "gap_analyses.json", OUTPUT_DIR / "analysis" / "gap_analyses.json"):
+            json.dump(gap, open(path, "w"), indent=1)
+    # ---- Does the readout predict which items switch? (appended, so every macro above is unchanged) ----
+    if args.auroc:
+        auroc = json.load(open(OUTPUT_DIR / "analysis" / "auroc_switch.json"))
+        m.lines.append("% Switch-prediction AUROC from scripts/auroc_switch.py (--auroc)")
+        cond_path = OUTPUT_DIR / "analysis" / "auroc_conditional.json"
+        cond = json.load(open(cond_path)) if cond_path.exists() else None
+        (out / "tab_auroc.tex").write_text(auroc_assets(m, auroc, cond))
     m.write(out / "macros.tex")
     print(f"wrote assets to {out}")
+
+
+# (key in auroc_switch.json, macro stem, table row label); the scores are P(target) per arm
+AUROC_ROWS = [
+    ("A0", "AZero", r"$P_A(0)$, hinted prompt"),
+    ("C0", "CZero", r"$P_C(0)$, baseline prompt"),
+    ("D0", "DZero", r"$P_D(0)$, placebo prompt"),
+    ("A0-C0", "Lift", r"Shift score, $P_A(0) - P_C(0)$"),
+    ("topA0", "TopA", r"Target on top under A"),
+    ("diff_A0_minus_C0", "Gain", r"AUROC of $P_A(0)$ minus AUROC of $P_C(0)$"),
+]
+AUROC_CUTS = [("A_0.25", "AQuarter", "0.25"), ("A_0.5", "AHalf", "0.5"), ("A_0.75", "AThreeQ", "0.75"), ("A_1", "AFull", "1")]
+
+
+def auc(x: float) -> str:
+    return f"{x:.2f}"  # keeps "-0.00", so an interval that reaches below zero still shows it
+
+
+def auc_ci(lo_hi: list[float]) -> str:
+    return f"[{auc(lo_hi[0])}, {auc(lo_hi[1])}]"
+
+
+def thousands(n: int) -> str:
+    return f"{n:,}".replace(",", "{,}")
+
+
+def auroc_assets(m: Macros, auroc: dict, cond: dict | None = None) -> str:
+    """Add the AUROC macros and return tab_auroc.tex: a pooled and a within-task panel with a 95% CI
+    on every value, plus (when auroc_conditional.json exists) the held-out logistic models."""
+    sizes = [s for s in SIZES if s in auroc["sizes"]]
+    rows = AUROC_ROWS + [(key, stem, f"$P_A({f})$") for key, stem, f in AUROC_CUTS]
+    # macros in the same order as before (row by row, size by size), so the old macros.tex stays a prefix
+    for key, stem, _ in rows:
+        for size in sizes:
+            x = auroc["sizes"][size][key]
+            m.add(f"Auroc{stem}{WORD[size]}", auc(x["pooled"]))
+            m.add(f"Auroc{stem}CI{WORD[size]}", auc_ci(x["pooled_ci"]))
+            m.add(f"Auroc{stem}Within{WORD[size]}", auc(x["within_task"]))
+            m.add(f"Auroc{stem}WithinCI{WORD[size]}", auc_ci(x["within_task_ci"]))
+
+    def line(label: str, cells: list[str]) -> str:
+        return f"{label} & " + " & ".join(cells) + " \\\\"
+
+    def panel(title: str) -> str:
+        return f"\\multicolumn{{{1 + len(sizes)}}}{{l}}{{\\emph{{{title}}}}} \\\\"
+
+    lines = []
+    for kind, title in (("pooled", "Pooled"), ("within_task", "Within task (pairs from the same BBH task)")):
+        if lines:
+            lines.append("\\midrule")
+        lines.append(panel(title))
+        for key, _, label in rows:
+            lines.append(line(label, [f"{auc(auroc['sizes'][s][key][kind])} {auc_ci(auroc['sizes'][s][key][kind + '_ci'])}"
+                                      for s in sizes]))
+    if cond is not None:
+        lines += ["\\midrule", panel("Held-out logistic models, added after the main analysis (exploratory)")]
+        lines += auroc_conditional_assets(m, cond, sizes)
+    return ("\\begin{tabular}{l" + "c" * len(sizes) + "}\n\\toprule\n"
+            "Score & " + " & ".join(sizes) + " \\\\\n\\midrule\n"
+            + "\n".join(lines) + "\n\\bottomrule\n\\end{tabular}\n")
+
+
+def auroc_conditional_assets(m: Macros, cond: dict, sizes: list[str]) -> list[str]:
+    """Macros and table rows for scripts/auroc_conditional.py: does adding the shift P_A(0) - P_C(0)
+    to P_C(0) raise the held-out AUROC? Probability-scale features are the primary analysis."""
+    m.lines.append("% Conditional AUROC (held-out logistic models) from scripts/auroc_conditional.py (--auroc)")
+    m.add("AurocCondFolds", str(cond["folds"]))
+    m.add("AurocCondRepeats", str(cond["repeats"]))
+    m.add("AurocCondBoot", thousands(cond["boot_refit"]))
+    m.add("AurocCondBootRepeats", str(cond["boot_repeats_per_draw"]))
+    m.add("AurocCondBootFixed", thousands(cond["boot_fixed_predictions"]))
+    for size in sizes:
+        x, lo = cond["sizes"][size]["probability"], cond["sizes"][size]["log_odds"]
+        w = WORD[size]
+        m.add(f"AurocCondBase{w}", auc(x["base"]["pooled"]))
+        m.add(f"AurocCondBaseCI{w}", auc_ci(x["base"]["pooled_ci"]))
+        m.add(f"AurocCondShift{w}", auc(x["shift"]["pooled"]))
+        m.add(f"AurocCondShiftCI{w}", auc_ci(x["shift"]["pooled_ci"]))
+        m.add(f"AurocCondGain{w}", auc(x["gain"]["pooled"]))
+        m.add(f"AurocCondGainCI{w}", auc_ci(x["gain"]["pooled_ci"]))
+        m.add(f"AurocCondGainLo{w}", f"{x['gain']['pooled_ci'][0]:.3f}")  # 3 decimals: shows a lower end just above 0
+        m.add(f"AurocCondGainWithin{w}", auc(x["gain"]["within_task"]))
+        m.add(f"AurocCondGainWithinCI{w}", auc_ci(x["gain"]["within_task_ci"]))
+        m.add(f"AurocCondGainWithinLo{w}", f"{x['gain']['within_task_ci'][0]:.3f}")
+        m.add(f"AurocCondGainFixedCI{w}", auc_ci(x["gain"]["pooled_ci_fixed_predictions"]))
+        m.add(f"AurocCondGainLogit{w}", auc(lo["gain"]["pooled"]))
+        m.add(f"AurocCondGainLogitCI{w}", auc_ci(lo["gain"]["pooled_ci"]))
+    rows = [
+        (r"Logistic on $P_C(0)$", lambda x: (x["base"]["pooled"], x["base"]["pooled_ci"])),
+        (r"Logistic on $P_C(0)$ and the shift", lambda x: (x["shift"]["pooled"], x["shift"]["pooled_ci"])),
+        (r"Gain from adding the shift", lambda x: (x["gain"]["pooled"], x["gain"]["pooled_ci"])),
+        (r"Gain from adding the shift, within task", lambda x: (x["gain"]["within_task"], x["gain"]["within_task_ci"])),
+    ]
+    out = []
+    for label, get in rows:
+        cells = []
+        for size in sizes:
+            est, lo_hi = get(cond["sizes"][size]["probability"])
+            cells.append(f"{auc(est)} {auc_ci(lo_hi)}")
+        out.append(f"{label} & " + " & ".join(cells) + " \\\\")
+    return out
 
 
 def make_probe_figure(curves: dict, path: Path) -> None:
@@ -454,7 +607,7 @@ def make_probe_figure(curves: dict, path: Path) -> None:
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
 
-    plt.rcParams.update({"font.family": "serif", "font.size": 8, "axes.spines.top": False, "axes.spines.right": False})
+    plt.rcParams.update(FIG_RC)
     colors = {"A": "#2a78d6", "B": "#eb6834", "D": "#1baf7a", "C": "#52514e"}
     names = {"A": "A: hint prompt + hinted CoT", "B": "B: no hint + hinted CoT",
              "D": "D: placebo + hinted CoT", "C": "C: no hint + baseline CoT"}
@@ -476,7 +629,7 @@ def make_probe_figure(curves: dict, path: Path) -> None:
         ax.grid(axis="y", color="#e6e5e0", lw=0.6)
     axes[0].set_ylabel("P(hint target), %")
     handles, labels_ = axes[0].get_legend_handles_labels()
-    fig.legend(handles, labels_, loc="lower center", ncol=4, frameon=False, fontsize=7, bbox_to_anchor=(0.5, -0.04))
+    fig.legend(handles, labels_, loc="lower center", ncol=4, frameon=False, fontsize=8, bbox_to_anchor=(0.5, -0.04))
     fig.tight_layout(rect=(0, 0.1, 1, 1))
     fig.savefig(path, bbox_inches="tight")
     plt.close(fig)
@@ -487,9 +640,9 @@ def make_steering_figure(summary: dict, sizes: list[str], path: Path) -> None:
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
 
-    plt.rcParams.update({"font.family": "serif", "font.size": 8, "axes.spines.top": False, "axes.spines.right": False})
+    plt.rcParams.update(FIG_RC)
     colors = {"sycophancy": "#2a78d6", "reorder": "#eb6834", "placebo": "#8a8984"}
-    fig, ax = plt.subplots(figsize=(3.3, 2.0))
+    fig, ax = plt.subplots(figsize=(3.6, 2.4))
     width = 0.26
     max_v = 0.0
     for i, size in enumerate(sizes):
@@ -502,7 +655,7 @@ def make_steering_figure(summary: dict, sizes: list[str], path: Path) -> None:
             ax.bar(i + (j - 1) * width, 100 * v, width - 0.03, color=colors[name],
                    label={"sycophancy": "sycophancy hint", "reorder": "reordering hint",
                           "placebo": "placebo (dummy target)"}[name] if i == 0 else None)
-            ax.text(i + (j - 1) * width, 100 * v + 1, f"{100 * v:.0f}", ha="center", va="bottom", fontsize=6.5, color="#333333")
+            ax.text(i + (j - 1) * width, 100 * v + 1, f"{100 * v:.0f}", ha="center", va="bottom", fontsize=8, color="#333333")
     ax.set_xticks(range(len(sizes)))
     ax.set_xticklabels(sizes)
     ax.set_xlabel("Qwen2.5 Instruct model size")
@@ -510,7 +663,7 @@ def make_steering_figure(summary: dict, sizes: list[str], path: Path) -> None:
     ax.grid(axis="y", color="#e6e5e0", lw=0.6)
     ax.set_axisbelow(True)
     ax.set_ylim(0, 100 * max_v * 1.12 + 2)
-    ax.legend(frameon=False, fontsize=6.5, loc="lower center", ncol=3, bbox_to_anchor=(0.5, 1.0))
+    ax.legend(frameon=False, fontsize=8, loc="lower center", ncol=2, bbox_to_anchor=(0.5, 1.0))
     fig.tight_layout()
     fig.savefig(path, bbox_inches="tight")
     plt.close(fig)

@@ -28,7 +28,7 @@ Paper draft: *Do Small Models Say Why They Switched? Placebo-Controlled Hint Ack
 - A large share of what the usual flip rule selects is churn, so a matched placebo is needed before reading any acknowledgment rate. Reordering never moves answers to its target more than the placebo moves them to a dummy target; at 7B it does so significantly less (−4.2 [−6.9, −1.6]).
 - Acknowledgment is low and does not rise with size. When the models mention the professor, they usually defer to the professor's answer, so mention-based and reliance-based criteria agree within a few points.
 - Read without the hint, the hinted chain-of-thought moves the model toward the target mostly in its last quarter: halfway through, the target's probability is within 4.3 points of the model's own unhinted reasoning.
-- The judge has not yet been calibrated against human labels for these runs (preregistered gate G2); `scripts/export_human_labels.py` draws the stratified labeling set.
+- The judge has not yet been calibrated against human labels for these runs (preregistered gate G2); `scripts/export_human_labels.py` draws the stratified labeling set and `scripts/g2_agreement.py` will score the human labels against the judge.
 
 **Data in this repo.**
 
@@ -56,6 +56,8 @@ for s in 1.5B 3B 7B; do python scripts/prepare_judge_batches.py $s; done   # bli
 python scripts/finalize_judge.py outputs/judge_raw/*.json
 python scripts/analyze_mlx.py                       # acknowledgment rates and tests
 python scripts/probe_mediation.py --model mlx-community/Qwen2.5-7B-Instruct-4bit   # repeat for 1.5B and 3B
+python scripts/export_human_labels.py               # gate G2: stratified cases for human labels, judge labels hidden
+python scripts/g2_agreement.py sheet_labeled.csv    # gate G2: judge vs human labels, once every case is labeled
 python scripts/make_paper_assets.py --out paper/generated   # every number, table and figure in the paper
 ```
 
