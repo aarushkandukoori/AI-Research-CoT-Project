@@ -103,6 +103,8 @@ def main() -> None:
                         help="also write the no-new-run review checks (scripts/gap_analyses.py)")
     parser.add_argument("--g2", default=str(OUTPUT_DIR / "analysis" / "g2_agreement.json"),
                         help="gate G2 result from scripts/g2_agreement.py (skipped if the file is absent)")
+    parser.add_argument("--auroc", action="store_true",
+                        help="also write the switch-prediction AUROC macros and table (scripts/auroc_switch.py)")
     args = parser.parse_args()
     out = Path(args.out).expanduser()
     out.mkdir(parents=True, exist_ok=True)
@@ -488,8 +490,116 @@ def main() -> None:
             (out / "tab_htwo_bytask.tex").write_text(table)
         for path in (out / "gap_analyses.json", OUTPUT_DIR / "analysis" / "gap_analyses.json"):
             json.dump(gap, open(path, "w"), indent=1)
+    # ---- Does the readout predict which items switch? (appended, so every macro above is unchanged) ----
+    if args.auroc:
+        auroc = json.load(open(OUTPUT_DIR / "analysis" / "auroc_switch.json"))
+        m.lines.append("% Switch-prediction AUROC from scripts/auroc_switch.py (--auroc)")
+        cond_path = OUTPUT_DIR / "analysis" / "auroc_conditional.json"
+        cond = json.load(open(cond_path)) if cond_path.exists() else None
+        (out / "tab_auroc.tex").write_text(auroc_assets(m, auroc, cond))
     m.write(out / "macros.tex")
     print(f"wrote assets to {out}")
+
+
+# (key in auroc_switch.json, macro stem, table row label); the scores are P(target) per arm
+AUROC_ROWS = [
+    ("A0", "AZero", r"$P_A(0)$, hinted prompt"),
+    ("C0", "CZero", r"$P_C(0)$, baseline prompt"),
+    ("D0", "DZero", r"$P_D(0)$, placebo prompt"),
+    ("A0-C0", "Lift", r"Shift score, $P_A(0) - P_C(0)$"),
+    ("topA0", "TopA", r"Target on top under A"),
+    ("diff_A0_minus_C0", "Gain", r"AUROC of $P_A(0)$ minus AUROC of $P_C(0)$"),
+]
+AUROC_CUTS = [("A_0.25", "AQuarter", "0.25"), ("A_0.5", "AHalf", "0.5"), ("A_0.75", "AThreeQ", "0.75"), ("A_1", "AFull", "1")]
+
+
+def auc(x: float) -> str:
+    return f"{x:.2f}"  # keeps "-0.00", so an interval that reaches below zero still shows it
+
+
+def auc_ci(lo_hi: list[float]) -> str:
+    return f"[{auc(lo_hi[0])}, {auc(lo_hi[1])}]"
+
+
+def thousands(n: int) -> str:
+    return f"{n:,}".replace(",", "{,}")
+
+
+def auroc_assets(m: Macros, auroc: dict, cond: dict | None = None) -> str:
+    """Add the AUROC macros and return tab_auroc.tex: a pooled and a within-task panel with a 95% CI
+    on every value, plus (when auroc_conditional.json exists) the held-out logistic models."""
+    sizes = [s for s in SIZES if s in auroc["sizes"]]
+    rows = AUROC_ROWS + [(key, stem, f"$P_A({f})$") for key, stem, f in AUROC_CUTS]
+    # macros in the same order as before (row by row, size by size), so the old macros.tex stays a prefix
+    for key, stem, _ in rows:
+        for size in sizes:
+            x = auroc["sizes"][size][key]
+            m.add(f"Auroc{stem}{WORD[size]}", auc(x["pooled"]))
+            m.add(f"Auroc{stem}CI{WORD[size]}", auc_ci(x["pooled_ci"]))
+            m.add(f"Auroc{stem}Within{WORD[size]}", auc(x["within_task"]))
+            m.add(f"Auroc{stem}WithinCI{WORD[size]}", auc_ci(x["within_task_ci"]))
+
+    def line(label: str, cells: list[str]) -> str:
+        return f"{label} & " + " & ".join(cells) + " \\\\"
+
+    def panel(title: str) -> str:
+        return f"\\multicolumn{{{1 + len(sizes)}}}{{l}}{{\\emph{{{title}}}}} \\\\"
+
+    lines = []
+    for kind, title in (("pooled", "Pooled"), ("within_task", "Within task (pairs from the same BBH task)")):
+        if lines:
+            lines.append("\\midrule")
+        lines.append(panel(title))
+        for key, _, label in rows:
+            lines.append(line(label, [f"{auc(auroc['sizes'][s][key][kind])} {auc_ci(auroc['sizes'][s][key][kind + '_ci'])}"
+                                      for s in sizes]))
+    if cond is not None:
+        lines += ["\\midrule", panel("Held-out logistic models, added after the main analysis (exploratory)")]
+        lines += auroc_conditional_assets(m, cond, sizes)
+    return ("\\begin{tabular}{l" + "c" * len(sizes) + "}\n\\toprule\n"
+            "Score & " + " & ".join(sizes) + " \\\\\n\\midrule\n"
+            + "\n".join(lines) + "\n\\bottomrule\n\\end{tabular}\n")
+
+
+def auroc_conditional_assets(m: Macros, cond: dict, sizes: list[str]) -> list[str]:
+    """Macros and table rows for scripts/auroc_conditional.py: does adding the shift P_A(0) - P_C(0)
+    to P_C(0) raise the held-out AUROC? Probability-scale features are the primary analysis."""
+    m.lines.append("% Conditional AUROC (held-out logistic models) from scripts/auroc_conditional.py (--auroc)")
+    m.add("AurocCondFolds", str(cond["folds"]))
+    m.add("AurocCondRepeats", str(cond["repeats"]))
+    m.add("AurocCondBoot", thousands(cond["boot_refit"]))
+    m.add("AurocCondBootRepeats", str(cond["boot_repeats_per_draw"]))
+    m.add("AurocCondBootFixed", thousands(cond["boot_fixed_predictions"]))
+    for size in sizes:
+        x, lo = cond["sizes"][size]["probability"], cond["sizes"][size]["log_odds"]
+        w = WORD[size]
+        m.add(f"AurocCondBase{w}", auc(x["base"]["pooled"]))
+        m.add(f"AurocCondBaseCI{w}", auc_ci(x["base"]["pooled_ci"]))
+        m.add(f"AurocCondShift{w}", auc(x["shift"]["pooled"]))
+        m.add(f"AurocCondShiftCI{w}", auc_ci(x["shift"]["pooled_ci"]))
+        m.add(f"AurocCondGain{w}", auc(x["gain"]["pooled"]))
+        m.add(f"AurocCondGainCI{w}", auc_ci(x["gain"]["pooled_ci"]))
+        m.add(f"AurocCondGainLo{w}", f"{x['gain']['pooled_ci'][0]:.3f}")  # 3 decimals: shows a lower end just above 0
+        m.add(f"AurocCondGainWithin{w}", auc(x["gain"]["within_task"]))
+        m.add(f"AurocCondGainWithinCI{w}", auc_ci(x["gain"]["within_task_ci"]))
+        m.add(f"AurocCondGainWithinLo{w}", f"{x['gain']['within_task_ci'][0]:.3f}")
+        m.add(f"AurocCondGainFixedCI{w}", auc_ci(x["gain"]["pooled_ci_fixed_predictions"]))
+        m.add(f"AurocCondGainLogit{w}", auc(lo["gain"]["pooled"]))
+        m.add(f"AurocCondGainLogitCI{w}", auc_ci(lo["gain"]["pooled_ci"]))
+    rows = [
+        (r"Logistic on $P_C(0)$", lambda x: (x["base"]["pooled"], x["base"]["pooled_ci"])),
+        (r"Logistic on $P_C(0)$ and the shift", lambda x: (x["shift"]["pooled"], x["shift"]["pooled_ci"])),
+        (r"Gain from adding the shift", lambda x: (x["gain"]["pooled"], x["gain"]["pooled_ci"])),
+        (r"Gain from adding the shift, within task", lambda x: (x["gain"]["within_task"], x["gain"]["within_task_ci"])),
+    ]
+    out = []
+    for label, get in rows:
+        cells = []
+        for size in sizes:
+            est, lo_hi = get(cond["sizes"][size]["probability"])
+            cells.append(f"{auc(est)} {auc_ci(lo_hi)}")
+        out.append(f"{label} & " + " & ".join(cells) + " \\\\")
+    return out
 
 
 def make_probe_figure(curves: dict, path: Path) -> None:
